@@ -19,6 +19,19 @@
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+  /* ---------- Toast Notification Helper ---------- */
+  var toast = $("#toastNotification");
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.hidden = false;
+    toast.classList.add("is-visible");
+    setTimeout(function () {
+      toast.classList.remove("is-visible");
+      setTimeout(function () { toast.hidden = true; }, 300);
+    }, 2600);
+  }
+
   /* ---------- Audio Feedback Engine (Web Audio API) ---------- */
   var audio = (function () {
     var ctx = null;
@@ -239,7 +252,6 @@
       function step(now) {
         if (!startTime) startTime = now;
         var progress = Math.min((now - startTime) / duration, 1);
-        // Smooth cubic out
         var ease = 1 - Math.pow(1 - progress, 3);
         var current = progress * target;
 
@@ -339,7 +351,6 @@
         if (p.y < 0) p.y = height;
         if (p.y > height) p.y = 0;
 
-        // Mouse attraction
         var dx = mouse.x - p.x;
         var dy = mouse.y - p.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
@@ -353,7 +364,6 @@
         ctx.fillStyle = "rgba(99, 102, 241, 0.4)";
         ctx.fill();
 
-        // Connect lines
         for (var j = i + 1; j < particles.length; j++) {
           var p2 = particles[j];
           var djx = p.x - p2.x;
@@ -457,14 +467,13 @@
     var mode = "normal";
     var target = 10.00;
     var sigma = 0.15;
-    var ucl = target + 3 * sigma; // 10.45
-    var lcl = target - 3 * sigma; // 9.55
+    var ucl = target + 3 * sigma;
+    var lcl = target - 3 * sigma;
 
     var maxPoints = 26;
     var data = [];
     var stepCount = 0;
 
-    // Pre-populate data
     for (var i = 0; i < maxPoints; i++) {
       data.push(target + (Math.random() - 0.5) * 1.6 * sigma);
     }
@@ -513,25 +522,22 @@
         return padY + plotH - ((v - minY) / (maxY - minY)) * plotH;
       }
 
-      // Draw UCL / LCL / Centerline
       var yUCL = getY(ucl);
       var yLCL = getY(lcl);
       var yCL = getY(target);
 
-      // Lines
       ctx.lineWidth = 1;
       ctx.setLineDash([4, 4]);
-      ctx.strokeStyle = "rgba(244, 63, 94, 0.5)"; // UCL
+      ctx.strokeStyle = "rgba(244, 63, 94, 0.5)";
       ctx.beginPath(); ctx.moveTo(padX, yUCL); ctx.lineTo(w - padX, yUCL); ctx.stroke();
 
-      ctx.strokeStyle = "rgba(244, 63, 94, 0.5)"; // LCL
+      ctx.strokeStyle = "rgba(244, 63, 94, 0.5)";
       ctx.beginPath(); ctx.moveTo(padX, yLCL); ctx.lineTo(w - padX, yLCL); ctx.stroke();
 
-      ctx.strokeStyle = "rgba(99, 102, 241, 0.5)"; // Target
+      ctx.strokeStyle = "rgba(99, 102, 241, 0.5)";
       ctx.beginPath(); ctx.moveTo(padX, yCL); ctx.lineTo(w - padX, yCL); ctx.stroke();
       ctx.setLineDash([]);
 
-      // Plot data line
       ctx.lineWidth = 2;
       ctx.strokeStyle = "#38bdf8";
       ctx.beginPath();
@@ -547,7 +553,6 @@
       }
       ctx.stroke();
 
-      // Plot points & checks
       for (var k = 0; k < data.length; k++) {
         var ptX = padX + k * stepX;
         var ptY = getY(data[k]);
@@ -586,6 +591,527 @@
     }, 1400);
 
     draw();
+
+    window.triggerSpcSpike = function () {
+      mode = "spike";
+      generateNext();
+      draw();
+      audio.play("alert");
+      setTimeout(function () { mode = "normal"; }, 3000);
+    };
+  })();
+
+  /* ---------- FEATURE 1: SIX-SIGMA CPK GAUSSIAN BELL CURVE LAB ---------- */
+  (function cpkLab() {
+    var canvas = $("#cpkCanvas");
+    if (!canvas) return;
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    var sMean = $("#sliderMean");
+    var sSigma = $("#sliderSigma");
+    var sTol = $("#sliderTol");
+
+    var vMean = $("#valMean");
+    var vSigma = $("#valSigma");
+    var vTol = $("#valTol");
+
+    var outCpk = $("#outCpk");
+    var outCp = $("#outCp");
+    var outCpuCpl = $("#outCpuCpl");
+    var outPpm = $("#outPpm");
+    var cpkTag = $("#outCpkTag");
+
+    function erf(x) {
+      // Approximation for error function
+      var a1 =  0.254829592;
+      var a2 = -0.284496736;
+      var a3 =  1.421413741;
+      var a4 = -1.453152027;
+      var a5 =  1.061405429;
+      var p  =  0.3275911;
+      var sign = x < 0 ? -1 : 1;
+      x = Math.abs(x);
+      var t = 1.0 / (1.0 + p * x);
+      var y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+      return sign * y;
+    }
+
+    function stdNormCdf(z) {
+      return 0.5 * (1.0 + erf(z / Math.SQRT2));
+    }
+
+    function update() {
+      var mean = parseFloat(sMean.value);
+      var sigma = parseFloat(sSigma.value);
+      var tol = parseFloat(sTol.value);
+
+      var nominal = 10.00;
+      var usl = nominal + tol;
+      var lsl = nominal - tol;
+
+      if (vMean) vMean.textContent = mean.toFixed(2) + " mm";
+      if (vSigma) vSigma.textContent = sigma.toFixed(2) + " mm";
+      if (vTol) vTol.textContent = "±" + tol.toFixed(2) + " mm";
+
+      // Math calculations
+      var cp = (usl - lsl) / (6 * sigma);
+      var cpu = (usl - mean) / (3 * sigma);
+      var cpl = (mean - lsl) / (3 * sigma);
+      var cpk = Math.min(cpu, cpl);
+
+      // PPM Defect calculation
+      var zUsl = (usl - mean) / sigma;
+      var zLsl = (mean - lsl) / sigma;
+      var pUpper = 1.0 - stdNormCdf(zUsl);
+      var pLower = 1.0 - stdNormCdf(zLsl);
+      var totalPpm = (pUpper + pLower) * 1000000;
+
+      if (outCpk) outCpk.textContent = cpk.toFixed(2);
+      if (outCp) outCp.textContent = cp.toFixed(2);
+      if (outCpuCpl) outCpuCpl.textContent = cpu.toFixed(2) + " / " + cpl.toFixed(2);
+      
+      if (outPpm) {
+        if (totalPpm < 1) outPpm.textContent = "< 1 PPM";
+        else if (totalPpm > 50000) outPpm.textContent = Math.round(totalPpm).toLocaleString() + " PPM (HIGH)";
+        else outPpm.textContent = Math.round(totalPpm).toLocaleString() + " PPM";
+      }
+
+      if (cpkTag) {
+        cpkTag.className = "cpk-status-tag";
+        if (cpk >= 1.67) {
+          cpkTag.textContent = "SIX-SIGMA (1.67+)";
+          cpkTag.classList.add("six-sigma");
+        } else if (cpk >= 1.33) {
+          cpkTag.textContent = "CAPABLE (1.33+)";
+        } else {
+          cpkTag.textContent = "INCAPABLE (<1.33)";
+          cpkTag.classList.add("warning");
+        }
+      }
+
+      // Draw Normal Distribution Curve
+      var w = canvas.width = canvas.offsetWidth;
+      var h = canvas.height = canvas.offsetHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      var minX = nominal - 1.0;
+      var maxX = nominal + 1.0;
+      var padY = 20;
+      var plotH = h - padY * 2;
+
+      function getPx(xVal) {
+        return ((xVal - minX) / (maxX - minX)) * w;
+      }
+
+      function gaussian(xVal) {
+        return (1 / (sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((xVal - mean) / sigma, 2));
+      }
+
+      var maxG = gaussian(mean);
+      if (maxG < 2) maxG = 2;
+
+      function getPy(yVal) {
+        return h - padY - (yVal / (maxG * 1.15)) * plotH;
+      }
+
+      // Draw Shaded Out-of-Spec Regions
+      var steps = 140;
+      var dx = (maxX - minX) / steps;
+
+      ctx.fillStyle = "rgba(244, 63, 94, 0.35)";
+      // Left tail (< LSL)
+      ctx.beginPath();
+      ctx.moveTo(getPx(minX), h - padY);
+      for (var x = minX; x <= lsl; x += dx) {
+        ctx.lineTo(getPx(x), getPy(gaussian(x)));
+      }
+      ctx.lineTo(getPx(lsl), h - padY);
+      ctx.closePath();
+      ctx.fill();
+
+      // Right tail (> USL)
+      ctx.beginPath();
+      ctx.moveTo(getPx(usl), h - padY);
+      for (var x2 = usl; x2 <= maxX; x2 += dx) {
+        ctx.lineTo(getPx(x2), getPy(gaussian(x2)));
+      }
+      ctx.lineTo(getPx(maxX), h - padY);
+      ctx.closePath();
+      ctx.fill();
+
+      // Draw In-Spec Accept Fill (Indigo/Cyan)
+      ctx.fillStyle = "rgba(99, 102, 241, 0.25)";
+      ctx.beginPath();
+      ctx.moveTo(getPx(lsl), h - padY);
+      for (var xi = lsl; xi <= usl; xi += dx) {
+        ctx.lineTo(getPx(xi), getPy(gaussian(xi)));
+      }
+      ctx.lineTo(getPx(usl), h - padY);
+      ctx.closePath();
+      ctx.fill();
+
+      // Draw Bell Curve Line
+      ctx.beginPath();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = "#38bdf8";
+      for (var i = 0; i <= steps; i++) {
+        var xPlot = minX + i * dx;
+        var yPlot = gaussian(xPlot);
+        if (i === 0) ctx.moveTo(getPx(xPlot), getPy(yPlot));
+        else ctx.lineTo(getPx(xPlot), getPy(yPlot));
+      }
+      ctx.stroke();
+
+      // Draw Specification Limit Marker Lines
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 3]);
+
+      // LSL
+      ctx.strokeStyle = "#f43f5e";
+      ctx.beginPath(); ctx.moveTo(getPx(lsl), 10); ctx.lineTo(getPx(lsl), h - padY); ctx.stroke();
+      ctx.fillStyle = "#f43f5e";
+      ctx.font = "10px JetBrains Mono, monospace";
+      ctx.fillText("LSL: " + lsl.toFixed(2), getPx(lsl) - 25, padY - 5);
+
+      // USL
+      ctx.beginPath(); ctx.moveTo(getPx(usl), 10); ctx.lineTo(getPx(usl), h - padY); ctx.stroke();
+      ctx.fillText("USL: " + usl.toFixed(2), getPx(usl) - 25, padY - 5);
+
+      // Mean line
+      ctx.strokeStyle = "#818cf8";
+      ctx.beginPath(); ctx.moveTo(getPx(mean), 15); ctx.lineTo(getPx(mean), h - padY); ctx.stroke();
+      ctx.fillStyle = "#818cf8";
+      ctx.fillText("μ: " + mean.toFixed(2), getPx(mean) - 15, h - 5);
+
+      ctx.setLineDash([]);
+    }
+
+    on(sMean, "input", function () { update(); audio.play("click"); });
+    on(sSigma, "input", function () { update(); audio.play("click"); });
+    on(sTol, "input", function () { update(); audio.play("click"); });
+
+    update();
+  })();
+
+  /* ---------- FEATURE 3: ZEBRA ZPL INDUSTRIAL STUDIO ---------- */
+  (function zplStudio() {
+    var part = $("#zplPart");
+    var heat = $("#zplHeat");
+    var weight = $("#zplWeight");
+    var status = $("#zplStatus");
+    var codeOut = $("#zplCodeOut");
+    var copyBtn = $("#copyZplBtn");
+
+    var lblPart = $("#lblPart");
+    var lblHeat = $("#lblHeat");
+    var lblSerial = $("#lblSerial");
+    var lblWeight = $("#lblWeight");
+    var lblDate = $("#lblDate");
+    var lblStamp = $("#lblStamp");
+    var lblBarcodeHuman = $("#lblBarcodeHuman");
+    var qrCanvas = $("#qrCanvasPreview");
+
+    function render2DMatrix(text) {
+      if (!qrCanvas) return;
+      var ctx = qrCanvas.getContext("2d");
+      var s = qrCanvas.width = 90;
+      qrCanvas.height = 90;
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, s, s);
+
+      // Procedural high-density 2D matrix pattern based on input text
+      var hash = 0;
+      for (var i = 0; i < text.length; i++) {
+        hash = (hash << 5) - hash + text.charCodeAt(i);
+        hash |= 0;
+      }
+
+      ctx.fillStyle = "#0f172a";
+      var cells = 14;
+      var cSize = s / cells;
+
+      // Draw finder pattern borders
+      for (var r = 0; r < cells; r++) {
+        for (var c = 0; c < cells; c++) {
+          var isBorder = r === 0 || c === 0 || (r === cells - 1 && c % 2 === 0) || (c === cells - 1 && r % 2 === 0);
+          var bit = ((hash >> ((r * cells + c) % 31)) & 1) === 1;
+          if (isBorder || bit) {
+            ctx.fillRect(c * cSize, r * cSize, cSize - 0.5, cSize - 0.5);
+          }
+        }
+      }
+    }
+
+    function update() {
+      var pVal = part ? part.value : "10.60 x 1600mm Gr-A";
+      var hVal = heat ? heat.value : "HT-260826-09";
+      var wVal = weight ? weight.value : "214.6";
+      var sVal = status ? status.value : "ACCEPTED";
+
+      var serial = "BND-260826-" + Math.abs((hVal.length * 17) % 900 + 100);
+
+      if (lblPart) lblPart.textContent = pVal;
+      if (lblHeat) lblHeat.textContent = hVal;
+      if (lblSerial) lblSerial.textContent = serial;
+      if (lblWeight) lblWeight.textContent = parseFloat(wVal || 0).toFixed(2) + " kg";
+      if (lblBarcodeHuman) lblBarcodeHuman.textContent = "*" + serial + "*";
+
+      if (lblStamp) {
+        lblStamp.textContent = sVal;
+        lblStamp.className = "label-stamp " + (sVal === "ACCEPTED" ? "stamp-accepted" : sVal === "HOLD" ? "stamp-hold" : "stamp-rejected");
+      }
+
+      // Generate raw ZPL string
+      var zpl = [
+        "^XA",
+        "^FO30,30^A0N,28,28^FDNHK SPRING INDIA LTD^FS",
+        "^FO30,65^A0N,20,20^FDMAT: " + pVal + "^FS",
+        "^FO30,95^A0N,20,20^FDHEAT: " + hVal + "^FS",
+        "^FO30,125^A0N,20,20^FDWT: " + wVal + " KG  DISP: " + sVal + "^FS",
+        "^FO30,155^BCN,40,Y,N,N^FD" + serial + "^FS",
+        "^FO320,30^BXN,6,200^FD" + hVal + "|" + wVal + "|" + sVal + "^FS",
+        "^XZ"
+      ].join("\n");
+
+      if (codeOut) codeOut.textContent = zpl;
+      render2DMatrix(hVal + "|" + wVal + "|" + sVal);
+    }
+
+    on(part, "input", update);
+    on(heat, "input", update);
+    on(weight, "input", update);
+    on(status, "change", function () { update(); audio.play("click"); });
+
+    on(copyBtn, "click", function () {
+      audio.play("scan");
+      if (codeOut && navigator.clipboard) {
+        navigator.clipboard.writeText(codeOut.textContent).then(function () {
+          showToast("✓ Raw ZPL Code copied to clipboard!");
+        });
+      }
+    });
+
+    update();
+  })();
+
+  /* ---------- FEATURE 5: DEVELOPER COMMAND PALETTE (CTRL + K) ---------- */
+  (function cmdPalette() {
+    var modal = $("#cmdPaletteModal");
+    var input = $("#cmdInput");
+    var list = $("#cmdResultsList");
+    var btnTrigger = $("#cmdPaletteBtn");
+
+    var commands = [
+      { id: "rims", title: "Flagship System: NHK_RIMS", tag: "PROJECT", icon: "🚀", action: function () { window.location.hash = "nhk-rims"; } },
+      { id: "cpk", title: "Interactive Six-Sigma Cpk Lab", tag: "LAB", icon: "📊", action: function () { window.location.hash = "cpk-lab"; } },
+      { id: "zpl", title: "Zebra ZPL Label Studio", tag: "HARDWARE", icon: "🏷️", action: function () { window.location.hash = "zpl-designer"; } },
+      { id: "spc", title: "Live SPC Telemetry Streamer", tag: "TELEMETRY", icon: "📈", action: function () { window.location.hash = "spc-streamer"; } },
+      { id: "yt", title: "NV AI Studio (@nvaistudio)", tag: "YOUTUBE", icon: "🎬", action: function () { window.location.hash = "media"; } },
+      { id: "resume", title: "Inspect Interactive CV Modal", tag: "CAREER", icon: "📄", action: function () { var rm = $("#resumeModal"); if (rm) rm.showModal(); } },
+      { id: "pdf", title: "Download Official Resume PDF", tag: "DOWNLOAD", icon: "↓", action: function () { window.open("nikhil_vashisht_resume.pdf", "_blank"); } },
+      { id: "email", title: "Copy Direct Email Address", tag: "CONTACT", icon: "📋", action: function () { if (navigator.clipboard) { navigator.clipboard.writeText("nishantvashisht8@gmail.com"); showToast("✓ Email copied to clipboard: nishantvashisht8@gmail.com"); } } },
+      { id: "spike", title: "Trigger Outlier Spike Test in SPC", tag: "SIMULATION", icon: "⚡", action: function () { if (window.triggerSpcSpike) window.triggerSpcSpike(); showToast("⚡ Injected shop-floor outlier spike into SPC chart!"); } },
+      { id: "theme", title: "Toggle Dark / Light Theme", tag: "UI", icon: "🌓", action: function () { var tt = $("#themeToggle"); if (tt) tt.click(); } },
+      { id: "audio", title: "Toggle Tactile Audio Sound FX", tag: "AUDIO", icon: "🔊", action: function () { var at = $("#audioToggle"); if (at) at.click(); } },
+      { id: "github", title: "Visit GitHub Profile (@Nikkured)", tag: "EXTERNAL", icon: "🐙", action: function () { window.open("https://github.com/Nikkured", "_blank"); } }
+    ];
+
+    var selectedIdx = 0;
+    var filtered = commands.slice();
+
+    function renderList() {
+      if (!list) return;
+      list.innerHTML = "";
+      if (filtered.length === 0) {
+        list.innerHTML = '<div style="padding:16px; text-align:center; color:var(--text-muted); font-size:13px;">No matching commands found</div>';
+        return;
+      }
+
+      filtered.forEach(function (cmd, idx) {
+        var el = document.createElement("div");
+        el.className = "cmd-item" + (idx === selectedIdx ? " is-selected" : "");
+        el.innerHTML = '<div class="cmd-item-left"><span class="cmd-item-icon">' + cmd.icon + '</span><span class="cmd-item-title">' + cmd.title + '</span></div><span class="cmd-item-tag">' + cmd.tag + '</span>';
+        on(el, "click", function () {
+          execute(cmd);
+        });
+        list.appendChild(el);
+      });
+    }
+
+    function execute(cmd) {
+      audio.play("scan");
+      close();
+      if (cmd && typeof cmd.action === "function") {
+        cmd.action();
+      }
+    }
+
+    function open() {
+      audio.play("click");
+      if (typeof modal.showModal === "function") {
+        modal.showModal();
+      } else {
+        modal.setAttribute("open", "");
+      }
+      if (input) {
+        input.value = "";
+        input.focus();
+      }
+      filtered = commands.slice();
+      selectedIdx = 0;
+      renderList();
+    }
+
+    function close() {
+      if (typeof modal.close === "function") {
+        modal.close();
+      } else {
+        modal.removeAttribute("open");
+      }
+    }
+
+    on(btnTrigger, "click", open);
+
+    on(window, "keydown", function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        if (modal.hasAttribute("open")) close();
+        else open();
+      }
+      if (modal.hasAttribute("open")) {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          close();
+        } else if (e.key === "ArrowDown") {
+          e.preventDefault();
+          selectedIdx = (selectedIdx + 1) % filtered.length;
+          renderList();
+          audio.play("click");
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          selectedIdx = (selectedIdx - 1 + filtered.length) % filtered.length;
+          renderList();
+          audio.play("click");
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          if (filtered[selectedIdx]) execute(filtered[selectedIdx]);
+        }
+      }
+    });
+
+    on(input, "input", function () {
+      var q = input.value.toLowerCase().trim();
+      filtered = commands.filter(function (c) {
+        return c.title.toLowerCase().indexOf(q) !== -1 || c.tag.toLowerCase().indexOf(q) !== -1;
+      });
+      selectedIdx = 0;
+      renderList();
+    });
+
+    on(modal, "click", function (e) {
+      if (e.target === modal) close();
+    });
+  })();
+
+  /* ---------- FEATURE 6: INTERACTIVE VIDEO SHOWCASE THEATER MODAL ---------- */
+  (function videoTheater() {
+    var modal = $("#videoModal");
+    var triggers = $$(".js-video-trigger");
+    var closeBtn = $("#closeVideoModal");
+    var closeFooter = $("#closeVideoModalBtn");
+    var banner = $("#videoScreenBanner");
+
+    var vTitle = $("#videoModalTitle");
+    var vDesc = $("#videoModalDesc");
+    var vChapters = $("#videoModalChapters");
+    var vLink = $("#videoModalYtLink");
+
+    var videos = {
+      "python-automation": {
+        title: "Automating Engineering Reports with Python & SQLite",
+        desc: "A hands-on breakdown demonstrating how to eliminate 4+ hours of manual inspection data collation daily. Shows how to structure offline SQLite tables, write automated pandas data transformations, and generate executive Pareto summaries with single-click Python scripts.",
+        chapters: [
+          { ts: "00:00", label: "Introduction to Shop-Floor Data Bottlenecks" },
+          { ts: "02:15", label: "Designing SQLite Relational Ledger Schema" },
+          { ts: "05:30", label: "Building the Automated Python Aggregation Pipeline" },
+          { ts: "08:40", label: "Exporting Auto-Formatted Excel Reports with VBA" }
+        ],
+        url: "https://www.youtube.com/@nvaistudio"
+      },
+      "ai-workflows": {
+        title: "Next-Gen AI Tools & Workflow Automation Breakdown",
+        desc: "In-depth review and tutorial analyzing modern AI coding agents, autonomous terminal workflows, and local LLM toolsets for software developers and manufacturing automation engineers.",
+        chapters: [
+          { ts: "00:00", label: "State of Modern AI Engineering Tools" },
+          { ts: "01:50", label: "Autonomous Coding Agents vs Static Completion" },
+          { ts: "04:30", label: "Hands-On Refactoring with Terminal Integration" },
+          { ts: "07:10", label: "Productivity Best Practices & Setup Guide" }
+        ],
+        url: "https://www.youtube.com/@nvaistudio"
+      }
+    };
+
+    var currentVideo = videos["python-automation"];
+
+    function open(key) {
+      audio.play("click");
+      var data = videos[key] || videos["python-automation"];
+      currentVideo = data;
+
+      if (vTitle) vTitle.textContent = data.title;
+      if (vDesc) vDesc.textContent = data.desc;
+      if (vLink) vLink.href = data.url;
+
+      if (vChapters) {
+        vChapters.innerHTML = "";
+        data.chapters.forEach(function (ch) {
+          var li = document.createElement("li");
+          li.innerHTML = '<span class="ts">' + ch.ts + '</span><span>' + ch.label + '</span>';
+          vChapters.appendChild(li);
+        });
+      }
+
+      if (typeof modal.showModal === "function") {
+        modal.showModal();
+      } else {
+        modal.setAttribute("open", "");
+      }
+    }
+
+    function close() {
+      audio.play("click");
+      if (typeof modal.close === "function") {
+        modal.close();
+      } else {
+        modal.removeAttribute("open");
+      }
+    }
+
+    triggers.forEach(function (card) {
+      on(card, "click", function () {
+        var key = card.getAttribute("data-video");
+        open(key);
+      });
+      on(card, "keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          var key = card.getAttribute("data-video");
+          open(key);
+        }
+      });
+    });
+
+    on(banner, "click", function () {
+      audio.play("scan");
+      window.open(currentVideo.url, "_blank");
+    });
+
+    on(closeBtn, "click", close);
+    on(closeFooter, "click", close);
+    on(modal, "click", function (e) {
+      if (e.target === modal) close();
+    });
   })();
 
   /* ---------- QR Scanner Mini Simulator ---------- */
@@ -641,7 +1167,6 @@
     var closeFooterBtn = $("#closeResumeModalBtn");
     var tabs = $$(".resume-tab");
     var copyBtn = $("#copyResumeBtn");
-    var toast = $("#toastNotification");
 
     if (!modal) return;
 
@@ -690,17 +1215,6 @@
         });
       });
     });
-
-    function showToast(msg) {
-      if (!toast) return;
-      toast.textContent = msg;
-      toast.hidden = false;
-      toast.classList.add("is-visible");
-      setTimeout(function () {
-        toast.classList.remove("is-visible");
-        setTimeout(function () { toast.hidden = true; }, 300);
-      }, 2600);
-    }
 
     on(copyBtn, "click", function () {
       audio.play("scan");

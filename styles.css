@@ -1810,3 +1810,572 @@ body {
   .video-preview-card { flex-direction: column; }
   .video-thumb-placeholder { width: 100%; }
 }
+
+/* ==========================================================================
+   FEATURE 1: SIX-SIGMA CPK BELL CURVE LAB
+   ========================================================================== */
+.cpk-sliders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+.cpk-slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+.custom-range {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-elevated);
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  border: 1px solid var(--border-subtle);
+}
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cyan);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+  border: 2px solid #fff;
+  transition: transform 0.15s ease;
+}
+.custom-range::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+.cpk-canvas-box {
+  background: #020408;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cpk-canvas {
+  width: 100%;
+  height: 200px;
+  border-radius: var(--radius-sm);
+  background: #010204;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+.cpk-metrics-readout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.cpk-metric-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cpk-metric-card .m-label {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.cpk-metric-card .m-val {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.cpk-status-tag {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  align-self: flex-start;
+  margin-top: 2px;
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--emerald);
+}
+.cpk-status-tag.six-sigma {
+  background: rgba(99, 102, 241, 0.25);
+  color: var(--brand-light);
+}
+.cpk-status-tag.warning {
+  background: rgba(244, 63, 94, 0.25);
+  color: var(--rose);
+}
+
+/* ==========================================================================
+   FEATURE 3: ZEBRA ZPL INDUSTRIAL STUDIO
+   ========================================================================== */
+.zpl-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+.zpl-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.zpl-input-group label {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+.zpl-input {
+  background: #020408;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.zpl-input:focus {
+  border-color: var(--brand);
+}
+.zpl-code-pane {
+  margin-top: 16px;
+  background: #020408;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.zpl-code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+.zpl-pre {
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: #a5b4fc;
+  max-height: 110px;
+  overflow-y: auto;
+}
+
+/* Photorealistic Thermal Industrial Label */
+.thermal-label-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+.thermal-label {
+  background: #f8fafc;
+  color: #0f172a;
+  border: 2px solid #334155;
+  border-radius: 4px;
+  padding: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  font-family: var(--font-mono);
+}
+.label-header {
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.label-co {
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+.label-doc {
+  font-size: 10px;
+  font-weight: 700;
+  color: #475569;
+}
+.label-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 12px;
+  margin-bottom: 10px;
+}
+.label-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 11px;
+}
+.label-field {
+  display: flex;
+  gap: 6px;
+}
+.lbl-k {
+  color: #64748b;
+  font-weight: 700;
+  font-size: 10px;
+}
+.label-right-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.datamatrix-box {
+  background: #fff;
+  border: 1px solid #0f172a;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.qr-canvas {
+  width: 70px;
+  height: 70px;
+}
+.datamatrix-caption {
+  font-size: 8px;
+  font-weight: 700;
+  color: #475569;
+  margin-top: 2px;
+}
+.label-stamp {
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 8px;
+  border: 2px solid;
+  border-radius: 3px;
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+}
+.stamp-accepted {
+  color: #16a34a;
+  border-color: #16a34a;
+  background: rgba(22, 163, 74, 0.08);
+}
+.stamp-hold {
+  color: #d97706;
+  border-color: #d97706;
+  background: rgba(217, 119, 6, 0.08);
+}
+.stamp-rejected {
+  color: #dc2626;
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.08);
+}
+.label-barcode-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.barcode-lines {
+  width: 90%;
+  height: 28px;
+  background: repeating-linear-gradient(
+    90deg,
+    #0f172a,
+    #0f172a 2px,
+    transparent 2px,
+    transparent 5px,
+    #0f172a 5px,
+    #0f172a 8px,
+    transparent 8px,
+    transparent 11px,
+    #0f172a 11px,
+    #0f172a 15px
+  );
+}
+.barcode-human {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   FEATURE 5: COMMAND PALETTE (CTRL + K)
+   ========================================================================== */
+.cmd-kbd {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 5px;
+  border-radius: 3px;
+  color: var(--text-primary);
+}
+.cmd-palette-modal {
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: auto;
+  outline: none;
+}
+.cmd-palette-modal::backdrop {
+  background: rgba(2, 4, 8, 0.8);
+  backdrop-filter: blur(8px);
+}
+.cmd-palette-dialog {
+  width: min(90vw, 560px);
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glow);
+  box-shadow: var(--shadow-float);
+}
+.cmd-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+}
+.cmd-search-icon {
+  font-size: 18px;
+  color: var(--amber);
+}
+.cmd-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--text-primary);
+}
+.cmd-esc-kbd {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 3px 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+.cmd-results-list {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cmd-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+.cmd-item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cmd-item-icon {
+  font-size: 16px;
+}
+.cmd-item-title {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.cmd-item-tag {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+.cmd-item:hover, .cmd-item.is-selected {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--text-primary);
+  border-left: 3px solid var(--brand);
+}
+.cmd-palette-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   FEATURE 6: VIDEO THEATER MODAL (@nvaistudio)
+   ========================================================================== */
+.video-preview-card.js-video-trigger {
+  cursor: pointer;
+}
+.video-preview-card.js-video-trigger:hover {
+  border-color: var(--rose);
+  transform: translateX(4px);
+}
+.video-theater-modal {
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: auto;
+  outline: none;
+}
+.video-theater-modal::backdrop {
+  background: rgba(2, 4, 8, 0.85);
+  backdrop-filter: blur(10px);
+}
+.video-theater-dialog {
+  width: min(92vw, 680px);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(244, 63, 94, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.video-theater-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.yt-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.yt-icon-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f43f5e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.yt-title-group h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.yt-title-group span {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+.video-player-frame {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #020408;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  position: relative;
+}
+.video-screen-banner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #1e1b4b, #31102f, #0f172a);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.video-screen-banner:hover {
+  transform: scale(1.02);
+}
+.video-play-pulse {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f43f5e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.7);
+  animation: pulseGlow 2s infinite;
+}
+.video-screen-headline {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  font-family: var(--font-sans);
+}
+.video-theater-details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.video-summary-box h3, .video-chapters-box h4 {
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.video-summary-box p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.video-chapters-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+.video-chapters-list li {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  display: flex;
+  gap: 10px;
+}
+.video-chapters-list li .ts {
+  color: var(--brand-light);
+  font-weight: 700;
+}
+.video-theater-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}

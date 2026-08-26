@@ -83,6 +83,8 @@
           <li><a href="#about" data-nav-link>About</a></li>
           <li><a href="#stack" data-nav-link>Stack Bento</a></li>
           <li><a href="#projects" data-nav-link>Projects</a></li>
+          <li><a href="#cpk-lab" data-nav-link>Cpk Lab</a></li>
+          <li><a href="#zpl-designer" data-nav-link>ZPL Studio</a></li>
           <li><a href="#media" data-nav-link>Media &amp; AI</a></li>
           <li><a href="#experience" data-nav-link>Experience</a></li>
           <li><a href="#contact" data-nav-link>Contact</a></li>
@@ -90,17 +92,26 @@
       </nav>
 
       <div class="header-tools">
+        <!-- Command Palette Trigger (Ctrl + K) -->
+        <button class="tool-btn cmd-palette-trigger" id="cmdPaletteBtn" type="button" aria-label="Open Command Palette" title="Command Palette (Ctrl + K)">
+          <span class="cmd-kbd">⌘K</span>
+          <span class="tool-label">CMD</span>
+        </button>
+
         <button class="tool-btn js-audio-toggle" id="audioToggle" type="button" aria-label="Toggle sound feedback" aria-pressed="false" title="Tactile Sound FX">
           <span class="audio-equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="tool-label" id="audioLabel">FX OFF</span>
         </button>
+
         <button class="tool-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="false" title="Toggle Theme">
           <span class="theme-icon" aria-hidden="true"></span>
           <span class="tool-label" id="themeLabel">DARK</span>
         </button>
+
         <a href="nikhil_vashisht_resume.pdf" download="Nikhil_Vashisht_Resume.pdf" class="btn btn-sm btn-outline nav-resume-btn" title="Download Official CV">
           <span>CV</span> <i class="icon-download" aria-hidden="true">↓</i>
         </a>
+
         <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
           <span></span><span></span><span></span>
         </button>
@@ -181,21 +192,25 @@
         </div>
 
         <div class="about-grid">
-          <div class="about-card glass-card reveal">
+          <div class="about-card glass-card reveal" data-tilt>
             <div class="card-kicker">MANUFACTURING QA EXECUTIVE</div>
             <h3>Grounded in the plant reality.</h3>
-            <p>At <strong>NHK Spring India Ltd.</strong>, I actively manage Statistical Process Control (SPC), capability studies ($C_{pk}, C_{pu}, C_{pl}$), inspection test certificates, ISO compliance, and 8D root-cause investigations. I know firsthand how operators interact with machinery and where human mistakes occur.</p>
-            <div class="card-footer-tags">
-              <span>SPC</span><span>IATF 16949</span><span>8D / 5-Why</span><span>Test Certs</span>
+            <p>
+              At <strong>NHK Spring India Ltd.</strong>, I actively manage Statistical Process Control (SPC), capability studies ($C_{pk}, C_{pu}, C_{pl}$), inspection test certificates, ISO compliance, and 8D root-cause investigations. I understand how operators work and where mistakes occur.
+            </p>
+            <div class="card-tags">
+              <span>SPC &amp; Cpk</span><span>IATF 16949</span><span>8D Root Cause</span><span>Test Certificates</span>
             </div>
           </div>
 
-          <div class="about-card glass-card reveal">
+          <div class="about-card glass-card reveal" data-tilt>
             <div class="card-kicker">SOFTWARE &amp; AUTOMATION DEVELOPER</div>
             <h3>Fluent in modern desktop engineering.</h3>
-            <p>Holding a <strong>Bachelor of Computer Applications (BCA)</strong>, I design full-scale offline desktop applications, multithreaded Python GUI tools (PySide6/Tkinter), SQLite databases, and Zebra ZPL barcode generation pipelines that automate hours of manual reconciliation in seconds.</p>
-            <div class="card-footer-tags">
-              <span>Python 3</span><span>Tkinter / PySide</span><span>SQLite</span><span>Zebra ZPL</span><span>Excel VBA</span>
+            <p>
+              Holding a <strong>Bachelor of Computer Applications (BCA)</strong>, I design full-scale offline desktop applications, multithreaded Python GUI tools (PySide6/Tkinter), SQLite databases, and Zebra ZPL barcode generation pipelines that automate hours of manual reconciliation in seconds.
+            </p>
+            <div class="card-tags">
+              <span>Python 3</span><span>Tkinter / PySide6</span><span>SQLite3</span><span>Zebra ZPL</span><span>Excel VBA</span>
             </div>
           </div>
         </div>
@@ -248,10 +263,10 @@
             </div>
             <h3 class="bento-title">Statistical Process Control &amp; Cpk</h3>
             <p class="bento-desc">
-              Precision $\bar{X} / R$ control charts, Upper &amp; Lower Control Limits ($UCL/LCL$), capability index ($C_{pk}, C_{pu}, C_{pl}$), and continuous variation minimization.
+              Precision X̄ / R control charts, Upper &amp; Lower Control Limits (UCL/LCL), capability index (Cpk, Cpu, Cpl), and continuous variation minimization.
             </p>
             <div class="mini-spc-pill">
-              <span class="pulse-indicator"></span> $C_{pk} \ge 1.67$ Six-Sigma Target
+              <span class="pulse-indicator"></span> Cpk ≥ 1.67 Six-Sigma Target
             </div>
           </div>
 
@@ -402,7 +417,7 @@
               <div class="project-kicker">LIVE SPC TELEMETRY</div>
               <h3 class="project-title">Real-Time Statistical Process Control Streamer</h3>
               <p class="project-description">
-                Interactive real-time $\bar{X} / R$ chart plotting manufacturing samples every 1.4s. Dynamically calculates Upper Control Limit ($UCL$), Lower Control Limit ($LCL$), and sample mean, while evaluating Western Electric rule breaches and alarming on out-of-control states.
+                Interactive real-time X̄ / R chart plotting manufacturing samples every 1.4s. Dynamically calculates Upper Control Limit (UCL), Lower Control Limit (LCL), and sample mean, while evaluating Western Electric rule breaches and alarming on out-of-control states.
               </p>
               <div class="spc-controls-group">
                 <span class="spc-control-label">INJECT SHOP-FLOOR DISTURBANCE:</span>
@@ -426,7 +441,7 @@
               <div class="spc-stream-box">
                 <canvas id="spcChart" class="spc-canvas" width="600" height="220" aria-label="Live SPC Chart"></canvas>
                 <div class="spc-readout-grid">
-                  <div class="spc-readout"><span>$\mu$ TARGET</span><b>10.00 mm</b></div>
+                  <div class="spc-readout"><span>μ TARGET</span><b>10.00 mm</b></div>
                   <div class="spc-readout"><span>UCL (+3σ)</span><b id="spcUclReadout">10.45 mm</b></div>
                   <div class="spc-readout"><span>LCL (-3σ)</span><b id="spcLclReadout">9.55 mm</b></div>
                   <div class="spc-readout alert-readout" id="spcStatusBox">
@@ -438,8 +453,157 @@
           </div>
         </article>
 
+        <!-- FEATURE 1: INTERACTIVE SIX-SIGMA CPK GAUSSIAN BELL CURVE LAB -->
+        <article class="featured-project glass-card reveal" id="cpk-lab" style="margin-top: 32px;">
+          <div class="project-grid">
+            <div class="project-info">
+              <div class="project-kicker">SIX-SIGMA STATISTICAL LAB</div>
+              <h3 class="project-title">Interactive Process Capability (Cpk) &amp; Normal Distribution Lab</h3>
+              <p class="project-description">
+                Simulate live manufacturing variation and specification bounds. Adjust the <strong>Process Mean (μ)</strong>, <strong>Standard Deviation (σ)</strong>, and <strong>Tolerance (±Δ)</strong> to watch the Gaussian bell curve morph, calculate real-time capability indices (Cpk, Cp, Cpu, Cpl), and shade out-of-spec defect regions.
+              </p>
+              
+              <div class="cpk-sliders-container">
+                <div class="cpk-slider-row">
+                  <div class="slider-header">
+                    <span>Process Mean (μ):</span>
+                    <b id="valMean" class="font-mono text-cyan">10.00 mm</b>
+                  </div>
+                  <input type="range" id="sliderMean" min="9.50" max="10.50" step="0.01" value="10.00" class="custom-range" />
+                </div>
+                <div class="cpk-slider-row">
+                  <div class="slider-header">
+                    <span>Std Deviation (σ):</span>
+                    <b id="valSigma" class="font-mono text-cyan">0.12 mm</b>
+                  </div>
+                  <input type="range" id="sliderSigma" min="0.04" max="0.30" step="0.01" value="0.12" class="custom-range" />
+                </div>
+                <div class="cpk-slider-row">
+                  <div class="slider-header">
+                    <span>Tolerance Bound (±Δ from 10.00):</span>
+                    <b id="valTol" class="font-mono text-cyan">±0.45 mm</b>
+                  </div>
+                  <input type="range" id="sliderTol" min="0.20" max="0.75" step="0.01" value="0.45" class="custom-range" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Cpk Canvas & Metrics Readout -->
+            <div class="project-interactive">
+              <div class="cpk-canvas-box">
+                <canvas id="cpkCanvas" class="cpk-canvas" width="600" height="230" aria-label="Gaussian Distribution Curve"></canvas>
+                <div class="cpk-metrics-readout">
+                  <div class="cpk-metric-card" id="cpkBadge">
+                    <span class="m-label">Cpk INDEX</span>
+                    <b class="m-val font-mono" id="outCpk">1.25</b>
+                    <small id="outCpkTag" class="cpk-status-tag">CAPABLE</small>
+                  </div>
+                  <div class="cpk-metric-card">
+                    <span class="m-label">Cp POTENTIAL</span>
+                    <b class="m-val font-mono" id="outCp">1.25</b>
+                    <small class="text-muted">Process Width</small>
+                  </div>
+                  <div class="cpk-metric-card">
+                    <span class="m-label">Cpu / Cpl</span>
+                    <b class="m-val font-mono" id="outCpuCpl">1.25 / 1.25</b>
+                    <small class="text-muted">Upper / Lower</small>
+                  </div>
+                  <div class="cpk-metric-card">
+                    <span class="m-label">EST. DEFECTS (PPM)</span>
+                    <b class="m-val font-mono" id="outPpm">&lt; 64 PPM</b>
+                    <small class="text-muted">Six-Sigma Scale</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- FEATURE 3: REAL-TIME ZEBRA ZPL INDUSTRIAL LABEL DESIGNER -->
+        <article class="featured-project glass-card reveal" id="zpl-designer" style="margin-top: 32px;">
+          <div class="project-grid">
+            <div class="project-info">
+              <div class="project-kicker">ZPL INDUSTRIAL HARDWARE STUDIO</div>
+              <h3 class="project-title">Real-Time Zebra ZPL Label Generator &amp; 2D Tag Visualizer</h3>
+              <p class="project-description">
+                Configure real shop-floor parameters to generate dynamic <strong>Zebra Programming Language (ZPL)</strong> code and preview a photorealistic high-density thermal industrial label with a scannable 2D GS1 DataMatrix code.
+              </p>
+              
+              <div class="zpl-form-grid">
+                <div class="zpl-input-group">
+                  <label for="zplPart">Material Specification</label>
+                  <input type="text" id="zplPart" value="10.60 x 1600mm Gr-A" class="zpl-input" />
+                </div>
+                <div class="zpl-input-group">
+                  <label for="zplHeat">Supplier Heat No.</label>
+                  <input type="text" id="zplHeat" value="HT-260826-09" class="zpl-input font-mono" />
+                </div>
+                <div class="zpl-input-group">
+                  <label for="zplWeight">Bundle Weight (kg)</label>
+                  <input type="text" id="zplWeight" value="214.6" class="zpl-input font-mono" />
+                </div>
+                <div class="zpl-input-group">
+                  <label for="zplStatus">Quality Disposition</label>
+                  <select id="zplStatus" class="zpl-input font-mono">
+                    <option value="ACCEPTED">ACCEPTED (GREEN)</option>
+                    <option value="HOLD">HOLD / INSPECT</option>
+                    <option value="REJECTED">REJECTED (RED)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- ZPL Code Output Pane -->
+              <div class="zpl-code-pane">
+                <div class="zpl-code-header">
+                  <span>RAW ZPL CODE STREAM</span>
+                  <button type="button" class="btn btn-sm btn-glass" id="copyZplBtn">Copy ZPL 📋</button>
+                </div>
+                <pre class="zpl-pre"><code id="zplCodeOut">^XA
+^FO30,30^A0N,28,28^FDNHK SPRING INDIA LTD^FS
+^FO30,65^A0N,20,20^FDMAT: 10.60 x 1600mm Gr-A^FS
+^FO30,95^A0N,20,20^FDHEAT: HT-260826-09^FS
+^FO30,125^A0N,20,20^FDWT: 214.6 KG  STATUS: ACCEPTED^FS
+^FO320,30^BXN,6,200^FDHT-260826-09|214.6|OK^FS
+^XZ</code></pre>
+              </div>
+            </div>
+
+            <!-- Realistic Rendered Thermal Label -->
+            <div class="project-interactive">
+              <div class="thermal-label-wrapper">
+                <div class="thermal-label" id="thermalLabelPreview">
+                  <div class="label-header">
+                    <div class="label-co">NHK SPRING INDIA LTD.</div>
+                    <div class="label-doc">RAW MATERIAL TRACEABILITY TAG</div>
+                  </div>
+                  <div class="label-body">
+                    <div class="label-left-col">
+                      <div class="label-field"><span class="lbl-k">PART SPEC:</span><b id="lblPart">10.60 x 1600mm Gr-A</b></div>
+                      <div class="label-field"><span class="lbl-k">HEAT NO:</span><b id="lblHeat">HT-260826-09</b></div>
+                      <div class="label-field"><span class="lbl-k">SERIAL:</span><b id="lblSerial">BND-260826-004</b></div>
+                      <div class="label-field"><span class="lbl-k">GROSS WT:</span><b id="lblWeight">214.60 kg</b></div>
+                      <div class="label-field"><span class="lbl-k">DATE/SHIFT:</span><b id="lblDate">2026-08-26 / Shift-A</b></div>
+                    </div>
+                    <div class="label-right-col">
+                      <div class="datamatrix-box">
+                        <canvas id="qrCanvasPreview" width="90" height="90" class="qr-canvas"></canvas>
+                        <span class="datamatrix-caption">GS1-128 2D MATRIX</span>
+                      </div>
+                      <div class="label-stamp stamp-accepted" id="lblStamp">ACCEPTED</div>
+                    </div>
+                  </div>
+                  <div class="label-barcode-strip">
+                    <div class="barcode-lines" aria-hidden="true"></div>
+                    <div class="barcode-human" id="lblBarcodeHuman">*BND-260826-004*</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
         <!-- PROJECT 3 & 4 DUAL GRID (QR Console & SQL Automation) -->
-        <div class="dual-projects-grid">
+        <div class="dual-projects-grid" style="margin-top: 32px;">
           <!-- QR Scanner Console -->
           <div class="project-card-compact glass-card reveal">
             <div class="compact-header">
@@ -530,27 +694,27 @@
               </div>
             </div>
 
-            <!-- Floating Video Showcase Preview Cards -->
+            <!-- Floating Video Showcase Preview Cards with Clickable Theater Launchers -->
             <div class="media-previews">
-              <div class="video-preview-card" data-tilt>
+              <div class="video-preview-card js-video-trigger" data-video="python-automation" data-tilt tabindex="0" role="button" aria-label="Open video overview: Automating Engineering Reports">
                 <div class="video-thumb-placeholder thumb-ai">
                   <span class="video-duration">10:45</span>
                   <div class="play-overlay">▶</div>
                 </div>
                 <div class="video-meta">
                   <h4>Automating Engineering Reports with Python &amp; SQLite</h4>
-                  <p>Step-by-step tutorial on building zero-dependency reporting tools.</p>
+                  <p>Step-by-step tutorial on building zero-dependency reporting tools. Click to inspect →</p>
                 </div>
               </div>
 
-              <div class="video-preview-card" data-tilt>
+              <div class="video-preview-card js-video-trigger" data-video="ai-workflows" data-tilt tabindex="0" role="button" aria-label="Open video overview: Next-Gen AI Tools">
                 <div class="video-thumb-placeholder thumb-tools">
                   <span class="video-duration">08:20</span>
                   <div class="play-overlay">▶</div>
                 </div>
                 <div class="video-meta">
                   <h4>Next-Gen AI Tools &amp; Workflow Automation Breakdown</h4>
-                  <p>Comprehensive review of state-of-the-art AI assistant workflows.</p>
+                  <p>Comprehensive review of state-of-the-art AI assistant workflows. Click to inspect →</p>
                 </div>
               </div>
             </div>
@@ -582,7 +746,7 @@
                 <span class="timeline-date">03/2025 — Present</span>
               </div>
               <ul class="timeline-bullets">
-                <li>Manage plant-wide Statistical Process Control (SPC) and evaluate $C_{pk}, C_{pu}, C_{pl}$ capability indices across critical lines.</li>
+                <li>Manage plant-wide Statistical Process Control (SPC) and evaluate Cpk, Cpu, Cpl capability indices across critical lines.</li>
                 <li>Monitor process variation, inspection records, and defect trends to prevent quality escapes.</li>
                 <li>Maintain inspection test certificates, raw material traceability, and support ISO / IATF quality audits.</li>
                 <li>Architect custom automated Python data pipelines and Excel VBA dashboards for executive quality reporting.</li>
@@ -703,6 +867,68 @@
     </div>
   </footer>
 
+  <!-- FEATURE 5: DEVELOPER COMMAND PALETTE MODAL (Ctrl + K) -->
+  <dialog id="cmdPaletteModal" class="cmd-palette-modal" aria-labelledby="cmdPaletteTitle">
+    <div class="cmd-palette-dialog glass-card">
+      <div class="cmd-input-bar">
+        <span class="cmd-search-icon">⚡</span>
+        <input type="text" id="cmdInput" class="cmd-input" placeholder="Type a command or jump to section (e.g. rims, cpk, zpl, cv, email, theme)..." autocomplete="off" />
+        <kbd class="cmd-esc-kbd">ESC</kbd>
+      </div>
+      <div class="cmd-results-list" id="cmdResultsList" role="listbox">
+        <!-- Injected dynamically via script.js -->
+      </div>
+      <div class="cmd-palette-footer">
+        <span>↑↓ Navigate</span>
+        <span>↵ Execute</span>
+        <span>ESC Dismiss</span>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- FEATURE 6: INTERACTIVE VIDEO SHOWCASE THEATER MODAL -->
+  <dialog id="videoModal" class="video-theater-modal" aria-labelledby="videoModalTitle">
+    <div class="video-theater-dialog glass-card">
+      <div class="video-theater-header">
+        <div class="yt-title-group">
+          <span class="yt-icon-badge">▶</span>
+          <div>
+            <h2 id="videoModalTitle">Video Overview</h2>
+            <span id="videoModalChannel">NV AI Studio · YouTube</span>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeVideoModal" aria-label="Close dialog">✕</button>
+      </div>
+      
+      <div class="video-player-frame" id="videoPlayerFrame">
+        <div class="video-screen-banner" id="videoScreenBanner">
+          <div class="video-play-pulse">▶</div>
+          <span class="video-screen-headline" id="videoScreenHeadline">Click to Watch Full Video on YouTube</span>
+        </div>
+      </div>
+
+      <div class="video-theater-details">
+        <div class="video-summary-box">
+          <h3>Architecture &amp; Core Takeaways</h3>
+          <p id="videoModalDesc">Description text goes here...</p>
+        </div>
+        <div class="video-chapters-box">
+          <h4>Timestamps &amp; Chapters</h4>
+          <ul id="videoModalChapters" class="video-chapters-list">
+            <!-- Populated via script.js -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="video-theater-footer">
+        <a href="https://www.youtube.com/@nvaistudio" target="_blank" rel="noopener noreferrer" id="videoModalYtLink" class="btn btn-primary btn-youtube">
+          <span>Watch on YouTube (@nvaistudio)</span> <i aria-hidden="true">↗</i>
+        </a>
+        <button type="button" class="btn btn-ghost" id="closeVideoModalBtn">Close</button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- INTERACTIVE RESUME MODAL DIALOG -->
   <dialog id="resumeModal" class="resume-modal" aria-labelledby="resumeModalTitle">
     <div class="resume-modal-dialog glass-card">
@@ -736,12 +962,12 @@
         <div class="resume-tab-pane is-active" id="tab-summary" role="tabpanel">
           <div class="resume-section">
             <h3 class="resume-section-title">Professional Summary</h3>
-            <p>Quality Assurance professional with rich experience in automotive manufacturing, outbound logistics, statistical process control, quality documentation, and process automation. Skilled in $C_{pk}, C_{pu}, C_{pl}$ analysis, advanced Excel dashboards, Python scripting, QR-code applications, and Zebra label programming. Experienced in developing practical digital tools for quality reporting, traceability, data consolidation, and shop-floor operations.</p>
+            <p>Quality Assurance professional with rich experience in automotive manufacturing, outbound logistics, statistical process control, quality documentation, and process automation. Skilled in Cpk, Cpu, Cpl analysis, advanced Excel dashboards, Python scripting, QR-code applications, and Zebra label programming. Experienced in developing practical digital tools for quality reporting, traceability, data consolidation, and shop-floor operations.</p>
           </div>
           <div class="resume-section">
             <h3 class="resume-section-title">Core Competencies</h3>
             <ul class="resume-highlights">
-              <li><strong>Statistical Process Control:</strong> Actively monitors process capability ($C_{pk}, C_{pu}, C_{pl}$), variation reduction, and quality trend analytics.</li>
+              <li><strong>Statistical Process Control:</strong> Actively monitors process capability (Cpk, Cpu, Cpl), variation reduction, and quality trend analytics.</li>
               <li><strong>Audits &amp; Compliance:</strong> Maintains inspection records, test certificates, material traceability, and supports ISO quality audits.</li>
               <li><strong>Digital Automation:</strong> Builds practical Python, SQLite, Excel VBA, and Zebra ZPL label tools designed for shop-floor reliability.</li>
               <li><strong>Operational Leadership:</strong> 5+ years managing high-volume shift execution, manpower deployment, and dispatch logistics at Hero MotoCorp.</li>
