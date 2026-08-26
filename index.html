@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-motion="full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Nikhil Vashisht — Quality Assurance Engineer &amp; Python Developer</title>
+  <meta name="description" content="Nikhil Vashisht is a Quality Assurance Executive &amp; Python Software Developer at NHK Spring India Ltd. specializing in Enterprise Application Architecture (NHK_RIMS), SPC, SQLite, and Automation." />
+  <link rel="canonical" href="https://nikkured.github.io/" />
+  <meta name="theme-color" content="#07090e" />
+  <meta name="author" content="Nikhil Vashisht" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Nikhil Vashisht — Quality Assurance Engineer &amp; Python Developer" />
+  <meta property="og:description" content="Bridging Manufacturing Quality Assurance and Python Software Development. Creator of NHK_RIMS, automated SPC telemetry, and offline enterprise architectures." />
+  <meta property="og:url" content="https://nikkured.github.io/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts: Inter / Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nikhil Vashisht",
+    "jobTitle": "Quality Assurance Executive & Python Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "NHK Spring India Ltd."
+    },
+    "email": "mailto:nishantvashisht8@gmail.com",
+    "telephone": "+918882186438",
+    "url": "https://nikkured.github.io/",
+    "sameAs": [
+      "https://github.com/Nikkured",
+      "https://www.youtube.com/@nvaistudio",
+      "https://linktr.ee/nikku_red"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gurugram / Manesar",
+      "addressRegion": "Haryana",
+      "addressCountry": "IN"
+    },
+    "knowsAbout": [
+      "Python",
+      "Tkinter",
+      "PySide6",
+      "SQLite",
+      "Enterprise Application Architecture",
+      "Statistical Process Control",
+      "Cpk Analysis",
+      "Zebra ZPL",
+      "Excel VBA Automation"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- NAVIGATION -->
+  <header class="site-header" id="siteHeader">
+    <div class="shell header-inner">
+      <a class="brand" href="#home" aria-label="Nikhil Vashisht — Home">
+        <span class="brand-avatar" aria-hidden="true">NV</span>
+        <span class="brand-info">
+          <span class="brand-name">Nikhil Vashisht</span>
+          <span class="brand-role">QA Executive · Python Dev</span>
+        </span>
+      </a>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Main Navigation">
+        <ul>
+          <li><a href="#about" data-nav-link>About</a></li>
+          <li><a href="#stack" data-nav-link>Stack Bento</a></li>
+          <li><a href="#projects" data-nav-link>Projects</a></li>
+          <li><a href="#media" data-nav-link>Media &amp; AI</a></li>
+          <li><a href="#experience" data-nav-link>Experience</a></li>
+          <li><a href="#contact" data-nav-link>Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-tools">
+        <button class="tool-btn js-audio-toggle" id="audioToggle" type="button" aria-label="Toggle sound feedback" aria-pressed="false" title="Tactile Sound FX">
+          <span class="audio-equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="tool-label" id="audioLabel">FX OFF</span>
+        </button>
+        <button class="tool-btn theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="false" title="Toggle Theme">
+          <span class="theme-icon" aria-hidden="true"></span>
+          <span class="tool-label" id="themeLabel">DARK</span>
+        </button>
+        <a href="nikhil_vashisht_resume.pdf" download="Nikhil_Vashisht_Resume.pdf" class="btn btn-sm btn-outline nav-resume-btn" title="Download Official CV">
+          <span>CV</span> <i class="icon-download" aria-hidden="true">↓</i>
+        </a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
+
+  <main id="main">
+    <!-- HERO SECTION -->
+    <section class="hero" id="home" aria-labelledby="heroTitle">
+      <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+
+      <div class="shell hero-content">
+        <!-- Live Status Pill -->
+        <div class="hero-badge reveal">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>Available for QA &amp; Software Engineering Roles</span>
+          <span class="badge-separator">·</span>
+          <span class="badge-loc">Gurugram / Manesar, India</span>
+        </div>
+
+        <h1 id="heroTitle" class="hero-headline reveal">
+          <span class="hero-line">Bridging <span class="gradient-text">Manufacturing Quality</span></span>
+          <span class="hero-line">&amp; <span class="gradient-text-accent">Python Software</span> Systems.</span>
+        </h1>
+
+        <p class="hero-lead reveal">
+          I am <strong>Nikhil Vashisht</strong> — Quality Assurance Executive at <strong>NHK Spring India Ltd.</strong> (ex-<strong>Hero MotoCorp</strong>). I engineer robust desktop enterprise software (<span class="mono-tag">NHK_RIMS</span>), real-time SPC telemetry, and offline-first Python automation tools that eliminate defects on the shop floor.
+        </p>
+
+        <!-- Magnetic Call to Actions -->
+        <div class="hero-actions reveal">
+          <a href="#projects" class="btn btn-primary magnetic-btn" data-magnetic>
+            <span>Explore Flagship Systems</span>
+            <i class="btn-arrow" aria-hidden="true">→</i>
+          </a>
+          <button type="button" class="btn btn-glass magnetic-btn js-resume-trigger" data-magnetic>
+            <span>Inspect Interactive CV</span>
+            <i class="btn-icon" aria-hidden="true">📄</i>
+          </button>
+          <a href="https://github.com/Nikkured" target="_blank" rel="noopener noreferrer" class="btn btn-ghost magnetic-btn" data-magnetic aria-label="GitHub Profile">
+            <span>GitHub @Nikkured</span>
+            <i class="btn-external" aria-hidden="true">↗</i>
+          </a>
+        </div>
+
+        <!-- Live Telemetry Ticker Strip -->
+        <div class="telemetry-strip reveal">
+          <div class="telemetry-item">
+            <div class="telemetry-num"><span class="counter" data-target="100">0</span><span class="symbol">%</span></div>
+            <div class="telemetry-label">Audit Traceability</div>
+          </div>
+          <div class="telemetry-item">
+            <div class="telemetry-num"><span class="counter" data-target="0">0</span><span class="symbol">PPM</span></div>
+            <div class="telemetry-label">Label &amp; ASN Escapes</div>
+          </div>
+          <div class="telemetry-item">
+            <div class="telemetry-num"><span class="counter" data-target="10000" data-format="k">0</span><span class="symbol">+</span></div>
+            <div class="telemetry-label">Scans &amp; Cycles Validated</div>
+          </div>
+          <div class="telemetry-item">
+            <div class="telemetry-num"><span>Cpk &gt; </span><span class="counter" data-target="1.67" data-decimals="2">0</span></div>
+            <div class="telemetry-label">Process Capability Stability</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: ABOUT & CORE PHILOSOPHY -->
+    <section class="section about-section" id="about" aria-labelledby="aboutHeading">
+      <div class="shell">
+        <div class="section-header reveal">
+          <div class="section-tag">01 // PHILOSOPHY &amp; BACKGROUND</div>
+          <h2 id="aboutHeading" class="section-title">Physical understanding precedes every line of code.</h2>
+          <p class="section-subtitle">Real manufacturing environments demand zero cloud dependencies, instant UI responsiveness, and foolproof audit trails.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card glass-card reveal">
+            <div class="card-kicker">MANUFACTURING QA EXECUTIVE</div>
+            <h3>Grounded in the plant reality.</h3>
+            <p>At <strong>NHK Spring India Ltd.</strong>, I actively manage Statistical Process Control (SPC), capability studies ($C_{pk}, C_{pu}, C_{pl}$), inspection test certificates, ISO compliance, and 8D root-cause investigations. I know firsthand how operators interact with machinery and where human mistakes occur.</p>
+            <div class="card-footer-tags">
+              <span>SPC</span><span>IATF 16949</span><span>8D / 5-Why</span><span>Test Certs</span>
+            </div>
+          </div>
+
+          <div class="about-card glass-card reveal">
+            <div class="card-kicker">SOFTWARE &amp; AUTOMATION DEVELOPER</div>
+            <h3>Fluent in modern desktop engineering.</h3>
+            <p>Holding a <strong>Bachelor of Computer Applications (BCA)</strong>, I design full-scale offline desktop applications, multithreaded Python GUI tools (PySide6/Tkinter), SQLite databases, and Zebra ZPL barcode generation pipelines that automate hours of manual reconciliation in seconds.</p>
+            <div class="card-footer-tags">
+              <span>Python 3</span><span>Tkinter / PySide</span><span>SQLite</span><span>Zebra ZPL</span><span>Excel VBA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: BENTO BOX SKILLS & TECH STACK -->
+    <section class="section stack-section" id="stack" aria-labelledby="stackHeading">
+      <div class="shell">
+        <div class="section-header reveal">
+          <div class="section-tag">02 // TECH STACK BENTO</div>
+          <h2 id="stackHeading" class="section-title">Asymmetric Technical Environment.</h2>
+          <p class="section-subtitle">A curated suite of desktop architectures, statistical methods, hardware integrations, and rapid automation tools.</p>
+        </div>
+
+        <!-- ASYMMETRIC BENTO GRID -->
+        <div class="bento-grid">
+          <!-- BENTO CELL 1: PYTHON & ENTERPRISE DESKTOP (Large Primary 2x2) -->
+          <div class="bento-cell bento-hero glass-card reveal" data-tilt>
+            <div class="bento-badge">PRIMARY STACK</div>
+            <div class="bento-content">
+              <div class="bento-icon-wrapper">
+                <span class="tech-icon-python">Py</span>
+              </div>
+              <h3 class="bento-title">Python &amp; Enterprise Architecture</h3>
+              <p class="bento-desc">
+                Architecting resilient offline desktop applications with <strong>Python 3</strong>, <strong>Tkinter</strong>, <strong>PySide6 (Qt)</strong>, and embedded <strong>SQLite</strong>. Engineered for zero-latency, local concurrency, and fault-tolerant transaction ledgers.
+              </p>
+              
+              <!-- Interactive Mini Code Terminal Demo -->
+              <div class="terminal-preview" id="terminalPreview" aria-label="Interactive Terminal Preview">
+                <div class="terminal-bar">
+                  <span class="term-dot red"></span><span class="term-dot yellow"></span><span class="term-dot green"></span>
+                  <span class="term-title">nhk_rims_engine.py</span>
+                </div>
+                <pre class="terminal-code"><code><span class="kw">class</span> <span class="cls">TraceabilityEngine</span>:
+    <span class="kw">def</span> <span class="fn">commit_receipt</span>(self, heat_no, bundle_wt):
+        <span class="kw">with</span> self.db.transaction() <span class="kw">as</span> tx:
+            uid = tx.insert(<span class="str">"RCV_LEDGER"</span>, heat=heat_no, wt=bundle_wt)
+            <span class="kw">return</span> self.zpl.print_tag(uid, status=<span class="str">"ACCEPTED"</span>)</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- BENTO CELL 2: STATISTICAL PROCESS CONTROL -->
+          <div class="bento-cell bento-spc glass-card reveal" data-tilt>
+            <div class="bento-badge">METRICS &amp; MATH</div>
+            <div class="bento-icon-wrapper cyan">
+              <span>SPC</span>
+            </div>
+            <h3 class="bento-title">Statistical Process Control &amp; Cpk</h3>
+            <p class="bento-desc">
+              Precision $\bar{X} / R$ control charts, Upper &amp; Lower Control Limits ($UCL/LCL$), capability index ($C_{pk}, C_{pu}, C_{pl}$), and continuous variation minimization.
+            </p>
+            <div class="mini-spc-pill">
+              <span class="pulse-indicator"></span> $C_{pk} \ge 1.67$ Six-Sigma Target
+            </div>
+          </div>
+
+          <!-- BENTO CELL 3: HARDWARE & SHOP-FLOOR INTEGRATION (Tall Column) -->
+          <div class="bento-cell bento-hardware glass-card reveal" data-tilt>
+            <div class="bento-badge">HARDWARE I/O</div>
+            <div class="bento-icon-wrapper amber">
+              <span>ZPL</span>
+            </div>
+            <h3 class="bento-title">Zebra ZPL &amp; QR Laser Systems</h3>
+            <p class="bento-desc">
+              Direct raw socket communication with industrial Zebra label printers via <strong>Zebra Programming Language (ZPL)</strong>. Real-time checksum decoding for 2D DataMatrix and QR code scanners.
+            </p>
+            <ul class="bento-list">
+              <li>Direct IP &amp; USB ZPL Stream</li>
+              <li>2D GS1 DataMatrix Checksum</li>
+              <li>Sub-second Laser Scan Handshake</li>
+            </ul>
+          </div>
+
+          <!-- BENTO CELL 4: EXCEL VBA & REPORTING PIPELINES -->
+          <div class="bento-cell bento-excel glass-card reveal" data-tilt>
+            <div class="bento-badge">ANALYTICS</div>
+            <div class="bento-icon-wrapper green">
+              <span>VBA</span>
+            </div>
+            <h3 class="bento-title">Advanced Excel &amp; VBA Automation</h3>
+            <p class="bento-desc">
+              Custom VBA macro suites and automated ETL scripts transforming raw multi-shift inspection dumps into instant executive Pareto summaries.
+            </p>
+          </div>
+
+          <!-- BENTO CELL 5: QUALITY SYSTEMS & AUDIT STANDARDS -->
+          <div class="bento-cell bento-iso glass-card reveal" data-tilt>
+            <div class="bento-badge">COMPLIANCE</div>
+            <div class="bento-icon-wrapper violet">
+              <span>ISO</span>
+            </div>
+            <h3 class="bento-title">IATF 16949 &amp; 8D Root Cause</h3>
+            <p class="bento-desc">
+              Rigorous automotive audit compliance, ISO 9001/IATF standard adherence, 5-Why analysis, and CAPA resolution.
+            </p>
+          </div>
+
+          <!-- BENTO CELL 6: OPEN SOURCE & GITHUB REPOSITORY -->
+          <div class="bento-cell bento-github glass-card reveal" data-tilt>
+            <div class="bento-badge">OPEN SOURCE</div>
+            <div class="bento-content-github">
+              <div class="github-header">
+                <div class="github-avatar">🐙</div>
+                <div>
+                  <h4>@Nikkured</h4>
+                  <p>github.com/Nikkured</p>
+                </div>
+              </div>
+              <p class="bento-desc">Explore public automation utilities, custom Python scripts, and repository source code.</p>
+              <a href="https://github.com/Nikkured" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline btn-github">
+                <span>Visit GitHub Repo</span> <i aria-hidden="true">↗</i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: PROJECTS & ENTERPRISE SHOWCASE -->
+    <section class="section projects-section" id="projects" aria-labelledby="projectsHeading">
+      <div class="shell">
+        <div class="section-header reveal">
+          <div class="section-tag">03 // FEATURED APPLICATIONS</div>
+          <h2 id="projectsHeading" class="section-title">Enterprise Software &amp; Live Telemetry.</h2>
+          <p class="section-subtitle">Real-world operational systems designed to enforce 100% data integrity and fail-safe shop-floor execution.</p>
+        </div>
+
+        <!-- FLAGSHIP PROJECT 1: NHK_RIMS -->
+        <article class="featured-project glass-card reveal" id="nhk-rims">
+          <div class="project-grid">
+            <div class="project-info">
+              <div class="project-kicker">FLAGSHIP ENTERPRISE SYSTEM</div>
+              <h3 class="project-title">NHK_RIMS — Raw Material Inventory &amp; Traceability System</h3>
+              <p class="project-description">
+                A custom, high-reliability desktop application engineered for automotive manufacturing. Tracks the complete lifecycle of steel raw materials: from supplier invoice receipt and physical bundle weighing, to FIFO age-priority lot allocation, production consumption, and immutable audit adjustments.
+              </p>
+              
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <strong>100% Offline Resilience:</strong> Zero dependency on external networks; instant SQLite atomic transactions.
+                </div>
+                <div class="highlight-item">
+                  <strong>Physical FIFO Engine:</strong> Algorithmic lot recommendation based on age and heat verification.
+                </div>
+                <div class="highlight-item">
+                  <strong>Audit Ledger:</strong> All adjustments require operator authentication, reason logging, and reversal tracking.
+                </div>
+              </div>
+
+              <div class="project-tags">
+                <span class="tag-pill">Python 3</span>
+                <span class="tag-pill">PySide6 / Tkinter</span>
+                <span class="tag-pill">SQLite3</span>
+                <span class="tag-pill">Zebra ZPL</span>
+                <span class="tag-pill">Excel ETL</span>
+              </div>
+            </div>
+
+            <!-- INTERACTIVE RIMS PROCESS ATLAS -->
+            <div class="project-interactive">
+              <div class="interactive-panel" id="rimsAtlas">
+                <div class="panel-header">
+                  <span>RIMS / TRACEABILITY PIPELINE</span>
+                  <span class="status-badge-mini">LIVE SIMULATION</span>
+                </div>
+                
+                <div class="rims-stepper" role="tablist" aria-label="RIMS Stages">
+                  <button type="button" class="stepper-tab is-active" data-stage="0" role="tab" aria-selected="true">01 Receive</button>
+                  <button type="button" class="stepper-tab" data-stage="1" role="tab" aria-selected="false">02 Bundle</button>
+                  <button type="button" class="stepper-tab" data-stage="2" role="tab" aria-selected="false">03 FIFO</button>
+                  <button type="button" class="stepper-tab" data-stage="3" role="tab" aria-selected="false">04 Consume</button>
+                  <button type="button" class="stepper-tab" data-stage="4" role="tab" aria-selected="false">05 Audit</button>
+                </div>
+
+                <div class="rims-display">
+                  <div class="rims-stage-header">
+                    <span class="rims-eyebrow" id="rimsEyebrow">RECEIPT CONTROL</span>
+                    <h4 class="rims-headline" id="rimsHeadline">Source captured before inventory is created</h4>
+                  </div>
+
+                  <div class="rims-metrics-box">
+                    <div class="metric-row"><span>Ref Code:</span><strong id="rimsRef">RCV-260805-014</strong></div>
+                    <div class="metric-row"><span>Material:</span><strong id="rimsMaterial">10.60 × 1600 · Grade A</strong></div>
+                    <div class="metric-row"><span>State:</span><span class="state-pill ok" id="rimsState">SOURCE LINKED</span></div>
+                  </div>
+
+                  <div class="rims-control-achieved">
+                    <span class="control-label">CONTROL ENFORCED:</span>
+                    <p id="rimsControlText">A material balance cannot exist without an authentic supplier heat number and recorded weight.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 2: REAL-TIME SPC WAVEFORM STREAMER -->
+        <article class="featured-project glass-card reveal" id="spc-streamer" style="margin-top: 32px;">
+          <div class="project-grid">
+            <div class="project-info">
+              <div class="project-kicker">LIVE SPC TELEMETRY</div>
+              <h3 class="project-title">Real-Time Statistical Process Control Streamer</h3>
+              <p class="project-description">
+                Interactive real-time $\bar{X} / R$ chart plotting manufacturing samples every 1.4s. Dynamically calculates Upper Control Limit ($UCL$), Lower Control Limit ($LCL$), and sample mean, while evaluating Western Electric rule breaches and alarming on out-of-control states.
+              </p>
+              <div class="spc-controls-group">
+                <span class="spc-control-label">INJECT SHOP-FLOOR DISTURBANCE:</span>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-glass spc-btn is-active" data-mode="normal">Stable</button>
+                  <button type="button" class="btn btn-sm btn-glass spc-btn" data-mode="drift">Mean Drift (+1.5σ)</button>
+                  <button type="button" class="btn btn-sm btn-glass spc-btn" data-mode="wear">Tool Wear Trend</button>
+                  <button type="button" class="btn btn-sm btn-glass spc-btn" data-mode="spike">Outlier Spike (NG)</button>
+                </div>
+              </div>
+              <div class="project-tags" style="margin-top: 20px;">
+                <span class="tag-pill">Canvas 2D</span>
+                <span class="tag-pill">Statistical Algorithms</span>
+                <span class="tag-pill">Cpk / Ppk</span>
+                <span class="tag-pill">Real-Time Alarms</span>
+              </div>
+            </div>
+
+            <!-- SPC Canvas Plotter -->
+            <div class="project-interactive">
+              <div class="spc-stream-box">
+                <canvas id="spcChart" class="spc-canvas" width="600" height="220" aria-label="Live SPC Chart"></canvas>
+                <div class="spc-readout-grid">
+                  <div class="spc-readout"><span>$\mu$ TARGET</span><b>10.00 mm</b></div>
+                  <div class="spc-readout"><span>UCL (+3σ)</span><b id="spcUclReadout">10.45 mm</b></div>
+                  <div class="spc-readout"><span>LCL (-3σ)</span><b id="spcLclReadout">9.55 mm</b></div>
+                  <div class="spc-readout alert-readout" id="spcStatusBox">
+                    <span>STATUS</span><b id="spcStatusText">CONTROLLED</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 3 & 4 DUAL GRID (QR Console & SQL Automation) -->
+        <div class="dual-projects-grid">
+          <!-- QR Scanner Console -->
+          <div class="project-card-compact glass-card reveal">
+            <div class="compact-header">
+              <span class="card-kicker">AUTOMATED VERIFICATION</span>
+              <h3>QR &amp; DataMatrix Checksum Console</h3>
+            </div>
+            <p>High-speed barcode/QR parser evaluating ASN checksums, duplicate label prevention, and automatic operator decision tagging.</p>
+            <div class="mini-qr-demo">
+              <div class="segmented-qr">
+                <button type="button" class="btn-scenario is-active" data-scenario="ok">Valid OK</button>
+                <button type="button" class="btn-scenario" data-scenario="duplicate">Duplicate</button>
+                <button type="button" class="btn-scenario" data-scenario="ng">NG Mismatch</button>
+              </div>
+              <button type="button" class="btn btn-sm btn-primary" id="runQrScanBtn" style="width:100%; margin-top:12px;">Trigger Scan Validation →</button>
+              <div class="qr-result-box" id="qrResultBox" data-state="ok">
+                <span class="qr-icon" id="qrIcon">✓</span>
+                <div>
+                  <strong id="qrStateText">VALID — ACCEPT</strong>
+                  <p id="qrStateDesc">Label matches the expected rule set. Accept unit.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Invoice-ASN SQL Validator -->
+          <div class="project-card-compact glass-card reveal">
+            <div class="compact-header">
+              <span class="card-kicker">DATA INTEGRITY</span>
+              <h3>Invoice–ASN SQL Update Engine</h3>
+            </div>
+            <p>Validates 1-to-1 invoice to ASN mappings, prevents duplicate table collisions, and generates safe atomic SQL updates.</p>
+            <div class="sql-code-box">
+              <div class="sql-header"><span>VALIDATED SQL GENERATOR</span><span>OUTPUT READY</span></div>
+              <pre><code><span class="kw">UPDATE</span> TBILLTOPE
+<span class="kw">SET</span> TASN_NO = <span class="str">'ASN-584102'</span>
+<span class="kw">WHERE</span> BILL_PKEY <span class="kw">LIKE</span> <span class="str">'%INV-260805-14%'</span>;</code></pre>
+            </div>
+            <div class="card-footer-tags" style="margin-top: 14px;">
+              <span>SQL</span><span>Regex Validation</span><span>Duplicate Filtering</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: CONTENT CREATION & MEDIA (@nvaistudio) -->
+    <section class="section media-section" id="media" aria-labelledby="mediaHeading">
+      <div class="shell">
+        <div class="section-header reveal">
+          <div class="section-tag">04 // CREATIVE &amp; AI AUTOMATION</div>
+          <h2 id="mediaHeading" class="section-title">Content Creation &amp; AI Tech Reviews.</h2>
+          <p class="section-subtitle">Exploring next-generation AI workflows, automation tutorials, and software tools on YouTube.</p>
+        </div>
+
+        <div class="media-bento glass-card reveal">
+          <div class="media-grid">
+            <!-- Channel Info & Highlights -->
+            <div class="media-info">
+              <div class="channel-badge">
+                <span class="yt-play-icon">▶</span>
+                <span>YOUTUBE CREATOR</span>
+              </div>
+              <h3 class="channel-title">NV AI Studio <span class="channel-handle">@nvaistudio</span></h3>
+              <p class="channel-desc">
+                On <strong>@nvaistudio</strong>, I produce high-impact videos exploring AI technology, automated coding workflows, practical Python desktop tools, and productivity stacks for engineers and modern creators.
+              </p>
+              
+              <div class="channel-metrics">
+                <div class="c-metric">
+                  <div class="c-val">Tech &amp; AI</div>
+                  <div class="c-lbl">Core Niche</div>
+                </div>
+                <div class="c-metric">
+                  <div class="c-val">Automation</div>
+                  <div class="c-lbl">Workflows &amp; Code</div>
+                </div>
+                <div class="c-metric">
+                  <div class="c-val">HD / 4K</div>
+                  <div class="c-lbl">Production Quality</div>
+                </div>
+              </div>
+
+              <div class="channel-actions">
+                <a href="https://www.youtube.com/@nvaistudio" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-youtube">
+                  <span>Visit @nvaistudio on YouTube</span>
+                  <i aria-hidden="true">↗</i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Floating Video Showcase Preview Cards -->
+            <div class="media-previews">
+              <div class="video-preview-card" data-tilt>
+                <div class="video-thumb-placeholder thumb-ai">
+                  <span class="video-duration">10:45</span>
+                  <div class="play-overlay">▶</div>
+                </div>
+                <div class="video-meta">
+                  <h4>Automating Engineering Reports with Python &amp; SQLite</h4>
+                  <p>Step-by-step tutorial on building zero-dependency reporting tools.</p>
+                </div>
+              </div>
+
+              <div class="video-preview-card" data-tilt>
+                <div class="video-thumb-placeholder thumb-tools">
+                  <span class="video-duration">08:20</span>
+                  <div class="play-overlay">▶</div>
+                </div>
+                <div class="video-meta">
+                  <h4>Next-Gen AI Tools &amp; Workflow Automation Breakdown</h4>
+                  <p>Comprehensive review of state-of-the-art AI assistant workflows.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: EXPERIENCE & CAREER TIMELINE -->
+    <section class="section experience-section" id="experience" aria-labelledby="experienceHeading">
+      <div class="shell">
+        <div class="section-header reveal">
+          <div class="section-tag">05 // CAREER TIMELINE</div>
+          <h2 id="experienceHeading" class="section-title">Where the discipline was forged.</h2>
+          <p class="section-subtitle">Proven track record across tier-1 automotive manufacturing quality and large-scale outbound operations.</p>
+        </div>
+
+        <div class="timeline-container">
+          <!-- 1. NHK Spring India -->
+          <div class="timeline-item reveal">
+            <div class="timeline-marker">01</div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="company-badge">CURRENT ROLE</span>
+                  <h3 class="timeline-role">Quality Assurance Executive</h3>
+                  <h4 class="timeline-company">NHK Spring India Ltd. · Manesar, Gurugram</h4>
+                </div>
+                <span class="timeline-date">03/2025 — Present</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Manage plant-wide Statistical Process Control (SPC) and evaluate $C_{pk}, C_{pu}, C_{pl}$ capability indices across critical lines.</li>
+                <li>Monitor process variation, inspection records, and defect trends to prevent quality escapes.</li>
+                <li>Maintain inspection test certificates, raw material traceability, and support ISO / IATF quality audits.</li>
+                <li>Architect custom automated Python data pipelines and Excel VBA dashboards for executive quality reporting.</li>
+                <li>Develop QR-code parsing algorithms and Zebra ZPL printing routines for shop-floor label verification.</li>
+                <li>Drive 8D root-cause investigations and cross-functional corrective actions across production and stores.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. Hero MotoCorp Ltd. -->
+          <div class="timeline-item reveal">
+            <div class="timeline-marker">02</div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="company-badge hero-badge-tag">TIER-1 AUTOMOTIVE</span>
+                  <h3 class="timeline-role">Shift In-Charge – Outbound Logistics</h3>
+                  <h4 class="timeline-company">Hero MotoCorp Ltd. · Gurugram</h4>
+                </div>
+                <span class="timeline-date">2019 — 2024</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Supervised supervisors, operators, drivers, and support staff during high-volume finished-vehicle dispatches.</li>
+                <li>Planned dynamic manpower deployment according to daily dispatch volume and transport scheduling.</li>
+                <li>Coordinated finished-vehicle movement, loading readiness, vehicle placement, and dispatch sequencing.</li>
+                <li>Resolved bottleneck delays, shift handovers, and ensured strict adherence to dispatch documentation and safety protocols.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. Education & Foundations -->
+          <div class="timeline-item reveal">
+            <div class="timeline-marker">03</div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="company-badge edu-badge-tag">EDUCATION</span>
+                  <h3 class="timeline-role">Bachelor of Computer Applications (BCA)</h3>
+                  <h4 class="timeline-company">Dronacharya Government College, Gurugram</h4>
+                </div>
+                <span class="timeline-date">Graduate Degree</span>
+              </div>
+              <p style="color:var(--text-secondary); margin-top:8px;">
+                Solid computer science foundation in software architecture, database management (RDBMS/SQL), algorithms, and application development. Senior Secondary Education (CBSE, First Division) &amp; Secondary Education (HBSE, First Division).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: CONTACT & CONNECT -->
+    <section class="section contact-section" id="contact" aria-labelledby="contactHeading">
+      <div class="shell">
+        <div class="contact-card glass-card reveal">
+          <div class="contact-grid">
+            <div class="contact-left">
+              <div class="section-tag">06 // INITIATE CONVERSATION</div>
+              <h2 id="contactHeading" class="contact-title">Let's build something exceptional together.</h2>
+              <p class="contact-desc">
+                I am actively open to <strong>Quality Assurance</strong>, <strong>Quality Engineering</strong>, <strong>Manufacturing Digitalization</strong>, and <strong>Python Software Automation</strong> roles in the automotive and industrial sectors.
+              </p>
+
+              <div class="contact-details">
+                <div class="detail-item">
+                  <span class="detail-label">EMAIL DIRECT</span>
+                  <a href="mailto:nishantvashisht8@gmail.com" class="detail-val">nishantvashisht8@gmail.com</a>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">PHONE / WHATSAPP</span>
+                  <a href="tel:+918882186438" class="detail-val">+91 88821 86438</a>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">LOCATION</span>
+                  <span class="detail-val">Gurugram / Manesar, Haryana, India</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-right">
+              <div class="quick-connect-box">
+                <h4>Quick Access Hub</h4>
+                <div class="connect-btns-grid">
+                  <a href="mailto:nishantvashisht8@gmail.com" class="btn btn-primary" style="width:100%; justify-content:center;">
+                    <span>Send Email Message</span> <i aria-hidden="true">✉</i>
+                  </a>
+                  <a href="nikhil_vashisht_resume.pdf" download="Nikhil_Vashisht_Resume.pdf" class="btn btn-glass" style="width:100%; justify-content:center;">
+                    <span>Download Official CV (PDF)</span> <i aria-hidden="true">↓</i>
+                  </a>
+                  <button type="button" class="btn btn-outline js-resume-trigger" style="width:100%; justify-content:center;">
+                    <span>Open Interactive CV Modal</span> <i aria-hidden="true">📄</i>
+                  </button>
+                  <a href="https://linktr.ee/nikku_red" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="width:100%; justify-content:center;">
+                    <span>Linktree Hub (@nikku_red)</span> <i aria-hidden="true">↗</i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-copy">
+        <p>© <span id="footerYear">2026</span> <strong>Nikhil Vashisht</strong> · QA Executive &amp; Python Developer</p>
+        <small>NHK Spring India Ltd. · Ex-Hero MotoCorp Ltd. · Built with high-performance modern web standards.</small>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/Nikkured" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/@nvaistudio" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://linktr.ee/nikku_red" target="_blank" rel="noopener noreferrer">Linktree</a>
+        <a href="#home">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE RESUME MODAL DIALOG -->
+  <dialog id="resumeModal" class="resume-modal" aria-labelledby="resumeModalTitle">
+    <div class="resume-modal-dialog glass-card">
+      <div class="resume-modal-header">
+        <div class="resume-modal-title-group">
+          <span class="brand-avatar sm" aria-hidden="true">NV</span>
+          <div>
+            <h2 id="resumeModalTitle">Nikhil Vashisht</h2>
+            <p>Quality Assurance Executive · NHK Spring India Ltd.</p>
+          </div>
+        </div>
+        <div class="resume-modal-actions">
+          <a href="nikhil_vashisht_resume.pdf" download="Nikhil_Vashisht_Resume.pdf" class="btn btn-sm btn-primary" title="Download official resume PDF">
+            <span>Download PDF</span> <i aria-hidden="true">↓</i>
+          </a>
+          <button type="button" class="btn btn-sm btn-glass" id="copyResumeBtn" title="Copy markdown CV to clipboard">
+            <span>Copy Text</span> <i aria-hidden="true">📋</i>
+          </button>
+          <button type="button" class="modal-close-btn" id="closeResumeModal" aria-label="Close dialog">✕</button>
+        </div>
+      </div>
+
+      <div class="resume-nav-tabs" role="tablist" aria-label="Resume sections">
+        <button type="button" class="resume-tab is-active" data-tab="summary" role="tab" aria-selected="true">Executive Summary</button>
+        <button type="button" class="resume-tab" data-tab="experience" role="tab" aria-selected="false">Professional Experience</button>
+        <button type="button" class="resume-tab" data-tab="skills" role="tab" aria-selected="false">Skills &amp; Education</button>
+      </div>
+
+      <div class="resume-modal-content">
+        <!-- Tab 1: Summary -->
+        <div class="resume-tab-pane is-active" id="tab-summary" role="tabpanel">
+          <div class="resume-section">
+            <h3 class="resume-section-title">Professional Summary</h3>
+            <p>Quality Assurance professional with rich experience in automotive manufacturing, outbound logistics, statistical process control, quality documentation, and process automation. Skilled in $C_{pk}, C_{pu}, C_{pl}$ analysis, advanced Excel dashboards, Python scripting, QR-code applications, and Zebra label programming. Experienced in developing practical digital tools for quality reporting, traceability, data consolidation, and shop-floor operations.</p>
+          </div>
+          <div class="resume-section">
+            <h3 class="resume-section-title">Core Competencies</h3>
+            <ul class="resume-highlights">
+              <li><strong>Statistical Process Control:</strong> Actively monitors process capability ($C_{pk}, C_{pu}, C_{pl}$), variation reduction, and quality trend analytics.</li>
+              <li><strong>Audits &amp; Compliance:</strong> Maintains inspection records, test certificates, material traceability, and supports ISO quality audits.</li>
+              <li><strong>Digital Automation:</strong> Builds practical Python, SQLite, Excel VBA, and Zebra ZPL label tools designed for shop-floor reliability.</li>
+              <li><strong>Operational Leadership:</strong> 5+ years managing high-volume shift execution, manpower deployment, and dispatch logistics at Hero MotoCorp.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab 2: Experience -->
+        <div class="resume-tab-pane" id="tab-experience" role="tabpanel" hidden>
+          <div class="resume-item">
+            <div class="resume-item-head">
+              <div><strong>Quality Assurance Executive</strong> · NHK Spring India Ltd.</div>
+              <small>03/2025 — Present | Manesar, Gurugram</small>
+            </div>
+            <p>• Manage SPC activities and analyse Cpk, Cpu and Cpl for manufacturing processes.<br>
+            • Monitor quality trends, inspection results, and process variation to identify recurring concerns.<br>
+            • Prepare and maintain test certificates, inspection reports, and traceability records.<br>
+            • Develop Excel dashboards for quality metrics, trend analysis, and management reporting.<br>
+            • Automate repetitive reporting and data-consolidation activities using Python.<br>
+            • Develop QR-code and Zebra ZPL solutions for document traceability and label printing.<br>
+            • Support quality audits, ISO compliance, root cause analysis (8D / 5-Why), and corrective actions.<br>
+            • Coordinate with Production, Stores, Maintenance, and other departments to resolve quality issues.</p>
+          </div>
+          <div class="resume-item">
+            <div class="resume-item-head">
+              <div><strong>Shift In-Charge – Outbound Logistics</strong> · Hero MotoCorp Ltd.</div>
+              <small>2019 — 2024 | Gurugram</small>
+            </div>
+            <p>• Managed shift operations in the Outbound Logistics department.<br>
+            • Supervised supervisors, operators, drivers, and support staff during daily dispatch activities.<br>
+            • Planned manpower deployment according to dispatch volume and operational priorities.<br>
+            • Coordinated finished-vehicle movement, loading readiness, vehicle placement, and dispatch sequencing.<br>
+            • Monitored shift-wise dispatch status and resolved delays, manpower shortages, and documentation issues.<br>
+            • Coordinated with Production, Quality, Security, Transporters, and Warehousing teams.<br>
+            • Ensured compliance with safety procedures, dispatch documentation, and company processes.</p>
+          </div>
+        </div>
+
+        <!-- Tab 3: Skills & Education -->
+        <div class="resume-tab-pane" id="tab-skills" role="tabpanel" hidden>
+          <div class="resume-section">
+            <h3 class="resume-section-title">Education</h3>
+            <div class="resume-item" style="border:none; padding-left:0; margin-bottom:10px;">
+              <div class="resume-item-head">
+                <div><strong>Bachelor of Computer Applications (BCA)</strong></div>
+                <small>Dronacharya Government College, Gurugram</small>
+              </div>
+              <p style="color:var(--text-secondary); margin-top:2px;">Senior Secondary Education (CBSE, First Division) · Secondary Education (HBSE, First Division)</p>
+            </div>
+          </div>
+          <div class="resume-section">
+            <h3 class="resume-section-title">Quality &amp; Manufacturing Engineering</h3>
+            <div class="resume-tag-group">
+              <span class="resume-tag">Quality Assurance &amp; QC</span>
+              <span class="resume-tag">Statistical Process Control (SPC)</span>
+              <span class="resume-tag">Cpk, Cpu &amp; Cpl Analysis</span>
+              <span class="resume-tag">Root Cause Analysis (8D / 5-Why)</span>
+              <span class="resume-tag">Quality Audits &amp; ISO Compliance</span>
+              <span class="resume-tag">Test Certificate Management</span>
+              <span class="resume-tag">Material Traceability &amp; FIFO</span>
+            </div>
+          </div>
+          <div class="resume-section">
+            <h3 class="resume-section-title">Automation &amp; Data Stack</h3>
+            <div class="resume-tag-group">
+              <span class="resume-tag">Python Automation &amp; Scripting</span>
+              <span class="resume-tag">Tkinter &amp; PySide6</span>
+              <span class="resume-tag">Advanced Microsoft Excel</span>
+              <span class="resume-tag">Excel Dashboards &amp; VBA</span>
+              <span class="resume-tag">QR-Code Validation</span>
+              <span class="resume-tag">Zebra Programming Language (ZPL)</span>
+              <span class="resume-tag">SQLite &amp; Relational Schemas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-modal-footer">
+        <span>📍 Gurugram / Manesar, Haryana · 📞 +91 88821 86438 · ✉️ nishantvashisht8@gmail.com</span>
+        <button type="button" class="btn btn-ghost btn-sm" id="closeResumeModalBtn">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="toast-notification" aria-live="polite" hidden></div>
+
+  <!-- Vanilla / Zero-Dependency Modern Script -->
+  <script src="script.js"></script>
+</body>
+</html>
