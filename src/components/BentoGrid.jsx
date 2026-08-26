@@ -77,7 +77,7 @@ export const BentoGrid = () => {
                 SPC &amp; Cpk / Cpu Analysis
               </h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                Continuous capability monitoring ($C_{pk}, C_{pu}, C_{pl}$), dynamic $\bar{X} / R$ control limits ($UCL / LCL$), variation tracking, and Six-Sigma variance reduction across manufacturing lines.
+                Continuous capability monitoring (Cpk, Cpu, Cpl), dynamic X-bar / R control limits (UCL / LCL), variation tracking, and Six-Sigma variance reduction across manufacturing lines.
               </p>
             </div>
 

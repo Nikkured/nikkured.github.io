@@ -297,7 +297,7 @@ export const Projects = () => {
                 Real-Time Statistical Process Control Streamer
               </h3>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-                Interactive real-time $\bar{X} / R$ chart plotting manufacturing samples every 1.4s. Dynamically calculates Upper Control Limit ($UCL$), Lower Control Limit ($LCL$), and sample mean, evaluating Western Electric rule breaches and alarming on out-of-control states.
+                Interactive real-time X-bar / R chart plotting manufacturing samples every 1.4s. Dynamically calculates Upper Control Limit (UCL), Lower Control Limit (LCL), and sample mean, evaluating Western Electric rule breaches and alarming on out-of-control states.
               </p>
 
               {/* Injection Controls */}
