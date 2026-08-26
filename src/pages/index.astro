@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Navbar } from '../components/Navbar';
+import { Hero } from '../components/Hero';
+import { BentoGrid } from '../components/BentoGrid';
+import { Projects } from '../components/Projects';
+import { MediaSection } from '../components/MediaSection';
+import { Contact } from '../components/Contact';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <!-- Navigation Island -->
+  <Navbar client:load />
+
+  <main id="main">
+    <!-- Hero Island -->
+    <Hero client:load />
+
+    <!-- Static About Section (Zero JavaScript) -->
+    <section class="py-24 relative z-10" id="about">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl mb-16">
+          <div class="font-mono text-xs font-semibold tracking-widest text-indigo-400 uppercase mb-3">
+            01 // PHILOSOPHY &amp; BACKGROUND
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+            Physical understanding precedes every line of code.
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg">
+            Real factory floors demand zero cloud dependencies, instant UI responsiveness, and foolproof audit trails.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="glass-card rounded-3xl p-8 sm:p-10">
+            <span class="font-mono text-xs font-bold text-indigo-400 tracking-wider uppercase block mb-3">
+              MANUFACTURING QA EXECUTIVE
+            </span>
+            <h3 class="text-2xl font-bold text-white mb-4">Grounded in the plant reality.</h3>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              At <strong class="text-white">NHK Spring India Ltd.</strong>, I actively manage Statistical Process Control (SPC), capability studies ($C_{pk}, C_{pu}, C_{pl}$), inspection test certificates, ISO compliance, and 8D root-cause investigations. I understand how operators work and where mistakes occur.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-white/10">SPC &amp; Cpk</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-white/10">IATF 16949</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-white/10">8D Root Cause</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-white/10">Test Certificates</span>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-3xl p-8 sm:p-10">
+            <span class="font-mono text-xs font-bold text-cyan-400 tracking-wider uppercase block mb-3">
+              SOFTWARE &amp; AUTOMATION DEVELOPER
+            </span>
+            <h3 class="text-2xl font-bold text-white mb-4">Fluent in modern desktop engineering.</h3>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              Holding a <strong class="text-white">Bachelor of Computer Applications (BCA)</strong>, I design full-scale offline desktop applications, multithreaded Python GUI tools (PySide6/Tkinter), SQLite databases, and Zebra ZPL barcode generation pipelines that automate hours of manual reconciliation in seconds.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-white/10">Python 3</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-white/10">Tkinter / PySide6</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-white/10">SQLite3</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-white/10">Zebra ZPL</span>
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 text-slate-300 border border-white/10">Excel VBA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Box Skills Island (Hydrates when visible) -->
+    <BentoGrid client:visible />
+
+    <!-- Projects Island (Hydrates when visible) -->
+    <Projects client:visible />
+
+    <!-- Media & YouTube Island (Hydrates when visible) -->
+    <MediaSection client:visible />
+
+    <!-- Static Career Timeline Section (Zero JavaScript) -->
+    <section class="py-24 relative z-10" id="experience">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl mb-16">
+          <div class="font-mono text-xs font-semibold tracking-widest text-indigo-400 uppercase mb-3">
+            05 // CAREER TIMELINE
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+            Where the discipline was forged.
+          </h2>
+          <p className="text-slate-400 text-base sm:text-lg">
+            Proven track record across tier-1 automotive manufacturing quality and large-scale outbound operations.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <!-- 1. NHK Spring India -->
+          <div class="glass-card rounded-3xl p-8 sm:p-10 border-indigo-500/20">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 mb-6 border-b border-white/10">
+              <div>
+                <span class="inline-block px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold mb-2">
+                  CURRENT ROLE
+                </span>
+                <h3 class="text-2xl font-bold text-white">Quality Assurance Executive</h3>
+                <h4 class="text-sm font-medium text-slate-400">NHK Spring India Ltd. · Manesar, Gurugram</h4>
+              </div>
+              <span class="font-mono text-xs text-slate-400 px-3 py-1.5 rounded-lg bg-slate-900 border border-white/10">
+                03/2025 — Present
+              </span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-300 list-disc pl-5 leading-relaxed">
+              <li>Manage plant-wide Statistical Process Control (SPC) and evaluate $C_{pk}, C_{pu}, C_{pl}$ capability indices across critical manufacturing lines.</li>
+              <li>Monitor process variation, inspection records, and defect trends to prevent quality escapes.</li>
+              <li>Maintain inspection test certificates, raw material traceability, and support ISO / IATF quality audits.</li>
+              <li>Architect custom automated Python data pipelines and Excel VBA dashboards for executive quality reporting.</li>
+              <li>Develop QR-code parsing algorithms and Zebra ZPL printing routines for shop-floor label verification.</li>
+              <li>Drive 8D root-cause investigations and cross-functional corrective actions across production and stores.</li>
+            </ul>
+          </div>
+
+          <!-- 2. Hero MotoCorp -->
+          <div class="glass-card rounded-3xl p-8 sm:p-10 border-white/10">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 mb-6 border-b border-white/10">
+              <div>
+                <span class="inline-block px-2.5 py-1 rounded bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 text-[10px] font-mono font-bold mb-2">
+                  TIER-1 AUTOMOTIVE
+                </span>
+                <h3 class="text-2xl font-bold text-white">Shift In-Charge – Outbound Logistics</h3>
+                <h4 class="text-sm font-medium text-slate-400">Hero MotoCorp Ltd. · Gurugram</h4>
+              </div>
+              <span class="font-mono text-xs text-slate-400 px-3 py-1.5 rounded-lg bg-slate-900 border border-white/10">
+                2019 — 2024
+              </span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-300 list-disc pl-5 leading-relaxed">
+              <li>Supervised supervisors, operators, drivers, and support staff during high-volume finished-vehicle dispatches.</li>
+              <li>Planned dynamic manpower deployment according to daily dispatch volume and transport scheduling.</li>
+              <li>Coordinated finished-vehicle movement, loading readiness, vehicle placement, and dispatch sequencing.</li>
+              <li>Resolved bottleneck delays, shift handovers, and ensured strict adherence to dispatch documentation and safety protocols.</li>
+            </ul>
+          </div>
+
+          <!-- 3. Education -->
+          <div class="glass-card rounded-3xl p-8 sm:p-10 border-white/10">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 mb-4 border-b border-white/10">
+              <div>
+                <span class="inline-block px-2.5 py-1 rounded bg-indigo-500/15 text-indigo-400 border border-indigo-500/30 text-[10px] font-mono font-bold mb-2">
+                  EDUCATION
+                </span>
+                <h3 class="text-2xl font-bold text-white">Bachelor of Computer Applications (BCA)</h3>
+                <h4 class="text-sm font-medium text-slate-400">Dronacharya Government College, Gurugram</h4>
+              </div>
+              <span class="font-mono text-xs text-slate-400 px-3 py-1.5 rounded-lg bg-slate-900 border border-white/10">
+                Graduate Degree
+              </span>
+            </div>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              Solid computer science foundation in software architecture, database management (RDBMS/SQL), algorithms, and application development. Senior Secondary Education (CBSE, First Division) &amp; Secondary Education (HBSE, First Division).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Island (Hydrates when visible) -->
+    <Contact client:visible />
+  </main>
+
+  <!-- Static Astro Footer -->
+  <Footer />
+</Layout>

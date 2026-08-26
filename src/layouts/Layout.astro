@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Nikhil Vashisht — Quality Assurance Engineer & Python Developer",
+  description = "Nikhil Vashisht is a Quality Assurance Executive & Python Software Developer at NHK Spring India Ltd. specializing in Enterprise Application Architecture (NHK_RIMS), SPC, SQLite, and Automation."
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://nikkured.github.io');
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark light" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta name="theme-color" content="#05070a" />
+  <meta name="author" content="Nikhil Vashisht" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts: Plus Jakarta Sans / Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nikhil Vashisht",
+    "jobTitle": "Quality Assurance Executive & Python Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "NHK Spring India Ltd."
+    },
+    "email": "mailto:nishantvashisht8@gmail.com",
+    "telephone": "+918882186438",
+    "url": "https://nikkured.github.io/",
+    "sameAs": [
+      "https://github.com/Nikkured",
+      "https://www.youtube.com/@nvaistudio",
+      "https://linktr.ee/nikku_red"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gurugram / Manesar",
+      "addressRegion": "Haryana",
+      "addressCountry": "IN"
+    },
+    "knowsAbout": [
+      "Python",
+      "Tkinter",
+      "PySide6",
+      "SQLite",
+      "Enterprise Application Architecture",
+      "Statistical Process Control",
+      "Cpk Analysis",
+      "Zebra ZPL",
+      "Excel VBA Automation"
+    ]
+  })} />
+</head>
+<body class="bg-[#05070a] text-slate-100 font-sans min-h-screen relative overflow-x-hidden">
+  <div class="fixed inset-0 pointer-events-none z-0">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <slot />
+
+  <script>
+    // Global mouse tracking for specular spotlight across all glass cards
+    document.addEventListener('mousemove', (e) => {
+      const cards = document.querySelectorAll('.glass-card');
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
+</body>
+</html>

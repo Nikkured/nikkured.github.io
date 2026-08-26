@@ -1,0 +1,31 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/10 py-12 bg-[#05070a] relative z-10">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div>
+      <p class="text-sm text-slate-300 font-medium">
+        © <span>{year}</span> <strong class="text-white">Nikhil Vashisht</strong> · QA Executive &amp; Python Developer
+      </p>
+      <small class="text-slate-500 font-mono text-xs block mt-1">
+        NHK Spring India Ltd. · Ex-Hero MotoCorp Ltd. · Built with Astro, React, Tailwind &amp; Framer Motion.
+      </small>
+    </div>
+
+    <div class="flex items-center gap-6 font-mono text-xs text-slate-400">
+      <a href="https://github.com/Nikkured" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-400 transition-colors">
+        GitHub
+      </a>
+      <a href="https://www.youtube.com/@nvaistudio" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-400 transition-colors">
+        YouTube
+      </a>
+      <a href="https://linktr.ee/nikku_red" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-400 transition-colors">
+        Linktree
+      </a>
+      <a href="#home" class="hover:text-white transition-colors">
+        Back to Top ↑
+      </a>
+    </div>
+  </div>
+</footer>
