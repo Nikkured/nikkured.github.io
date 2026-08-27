@@ -550,6 +550,13 @@
                     <option value="REJECTED">REJECTED (RED)</option>
                   </select>
                 </div>
+                <div class="zpl-input-group" style="grid-column: span 2;">
+                  <label for="zplQrType">QR Code Payload Output Mode</label>
+                  <select id="zplQrType" class="zpl-input font-mono">
+                    <option value="text" selected>📱 Direct Label Details Text (Shows full spec text in camera scanner)</option>
+                    <option value="url">🌐 Web Verification Certificate (Opens Digital Certificate Modal)</option>
+                  </select>
+                </div>
               </div>
 
               <!-- ZPL Code Output Pane -->
@@ -1052,10 +1059,44 @@
     </div>
   </dialog>
 
+  <!-- FEATURE: VERIFIED TRACEABILITY CERTIFICATE DIALOG -->
+  <dialog id="traceModal" class="trace-modal">
+    <div class="trace-dialog glass-card">
+      <div class="trace-header">
+        <div class="trace-badge-verified">✓ AUTHENTIC TRACEABILITY RECORD</div>
+        <button type="button" class="modal-close-btn" id="closeTraceModal" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="trace-cert-body">
+        <div class="cert-company-banner">
+          <h2>NHK SPRING INDIA LTD.</h2>
+          <span>OFFICIAL QUALITY ASSURANCE &amp; RAW MATERIAL RECORD</span>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-field"><span class="c-key">PART SPEC</span><b class="c-val" id="certMat">10.60 x 1600mm Gr-A</b></div>
+          <div class="cert-field"><span class="c-key">HEAT NUMBER</span><b class="c-val font-mono" id="certHeat">HT-260826-09</b></div>
+          <div class="cert-field"><span class="c-key">SERIAL NUMBER</span><b class="c-val font-mono" id="certSerial">BND-260826-304</b></div>
+          <div class="cert-field"><span class="c-key">GROSS WEIGHT</span><b class="c-val font-mono" id="certWeight">214.60 kg</b></div>
+          <div class="cert-field"><span class="c-key">DATE / SHIFT</span><b class="c-val font-mono" id="certDate">2026-08-26 / Shift-A</b></div>
+          <div class="cert-field"><span class="c-key">QUALITY DISPOSITION</span><span class="c-status-pill status-accepted" id="certStatus">ACCEPTED (RELEASED)</span></div>
+        </div>
+        <div class="cert-footer-stamp">
+          <div class="stamp-verified-seal">
+            <span class="seal-icon">🛡️</span>
+            <div>
+              <strong>NHK_RIMS DIGITAL VERIFICATION</strong>
+              <p>Certified by Nikhil Vashisht (Quality Assurance Executive)</p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-sm btn-primary" id="closeTraceBtn">Acknowledge</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <!-- TOAST NOTIFICATION -->
   <div id="toastNotification" class="toast-notification" aria-live="polite" hidden></div>
 
   <!-- Vanilla / Zero-Dependency Modern Script -->
-  <script src="script.js?v=20260827_2"></script>
+  <script src="script.js?v=20260827_3"></script>
 </body>
 </html>

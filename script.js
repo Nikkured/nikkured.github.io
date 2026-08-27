@@ -1585,6 +1585,8 @@
       var hVal = heat ? heat.value : "HT-260826-09";
       var wVal = weight ? weight.value : "214.6";
       var sVal = status ? status.value : "ACCEPTED";
+      var qrTypeSelect = $("#zplQrType");
+      var qrType = qrTypeSelect ? qrTypeSelect.value : "text";
 
       var serial = "BND-260826-" + Math.abs((hVal.length * 17) % 900 + 100);
 
@@ -1613,9 +1615,24 @@
 
       if (codeOut) codeOut.textContent = zpl;
 
-      // Realistic Traceability URL + Payload (Instant Phone Camera Recognition)
-      // When scanned, phone cameras immediately open this clean URL with embedded query parameters
-      var qrPayload = "https://nikkured.github.io/?trace=" + encodeURIComponent(serial) + "&heat=" + encodeURIComponent(hVal) + "&mat=" + encodeURIComponent(pVal) + "&wt=" + encodeURIComponent(wVal) + "&disp=" + encodeURIComponent(sVal);
+      var qrPayload = "";
+      if (qrType === "url") {
+        // Web Verification Mode (Opens verified digital certificate on the portfolio)
+        qrPayload = "https://nikkured.github.io/?trace=" + encodeURIComponent(serial) + "&heat=" + encodeURIComponent(hVal) + "&mat=" + encodeURIComponent(pVal) + "&wt=" + encodeURIComponent(wVal) + "&disp=" + encodeURIComponent(sVal);
+      } else {
+        // Direct Plain-Text Traceability Tag (Displays raw specification directly in phone scanner)
+        qrPayload = [
+          "NHK SPRING INDIA LTD.",
+          "RAW MATERIAL TRACEABILITY TAG",
+          "",
+          "PART SPEC: " + pVal,
+          "HEAT NO: " + hVal,
+          "SERIAL: " + serial,
+          "GROSS WT: " + parseFloat(wVal || 0).toFixed(2) + " kg",
+          "DATE/SHIFT: 2026-08-26 / Shift-A",
+          "STATUS: " + sVal
+        ].join("\n");
+      }
       
       QRGenerator.draw(qrCanvas, qrPayload);
       Code128.draw(barCanvas, serial);
@@ -1625,6 +1642,7 @@
     on(heat, "input", update);
     on(weight, "input", update);
     on(status, "change", function () { update(); audio.play("click"); });
+    on($("#zplQrType"), "change", function () { update(); audio.play("scan"); });
     on(window, "resize", update);
 
     on(copyBtn, "click", function () {
@@ -1637,6 +1655,48 @@
     });
 
     update();
+  })();
+
+  /* ---------- URL Traceability Record Auto-Opener ---------- */
+  (function traceUrlChecker() {
+    var params = new URLSearchParams(window.location.search);
+    if (params.has("trace") || params.has("heat")) {
+      var modal = $("#traceModal");
+      if (!modal) return;
+
+      var serial = params.get("trace") || "BND-260826-304";
+      var heat = params.get("heat") || "HT-260826-09";
+      var mat = params.get("mat") || "10.60 x 1600mm Gr-A";
+      var wt = params.get("wt") || "214.60";
+      var disp = params.get("disp") || "ACCEPTED";
+      var date = params.get("date") || "2026-08-26 / Shift-A";
+
+      var cSer = $("#certSerial"); if (cSer) cSer.textContent = serial;
+      var cHeat = $("#certHeat"); if (cHeat) cHeat.textContent = heat;
+      var cMat = $("#certMat"); if (cMat) cMat.textContent = mat;
+      var cWeight = $("#certWeight"); if (cWeight) cWeight.textContent = wt + " kg";
+      var cDate = $("#certDate"); if (cDate) cDate.textContent = date;
+      var cStatus = $("#certStatus"); if (cStatus) cStatus.textContent = disp + " (RELEASED)";
+
+      setTimeout(function () {
+        if (typeof modal.showModal === "function") modal.showModal();
+        else modal.setAttribute("open", "");
+        audio.play("scan");
+      }, 450);
+    }
+
+    var closeBtn = $("#closeTraceModal");
+    var closeAck = $("#closeTraceBtn");
+    var modalEl = $("#traceModal");
+    function closeTrace() {
+      if (!modalEl) return;
+      if (typeof modalEl.close === "function") modalEl.close();
+      else modalEl.removeAttribute("open");
+      audio.play("click");
+    }
+    on(closeBtn, "click", closeTrace);
+    on(closeAck, "click", closeTrace);
+    on(modalEl, "click", function (e) { if (e.target === modalEl) closeTrace(); });
   })();
 
   /* ---------- FEATURE 5: DEVELOPER COMMAND PALETTE (CTRL + K) ---------- */
