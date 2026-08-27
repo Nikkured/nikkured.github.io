@@ -2379,3 +2379,555 @@ body {
   padding-top: 10px;
   border-top: 1px solid var(--border-subtle);
 }
+
+/* ==========================================================================
+   ADVANCED MOBILE & TOUCHSCREEN OPTIMIZATION SUITE
+   ========================================================================== */
+
+/* 1. Global Touch & Viewport Bounds */
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.shell, main, section, article, div, pre, code {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* 2. Tablet & Medium Screens (<= 1024px) */
+@media (max-width: 1024px) {
+  .bento-hero, .bento-spc, .bento-hardware, .bento-excel, .bento-iso, .bento-github {
+    grid-column: span 12;
+  }
+  .project-grid, .media-grid, .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .telemetry-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .zpl-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 3. Small Tablets & Large Phones (<= 860px) */
+@media (max-width: 860px) {
+  .site-header {
+    height: 64px;
+  }
+  .header-inner {
+    height: 64px;
+  }
+  .primary-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(85vw, 320px);
+    background: var(--bg-surface);
+    border-left: 1px solid var(--border-subtle);
+    padding: 84px 24px 24px;
+    z-index: 98;
+    transform: translateX(100%);
+    transition: transform 0.35s var(--ease-spring);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+  body.nav-open .primary-nav {
+    transform: translateX(0);
+  }
+  .primary-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .primary-nav a {
+    font-size: 16px;
+    padding: 8px 0;
+    display: block;
+    width: 100%;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+  .nav-resume-btn {
+    display: none;
+  }
+  .about-grid, .dual-projects-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .zpl-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .cpk-metrics-readout {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+/* 4. Mobile Phones (<= 640px) */
+@media (max-width: 640px) {
+  .shell {
+    padding-inline: 16px;
+  }
+
+  /* Header compact tools */
+  .header-tools {
+    gap: 6px;
+  }
+  .header-tools .tool-label {
+    display: none;
+  }
+  .tool-btn {
+    padding: 6px 8px;
+    font-size: 11px;
+    min-height: 36px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding-top: 88px;
+    padding-bottom: 36px;
+  }
+  .hero-badge {
+    font-size: 11px;
+    padding: 6px 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    line-height: 1.4;
+  }
+  .hero-headline {
+    font-size: clamp(1.95rem, 8vw, 2.75rem);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .hero-lead {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  /* Telemetry 2x2 grid */
+  .telemetry-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding-top: 20px;
+  }
+  .telemetry-item {
+    padding: 12px 8px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    text-align: center;
+  }
+  .telemetry-num {
+    font-size: 1.35rem;
+  }
+  .telemetry-label {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+
+  /* Section Headers */
+  .section {
+    padding: 44px 0;
+  }
+  .section-tag {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: clamp(1.55rem, 6.5vw, 2.1rem);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .section-header {
+    margin-bottom: 24px;
+  }
+
+  /* Bento Grid Cards */
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .bento-cell {
+    padding: 18px 16px;
+    border-radius: var(--radius-md);
+  }
+  .bento-title {
+    font-size: 18px;
+  }
+  .bento-desc {
+    font-size: 13px;
+  }
+  .terminal-preview {
+    margin-top: 14px;
+  }
+  .terminal-code {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+  .bento-content-github {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .bento-content-github .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Flagship Projects */
+  .featured-project {
+    padding: 18px 14px;
+    border-radius: var(--radius-md);
+  }
+  .project-title {
+    font-size: clamp(1.35rem, 5.5vw, 1.75rem);
+    line-height: 1.25;
+  }
+  .project-description {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .highlight-item {
+    font-size: 12px;
+    padding-left: 10px;
+  }
+
+  /* NHK_RIMS Horizontally Scrollable Stepper on Mobile */
+  .rims-stepper {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding-bottom: 4px;
+    margin-bottom: 14px;
+  }
+  .rims-stepper::-webkit-scrollbar {
+    display: none;
+  }
+  .stepper-tab {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    white-space: nowrap;
+    padding: 7px 12px;
+    font-size: 11px;
+  }
+  .rims-display {
+    padding: 14px;
+  }
+  .rims-headline {
+    font-size: 15px;
+  }
+  .rims-metrics-box {
+    padding: 10px;
+    font-size: 11px;
+  }
+  .metric-row {
+    font-size: 11px;
+  }
+  .rims-control-achieved {
+    font-size: 12px;
+  }
+
+  /* Real-Time SPC Streamer */
+  .spc-stream-box {
+    padding: 12px;
+  }
+  .spc-canvas {
+    height: 170px;
+  }
+  .spc-controls-group .btn-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .spc-btn {
+    width: 100%;
+    padding: 8px 6px;
+    font-size: 11px;
+    justify-content: center;
+    text-align: center;
+  }
+  .spc-readout-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .spc-readout {
+    padding: 8px 10px;
+  }
+  .spc-readout b {
+    font-size: 13px;
+  }
+
+  /* Six-Sigma Cpk Lab */
+  .cpk-canvas-box {
+    padding: 12px;
+  }
+  .cpk-canvas {
+    height: 160px;
+  }
+  .cpk-metrics-readout {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .cpk-metric-card {
+    padding: 8px 10px;
+  }
+  .cpk-metric-card .m-val {
+    font-size: 14px;
+  }
+  .custom-range {
+    height: 8px;
+  }
+
+  /* Zebra ZPL Studio */
+  .thermal-label-wrapper {
+    padding: 0;
+  }
+  .thermal-label {
+    padding: 12px;
+    font-size: 10px;
+  }
+  .label-co {
+    font-size: 13px;
+  }
+  .label-doc {
+    font-size: 9px;
+  }
+  .label-body {
+    flex-direction: row;
+    gap: 8px;
+  }
+  .label-left-col {
+    font-size: 10px;
+    gap: 4px;
+  }
+  .qr-canvas {
+    width: 55px;
+    height: 55px;
+  }
+  .label-stamp {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+  .barcode-lines {
+    height: 22px;
+  }
+
+  /* Dual Compact Projects */
+  .project-card-compact {
+    padding: 18px 14px;
+  }
+  .segmented-qr {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .btn-scenario {
+    padding: 8px 4px;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  /* Media & YouTube Studio */
+  .media-bento {
+    padding: 18px 14px;
+  }
+  .channel-title {
+    font-size: 22px;
+  }
+  .channel-desc {
+    font-size: 13px;
+  }
+  .channel-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .c-val {
+    font-size: 13px;
+  }
+  .c-lbl {
+    font-size: 10px;
+  }
+  .btn-youtube {
+    width: 100%;
+    justify-content: center;
+  }
+  .video-preview-card {
+    flex-direction: column;
+    padding: 12px;
+  }
+  .video-thumb-placeholder {
+    width: 100%;
+    height: 160px;
+  }
+
+  /* Timeline & Experience */
+  .timeline-content {
+    padding: 18px 14px;
+  }
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .timeline-date {
+    align-self: flex-start;
+  }
+  .timeline-bullets {
+    padding-left: 16px;
+    font-size: 12.5px;
+  }
+
+  /* Contact Section */
+  .contact-card {
+    padding: 22px 14px;
+  }
+  .contact-title {
+    font-size: clamp(1.45rem, 6vw, 1.95rem);
+  }
+  .contact-desc {
+    font-size: 13px;
+  }
+  .detail-val {
+    font-size: 13px;
+    word-break: break-all;
+  }
+  .connect-btns-grid .btn {
+    font-size: 13px;
+    padding: 12px 14px;
+  }
+
+  /* Footer */
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  /* Modals on Mobile */
+  .cmd-palette-dialog, .video-theater-dialog, .resume-modal-dialog {
+    width: 94vw;
+    max-height: 88vh;
+    padding: 16px;
+    margin: auto;
+    border-radius: var(--radius-sm);
+  }
+  .resume-modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+  .resume-modal-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .resume-nav-tabs {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 4px;
+    padding: 8px 16px;
+  }
+  .resume-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  .resume-modal-content {
+    padding: 16px;
+  }
+  .resume-modal-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 16px;
+    text-align: center;
+  }
+  .resume-modal-footer button {
+    width: 100%;
+  }
+
+  .cmd-input-bar {
+    padding: 12px 14px;
+  }
+  .cmd-input {
+    font-size: 13px;
+  }
+  .cmd-results-list {
+    max-height: 240px;
+  }
+  .cmd-item {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .cmd-palette-footer {
+    padding: 8px 14px;
+    font-size: 10px;
+  }
+}
+
+/* 5. Extra Small Phones (<= 380px) */
+@media (max-width: 380px) {
+  .brand-name {
+    font-size: 13px;
+  }
+  .brand-role {
+    display: none;
+  }
+  .thermal-label .label-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .label-right-col {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .telemetry-strip {
+    grid-template-columns: 1fr;
+  }
+}

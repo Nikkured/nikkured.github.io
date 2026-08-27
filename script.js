@@ -790,6 +790,7 @@
     on(sMean, "input", function () { update(); audio.play("click"); });
     on(sSigma, "input", function () { update(); audio.play("click"); });
     on(sTol, "input", function () { update(); audio.play("click"); });
+    on(window, "resize", update);
 
     update();
   })();
