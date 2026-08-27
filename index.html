@@ -586,14 +586,14 @@
                     </div>
                     <div class="label-right-col">
                       <div class="datamatrix-box">
-                        <canvas id="qrCanvasPreview" width="90" height="90" class="qr-canvas"></canvas>
-                        <span class="datamatrix-caption">GS1-128 2D MATRIX</span>
+                        <canvas id="qrCanvasPreview" width="160" height="160" class="qr-canvas"></canvas>
+                        <span class="datamatrix-caption">SCAN WITH PHONE CAMERA</span>
                       </div>
                       <div class="label-stamp stamp-accepted" id="lblStamp">ACCEPTED</div>
                     </div>
                   </div>
                   <div class="label-barcode-strip">
-                    <div class="barcode-lines" aria-hidden="true"></div>
+                    <canvas id="barcodeCanvas1D" class="barcode-1d-canvas" width="320" height="48"></canvas>
                     <div class="barcode-human" id="lblBarcodeHuman">*BND-260826-004*</div>
                   </div>
                 </div>

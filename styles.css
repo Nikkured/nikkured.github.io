@@ -2049,14 +2049,18 @@ body {
   align-items: center;
 }
 .qr-canvas {
-  width: 70px;
-  height: 70px;
+  width: 84px;
+  height: 84px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block;
 }
 .datamatrix-caption {
   font-size: 8px;
-  font-weight: 700;
-  color: #475569;
-  margin-top: 2px;
+  font-weight: 800;
+  color: #334155;
+  margin-top: 3px;
+  letter-spacing: 0.02em;
 }
 .label-stamp {
   font-size: 11px;
@@ -2086,24 +2090,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
 }
-.barcode-lines {
-  width: 90%;
-  height: 28px;
-  background: repeating-linear-gradient(
-    90deg,
-    #0f172a,
-    #0f172a 2px,
-    transparent 2px,
-    transparent 5px,
-    #0f172a 5px,
-    #0f172a 8px,
-    transparent 8px,
-    transparent 11px,
-    #0f172a 11px,
-    #0f172a 15px
-  );
+.barcode-1d-canvas {
+  width: 92%;
+  max-width: 320px;
+  height: 38px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background: #ffffff;
+  border-radius: 2px;
 }
 .barcode-human {
   font-size: 10px;
