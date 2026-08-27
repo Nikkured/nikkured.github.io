@@ -1348,7 +1348,9 @@
         [2, 86, 68, 2, 87, 69], [4, 69, 43, 1, 70, 44], [6, 43, 19, 2, 44, 20], [6, 43, 15, 2, 44, 16]
       ];
       QRRSBlock.getRSBlocks = function (typeNumber, errorCorrectLevel) {
-        var table = QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + errorCorrectLevel];
+        var mapping = { 1: 0, 0: 1, 3: 2, 2: 3 }; // L=1 -> 0, M=0 -> 1, Q=3 -> 2, H=2 -> 3
+        var offset = mapping[errorCorrectLevel] !== undefined ? mapping[errorCorrectLevel] : 0;
+        var table = QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + offset];
         var length = table.length / 3;
         var list = [];
         for (var idx = 0; idx < length; idx++) {
@@ -1477,17 +1479,15 @@
 
       function draw(canvas, text) {
         if (!canvas) return;
-        var qr = new QRCodeModel(0, 1); // Auto version, Level L (1) for maximum high-density scannability
+        var qr = new QRCodeModel(0, 1); // Auto version, Level L (1)
         qr.addData(text);
         qr.make();
 
         var count = qr.getModuleCount();
-        var border = 4; // 4 modules white quiet zone required by ISO 18004
+        var border = 4; // Standard 4-module quiet zone
         var totalDim = count + border * 2;
 
-        var targetPx = 220; // Crisp high-res canvas
-        var scale = Math.floor(targetPx / totalDim);
-        if (scale < 3) scale = 3;
+        var scale = 7; // High-resolution crisp rendering
         var realPx = totalDim * scale;
         canvas.width = realPx;
         canvas.height = realPx;
