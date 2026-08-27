@@ -36,6 +36,7 @@
   var audio = (function () {
     var ctx = null;
     var enabled = store.get("nv-audio") === "on";
+    var profile = store.get("nv-audio-profile") || "minimal"; // default to elegant minimalist
     var toggle = $("#audioToggle");
     var label = $("#audioLabel");
 
@@ -62,53 +63,257 @@
       if (ctx && ctx.state === "suspended") ctx.resume();
     }
 
+    function setProfile(p) {
+      profile = p;
+      store.set("nv-audio-profile", p);
+      if (!enabled) {
+        enabled = true;
+        store.set("nv-audio", "on");
+        updateUI();
+      }
+      play("toggle");
+    }
+
+    function getProfile() {
+      return profile;
+    }
+
     function play(type) {
       if (!enabled) return;
       initCtx();
       if (!ctx) return;
 
-      var osc = ctx.createOscillator();
-      var gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
       var now = ctx.currentTime;
 
-      if (type === "click") {
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(680, now);
-        osc.frequency.exponentialRampToValueAtTime(320, now + 0.04);
-        gain.gain.setValueAtTime(0.04, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
-        osc.start(now);
-        osc.stop(now + 0.04);
-      } else if (type === "scan") {
-        osc.type = "triangle";
-        osc.frequency.setValueAtTime(380, now);
-        osc.frequency.linearRampToValueAtTime(980, now + 0.12);
-        gain.gain.setValueAtTime(0.04, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
-        osc.start(now);
-        osc.stop(now + 0.14);
-      } else if (type === "alert") {
-        osc.type = "sawtooth";
-        osc.frequency.setValueAtTime(260, now);
-        osc.frequency.setValueAtTime(180, now + 0.08);
-        gain.gain.setValueAtTime(0.04, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
-        osc.start(now);
-        osc.stop(now + 0.16);
-      } else if (type === "toggle") {
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(450, now);
-        osc.frequency.exponentialRampToValueAtTime(720, now + 0.08);
-        gain.gain.setValueAtTime(0.05, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-        osc.start(now);
-        osc.stop(now + 0.08);
+      // 1. MINIMALIST TACTILE (Apple / Linear / Figma Haptics)
+      if (profile === "minimal") {
+        if (type === "click") {
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(480, now);
+          osc.frequency.exponentialRampToValueAtTime(140, now + 0.035);
+          gain.gain.setValueAtTime(0.06, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+          osc.start(now);
+          osc.stop(now + 0.035);
+        } else if (type === "scan") {
+          // Double soft chime
+          [520, 780].forEach(function (freq, i) {
+            var o = ctx.createOscillator();
+            var g = ctx.createGain();
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.type = "sine";
+            var t = now + i * 0.06;
+            o.frequency.setValueAtTime(freq, t);
+            g.gain.setValueAtTime(0.04, t);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + 0.1);
+            o.start(t);
+            o.stop(t + 0.1);
+          });
+        } else if (type === "alert") {
+          [320, 240].forEach(function (freq, i) {
+            var o = ctx.createOscillator();
+            var g = ctx.createGain();
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.type = "sine";
+            var t = now + i * 0.08;
+            o.frequency.setValueAtTime(freq, t);
+            g.gain.setValueAtTime(0.05, t);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
+            o.start(t);
+            o.stop(t + 0.12);
+          });
+        } else if (type === "toggle") {
+          [440, 660, 880].forEach(function (freq, i) {
+            var o = ctx.createOscillator();
+            var g = ctx.createGain();
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.type = "sine";
+            var t = now + i * 0.04;
+            o.frequency.setValueAtTime(freq, t);
+            g.gain.setValueAtTime(0.03, t);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + 0.08);
+            o.start(t);
+            o.stop(t + 0.08);
+          });
+        }
+      }
+      // 2. INDUSTRIAL HARDWARE (Micro-relays & Shop Floor Laser)
+      else if (profile === "industrial") {
+        if (type === "click") {
+          var oscI = ctx.createOscillator();
+          var gainI = ctx.createGain();
+          oscI.connect(gainI);
+          gainI.connect(ctx.destination);
+          oscI.type = "sine";
+          oscI.frequency.setValueAtTime(680, now);
+          oscI.frequency.exponentialRampToValueAtTime(320, now + 0.04);
+          gainI.gain.setValueAtTime(0.04, now);
+          gainI.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+          oscI.start(now);
+          oscI.stop(now + 0.04);
+        } else if (type === "scan") {
+          var oscS = ctx.createOscillator();
+          var gainS = ctx.createGain();
+          oscS.connect(gainS);
+          gainS.connect(ctx.destination);
+          oscS.type = "triangle";
+          oscS.frequency.setValueAtTime(380, now);
+          oscS.frequency.linearRampToValueAtTime(980, now + 0.12);
+          gainS.gain.setValueAtTime(0.04, now);
+          gainS.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+          oscS.start(now);
+          oscS.stop(now + 0.14);
+        } else if (type === "alert") {
+          var oscA = ctx.createOscillator();
+          var gainA = ctx.createGain();
+          oscA.connect(gainA);
+          gainA.connect(ctx.destination);
+          oscA.type = "sawtooth";
+          oscA.frequency.setValueAtTime(260, now);
+          oscA.frequency.setValueAtTime(180, now + 0.08);
+          gainA.gain.setValueAtTime(0.04, now);
+          gainA.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+          oscA.start(now);
+          oscA.stop(now + 0.16);
+        } else if (type === "toggle") {
+          var oscT = ctx.createOscillator();
+          var gainT = ctx.createGain();
+          oscT.connect(gainT);
+          gainT.connect(ctx.destination);
+          oscT.type = "sine";
+          oscT.frequency.setValueAtTime(450, now);
+          oscT.frequency.exponentialRampToValueAtTime(720, now + 0.08);
+          gainT.gain.setValueAtTime(0.05, now);
+          gainT.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+          oscT.start(now);
+          oscT.stop(now + 0.08);
+        }
+      }
+      // 3. CYBERPUNK / SCI-FI (FM modulation & synth sweeps)
+      else if (profile === "cyberpunk") {
+        if (type === "click") {
+          var oscC = ctx.createOscillator();
+          var gainC = ctx.createGain();
+          oscC.connect(gainC);
+          gainC.connect(ctx.destination);
+          oscC.type = "triangle";
+          oscC.frequency.setValueAtTime(880, now);
+          oscC.frequency.exponentialRampToValueAtTime(440, now + 0.06);
+          gainC.gain.setValueAtTime(0.05, now);
+          gainC.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+          oscC.start(now);
+          oscC.stop(now + 0.06);
+        } else if (type === "scan") {
+          var oscCS = ctx.createOscillator();
+          var gainCS = ctx.createGain();
+          oscCS.connect(gainCS);
+          gainCS.connect(ctx.destination);
+          oscCS.type = "sawtooth";
+          oscCS.frequency.setValueAtTime(300, now);
+          oscCS.frequency.exponentialRampToValueAtTime(1400, now + 0.15);
+          gainCS.gain.setValueAtTime(0.03, now);
+          gainCS.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
+          oscCS.start(now);
+          oscCS.stop(now + 0.15);
+        } else if (type === "alert") {
+          var oscCA = ctx.createOscillator();
+          var gainCA = ctx.createGain();
+          oscCA.connect(gainCA);
+          gainCA.connect(ctx.destination);
+          oscCA.type = "sawtooth";
+          oscCA.frequency.setValueAtTime(400, now);
+          oscCA.frequency.setValueAtTime(200, now + 0.1);
+          gainCA.gain.setValueAtTime(0.05, now);
+          gainCA.gain.exponentialRampToValueAtTime(0.0001, now + 0.2);
+          oscCA.start(now);
+          oscCA.stop(now + 0.2);
+        } else if (type === "toggle") {
+          [350, 700, 1050].forEach(function (f, idx) {
+            var o = ctx.createOscillator();
+            var g = ctx.createGain();
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.type = "sine";
+            var t = now + idx * 0.04;
+            o.frequency.setValueAtTime(f, t);
+            g.gain.setValueAtTime(0.04, t);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + 0.08);
+            o.start(t);
+            o.stop(t + 0.08);
+          });
+        }
+      }
+      // 4. RETRO 8-BIT ARCADE (Square Wave nostalgic blips)
+      else if (profile === "arcade") {
+        if (type === "click") {
+          var oscR = ctx.createOscillator();
+          var gainR = ctx.createGain();
+          oscR.connect(gainR);
+          gainR.connect(ctx.destination);
+          oscR.type = "square";
+          oscR.frequency.setValueAtTime(320, now);
+          oscR.frequency.setValueAtTime(480, now + 0.02);
+          gainR.gain.setValueAtTime(0.03, now);
+          gainR.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+          oscR.start(now);
+          oscR.stop(now + 0.04);
+        } else if (type === "scan") {
+          // Retro Coin Arpeggio
+          [440, 554, 659, 880].forEach(function (f, idx) {
+            var o = ctx.createOscillator();
+            var g = ctx.createGain();
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.type = "square";
+            var t = now + idx * 0.035;
+            o.frequency.setValueAtTime(f, t);
+            g.gain.setValueAtTime(0.03, t);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
+            o.start(t);
+            o.stop(t + 0.06);
+          });
+        } else if (type === "alert") {
+          var oscRA = ctx.createOscillator();
+          var gainRA = ctx.createGain();
+          oscRA.connect(gainRA);
+          gainRA.connect(ctx.destination);
+          oscRA.type = "square";
+          oscRA.frequency.setValueAtTime(160, now);
+          oscRA.frequency.setValueAtTime(110, now + 0.08);
+          gainRA.gain.setValueAtTime(0.04, now);
+          gainRA.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+          oscRA.start(now);
+          oscRA.stop(now + 0.16);
+        } else if (type === "toggle") {
+          [261, 329, 392, 523].forEach(function (f, idx) {
+            var o = ctx.createOscillator();
+            var g = ctx.createGain();
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.type = "square";
+            var t = now + idx * 0.03;
+            o.frequency.setValueAtTime(f, t);
+            g.gain.setValueAtTime(0.03, t);
+            g.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
+            o.start(t);
+            o.stop(t + 0.06);
+          });
+        }
       }
     }
 
-    return { play: play };
+    return {
+      play: play,
+      setProfile: setProfile,
+      getProfile: getProfile
+    };
   })();
 
   /* ---------- Theme Manager ---------- */
@@ -912,9 +1117,16 @@
       { id: "resume", title: "Inspect Interactive CV Modal", tag: "CAREER", icon: "📄", action: function () { var rm = $("#resumeModal"); if (rm) rm.showModal(); } },
       { id: "pdf", title: "Download Official Resume PDF", tag: "DOWNLOAD", icon: "↓", action: function () { window.open("nikhil_vashisht_resume.pdf", "_blank"); } },
       { id: "email", title: "Copy Direct Email Address", tag: "CONTACT", icon: "📋", action: function () { if (navigator.clipboard) { navigator.clipboard.writeText("nishantvashisht8@gmail.com"); showToast("✓ Email copied to clipboard: nishantvashisht8@gmail.com"); } } },
+      { id: "audio-prof-minimal", title: "Sound Profile: Minimalist Tactile (Apple/Linear Style)", tag: "AUDIO PROFILE", icon: "🍏", action: function () { audio.setProfile("minimal"); showToast("✓ Audio Profile: Minimalist Tactile activated!"); } },
+      { id: "audio-prof-industrial", title: "Sound Profile: Industrial Hardware (Plant Relays & Lasers)", tag: "AUDIO PROFILE", icon: "🏭", action: function () { audio.setProfile("industrial"); showToast("✓ Audio Profile: Industrial Hardware activated!"); } },
+      { id: "audio-prof-cyberpunk", title: "Sound Profile: Cyberpunk Sci-Fi (Synthesizer Chimes)", tag: "AUDIO PROFILE", icon: "🌆", action: function () { audio.setProfile("cyberpunk"); showToast("✓ Audio Profile: Cyberpunk Sci-Fi activated!"); } },
+      { id: "audio-prof-arcade", title: "Sound Profile: 8-Bit Retro Arcade (Square Wave Blips)", tag: "AUDIO PROFILE", icon: "👾", action: function () { audio.setProfile("arcade"); showToast("✓ Audio Profile: 8-Bit Retro Arcade activated!"); } },
+      { id: "sound-test-click", title: "Test Sound: Button Click FX", tag: "SOUND TEST", icon: "🎵", action: function () { audio.play("click"); } },
+      { id: "sound-test-scan", title: "Test Sound: Laser Barcode Scan FX", tag: "SOUND TEST", icon: "⚡", action: function () { audio.play("scan"); } },
+      { id: "sound-test-alert", title: "Test Sound: Warning Defect Alarm FX", tag: "SOUND TEST", icon: "🚨", action: function () { audio.play("alert"); } },
       { id: "spike", title: "Trigger Outlier Spike Test in SPC", tag: "SIMULATION", icon: "⚡", action: function () { if (window.triggerSpcSpike) window.triggerSpcSpike(); showToast("⚡ Injected shop-floor outlier spike into SPC chart!"); } },
       { id: "theme", title: "Toggle Dark / Light Theme", tag: "UI", icon: "🌓", action: function () { var tt = $("#themeToggle"); if (tt) tt.click(); } },
-      { id: "audio", title: "Toggle Tactile Audio Sound FX", tag: "AUDIO", icon: "🔊", action: function () { var at = $("#audioToggle"); if (at) at.click(); } },
+      { id: "audio", title: "Toggle Tactile Audio Sound FX (ON / OFF)", tag: "AUDIO", icon: "🔊", action: function () { var at = $("#audioToggle"); if (at) at.click(); } },
       { id: "github", title: "Visit GitHub Profile (@Nikkured)", tag: "EXTERNAL", icon: "🐙", action: function () { window.open("https://github.com/Nikkured", "_blank"); } }
     ];
 
