@@ -162,19 +162,19 @@
 
         <!-- Live Telemetry Ticker Strip -->
         <div class="telemetry-strip reveal">
-          <div class="telemetry-item">
+          <div class="telemetry-item" data-scramble-item>
             <div class="telemetry-num"><span class="counter" data-target="100">0</span><span class="symbol">%</span></div>
             <div class="telemetry-label">Audit Traceability</div>
           </div>
-          <div class="telemetry-item">
+          <div class="telemetry-item" data-scramble-item>
             <div class="telemetry-num"><span class="counter" data-target="0">0</span><span class="symbol">PPM</span></div>
             <div class="telemetry-label">Label &amp; ASN Escapes</div>
           </div>
-          <div class="telemetry-item">
+          <div class="telemetry-item" data-scramble-item>
             <div class="telemetry-num"><span class="counter" data-target="10000" data-format="k">0</span><span class="symbol">+</span></div>
             <div class="telemetry-label">Scans &amp; Cycles Validated</div>
           </div>
-          <div class="telemetry-item">
+          <div class="telemetry-item" data-scramble-item>
             <div class="telemetry-num"><span>Cpk &gt; </span><span class="counter" data-target="1.67" data-decimals="2">0</span></div>
             <div class="telemetry-label">Process Capability Stability</div>
           </div>
@@ -372,20 +372,52 @@
               </div>
             </div>
 
-            <!-- INTERACTIVE RIMS PROCESS ATLAS -->
+            <!-- INTERACTIVE RIMS PROCESS ATLAS (LIVING FACTORY PIPELINE) -->
             <div class="project-interactive">
               <div class="interactive-panel" id="rimsAtlas">
                 <div class="panel-header">
-                  <span>RIMS / TRACEABILITY PIPELINE</span>
-                  <span class="status-badge-mini">LIVE SIMULATION</span>
+                  <div class="panel-title-group">
+                    <span class="panel-title">NHK_RIMS / FACTORY PIPELINE</span>
+                    <span class="status-badge-mini pulse-badge" id="rimsLiveStatusBadge">🟢 STABLE RUNNING</span>
+                  </div>
+                  <div class="pipeline-live-controls">
+                    <button type="button" class="btn-pipeline-action" id="rimsAutoRunBtn" aria-label="Toggle Auto-Cycle">
+                      <span class="ctrl-icon" id="rimsPlayIcon">▶</span> <span id="rimsAutoText">Auto-Cycle</span>
+                    </button>
+                    <button type="button" class="btn-pipeline-action btn-defect-trigger" id="rimsDefectBtn" title="Inject out-of-spec shop-floor defect">
+                      <span class="ctrl-icon">⚠️</span> Defect Spike
+                    </button>
+                  </div>
+                </div>
+
+                <!-- LIVING FACTORY LASER PIPELINE TRACK -->
+                <div class="rims-laser-pipeline-track" aria-hidden="true">
+                  <svg viewBox="0 0 500 28" class="pipeline-svg" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="laserBeam" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+                        <stop offset="35%" stop-color="#38bdf8" stop-opacity="0.9"/>
+                        <stop offset="70%" stop-color="#818cf8" stop-opacity="1"/>
+                        <stop offset="100%" stop-color="#10b981" stop-opacity="0.3"/>
+                      </linearGradient>
+                    </defs>
+                    <line x1="10" y1="14" x2="490" y2="14" stroke="rgba(148, 163, 184, 0.18)" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="10" y1="14" x2="490" y2="14" stroke="url(#laserBeam)" stroke-width="2.5" stroke-dasharray="16 42" class="laser-dash-anim" />
+                  </svg>
+                  
+                  <!-- DYNAMIC STEEL COIL PACKET -->
+                  <div class="rims-traveling-coil" id="rimsCoilPkt" style="left: 10%;">
+                    <div class="coil-avatar">⚙️</div>
+                    <div class="coil-spec-badge" id="rimsCoilTag" data-scramble>COIL-304 · 10.60mm</div>
+                  </div>
                 </div>
                 
                 <div class="rims-stepper" role="tablist" aria-label="RIMS Stages">
-                  <button type="button" class="stepper-tab is-active" data-stage="0" role="tab" aria-selected="true">01 Receive</button>
-                  <button type="button" class="stepper-tab" data-stage="1" role="tab" aria-selected="false">02 Bundle</button>
-                  <button type="button" class="stepper-tab" data-stage="2" role="tab" aria-selected="false">03 FIFO</button>
-                  <button type="button" class="stepper-tab" data-stage="3" role="tab" aria-selected="false">04 Consume</button>
-                  <button type="button" class="stepper-tab" data-stage="4" role="tab" aria-selected="false">05 Audit</button>
+                  <button type="button" class="stepper-tab is-active" data-stage="0" role="tab" aria-selected="true"><span class="step-num">01</span> Ingest</button>
+                  <button type="button" class="stepper-tab" data-stage="1" role="tab" aria-selected="false"><span class="step-num">02</span> Bundle</button>
+                  <button type="button" class="stepper-tab" data-stage="2" role="tab" aria-selected="false"><span class="step-num">03</span> FIFO</button>
+                  <button type="button" class="stepper-tab" data-stage="3" role="tab" aria-selected="false"><span class="step-num">04</span> Consume</button>
+                  <button type="button" class="stepper-tab" data-stage="4" role="tab" aria-selected="false"><span class="step-num">05</span> Audit</button>
                 </div>
 
                 <div class="rims-display">
@@ -395,8 +427,8 @@
                   </div>
 
                   <div class="rims-metrics-box">
-                    <div class="metric-row"><span>Ref Code:</span><strong id="rimsRef">RCV-260805-014</strong></div>
-                    <div class="metric-row"><span>Material:</span><strong id="rimsMaterial">10.60 × 1600 · Grade A</strong></div>
+                    <div class="metric-row"><span>Ref Code:</span><strong id="rimsRef" class="font-mono" data-scramble>RCV-260805-014</strong></div>
+                    <div class="metric-row"><span>Material:</span><strong id="rimsMaterial" data-scramble>10.60 × 1600 · Grade A</strong></div>
                     <div class="metric-row"><span>State:</span><span class="state-pill ok" id="rimsState">SOURCE LINKED</span></div>
                   </div>
 
@@ -1097,6 +1129,6 @@
   <div id="toastNotification" class="toast-notification" aria-live="polite" hidden></div>
 
   <!-- Vanilla / Zero-Dependency Modern Script -->
-  <script src="script.js?v=20260827_3"></script>
+  <script src="script.js?v=20260829_1"></script>
 </body>
 </html>

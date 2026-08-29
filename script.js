@@ -340,6 +340,68 @@
     });
   })();
 
+  /* ---------- Kinetic Telemetry Cipher Scrambler Engine ---------- */
+  var scrambler = (function () {
+    var glyphs = "0123456789§ΔμσλABCDEFXYZ%#@&*+-/=";
+
+    function scramble(el, customText, duration) {
+      if (!el || prefersReduced.matches) return;
+      var target = customText !== undefined ? customText : (el.getAttribute("data-original") || el.textContent.trim());
+      if (!el.getAttribute("data-original")) el.setAttribute("data-original", target);
+
+      var dur = duration || 440;
+      var startTime = performance.now();
+      el.classList.add("scramble-active");
+
+      function step(now) {
+        var elapsed = now - startTime;
+        var progress = Math.min(1, elapsed / dur);
+        var revealIndex = Math.floor(progress * target.length);
+
+        var result = "";
+        for (var i = 0; i < target.length; i++) {
+          if (i < revealIndex || target[i] === " " || target[i] === "\n") {
+            result += target[i];
+          } else {
+            result += glyphs[Math.floor(Math.random() * glyphs.length)];
+          }
+        }
+        el.textContent = result;
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = target;
+          el.classList.remove("scramble-active");
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function init() {
+      var elements = $$("[data-scramble]");
+      elements.forEach(function (el) {
+        if (!el.getAttribute("data-original")) el.setAttribute("data-original", el.textContent.trim());
+        on(el, "mouseenter", function () {
+          audio.play("hover");
+          scramble(el);
+        });
+      });
+
+      var items = $$("[data-scramble-item]");
+      items.forEach(function (it) {
+        on(it, "mouseenter", function () {
+          audio.play("hover");
+          var num = it.querySelector(".counter, strong, b, span");
+          if (num) scramble(num);
+        });
+      });
+    }
+
+    setTimeout(init, 400);
+    return { scramble: scramble, init: init };
+  })();
+
   /* ---------- Mobile Navigation & Scrim ---------- */
   (function nav() {
     var toggle = $("#navToggle");
@@ -592,74 +654,192 @@
     render();
   })();
 
-  /* ---------- NHK_RIMS Interactive Pipeline Stepper ---------- */
+  /* ---------- NHK_RIMS Living Assembly Line & Pipeline Stepper ---------- */
   (function rimsStepper() {
     var tabs = $$(".stepper-tab");
+    var coilPkt = $("#rimsCoilPkt");
+    var coilTag = $("#rimsCoilTag");
+    var autoBtn = $("#rimsAutoRunBtn");
+    var playIcon = $("#rimsPlayIcon");
+    var autoText = $("#rimsAutoText");
+    var defectBtn = $("#rimsDefectBtn");
+    var liveBadge = $("#rimsLiveStatusBadge");
+
+    var currentIdx = 0;
+    var isAutoRunning = false;
+    var autoInterval = null;
+    var isDefectActive = false;
+
+    var positions = ["10%", "30%", "50%", "70%", "90%"];
+
     var stages = [
       {
-        eyebrow: "01 // RECEIPT CONTROL",
+        eyebrow: "01 // RECEIPT CONTROL & COIL INGEST",
         headline: "Source captured before inventory is created",
         ref: "RCV-260805-014",
         material: "10.60 × 1600 · Grade A",
         state: "SOURCE LINKED",
+        tag: "INGEST · 10.60mm",
         control: "A material balance cannot exist without an authentic supplier heat number and recorded weight."
       },
       {
-        eyebrow: "02 // BUNDLE IDENTITY",
-        headline: "Physical bundle bound to traceable serial",
+        eyebrow: "02 // LASER MICROMETER & BUNDLE",
+        headline: "Laser gauge inspection & serial barcode binding",
         ref: "BND-260805-031",
         material: "Weight 214.6 kg (verified)",
         state: "TAG GENERATED",
-        control: "Every bundle receives a unique barcode identity tied directly to its parent receipt ledger."
+        tag: "GAUGE OK · 10.602mm",
+        control: "Dual-axis laser micrometer checks wire diameter against ±0.03mm tolerance before lot ID assignment."
       },
       {
-        eyebrow: "03 // FIFO RECOMMENDATION",
+        eyebrow: "03 // FIFO & SQLITE EDGE LEDGER",
         headline: "Oldest eligible material is surfaced first",
         ref: "FIFO-Q-118",
         material: "3 eligible lots · match OK",
         state: "FIFO PRIORITY",
+        tag: "SQLITE · COMMITTED",
         control: "Algorithmic allocation prevents material aging and enforces strict FIFO compliance across shifts."
       },
       {
-        eyebrow: "04 // PRODUCTION CONSUMPTION",
+        eyebrow: "04 // PRODUCTION SPC VERIFICATION",
         headline: "Stock deducted strictly upon production record",
         ref: "CON-260806-007",
         material: "820 pcs · theo. wt applied",
         state: "BALANCE DEDUCTED",
+        tag: "Cpk: 1.68 · PASS",
         control: "Inventory decrements only through authorized shop-floor transactions with full backward traceability."
       },
       {
-        eyebrow: "05 // AUDIT & REVERSALS",
+        eyebrow: "05 // AUDIT & ZEBRA THERMAL DISPATCH",
         headline: "Corrections recorded as immutable ledger adjustments",
         ref: "ADJ-260806-002",
         material: "Reversal +4.2 kg (weighing adj)",
         state: "AUDIT LOGGED",
+        tag: "ZPL PRINTED · OK",
         control: "Silent balance overrides are prohibited; all adjustments log user, reason, and previous state."
       }
     ];
 
+    function setStage(idx) {
+      currentIdx = idx;
+      tabs.forEach(function (t, i) {
+        if (i === idx) {
+          t.classList.add("is-active");
+          t.setAttribute("aria-selected", "true");
+        } else {
+          t.classList.remove("is-active");
+          t.setAttribute("aria-selected", "false");
+        }
+      });
+
+      if (coilPkt) {
+        coilPkt.style.left = positions[idx] || "10%";
+      }
+
+      var data = stages[idx];
+      if (!data) return;
+
+      var eb = $("#rimsEyebrow"); if (eb) eb.textContent = data.eyebrow;
+      var hl = $("#rimsHeadline"); if (hl) hl.textContent = data.headline;
+      var rf = $("#rimsRef");
+      var mt = $("#rimsMaterial");
+      var st = $("#rimsState");
+      var ct = $("#rimsControlText");
+
+      if (rf) {
+        rf.textContent = data.ref;
+        scrambler.scramble(rf, data.ref, 320);
+      }
+      if (mt) {
+        mt.textContent = data.material;
+      }
+      if (st) {
+        st.textContent = data.state;
+      }
+      if (ct) {
+        ct.textContent = data.control;
+      }
+
+      if (coilTag && !isDefectActive) {
+        coilTag.textContent = data.tag;
+      }
+    }
+
     tabs.forEach(function (tab) {
       on(tab, "click", function () {
         audio.play("click");
+        if (isAutoRunning) stopAuto();
         var idx = parseInt(tab.getAttribute("data-stage"), 10) || 0;
-        tabs.forEach(function (t) {
-          t.classList.remove("is-active");
-          t.setAttribute("aria-selected", "false");
-        });
-        tab.classList.add("is-active");
-        tab.setAttribute("aria-selected", "true");
-
-        var data = stages[idx];
-        if (!data) return;
-
-        var eb = $("#rimsEyebrow"); if (eb) eb.textContent = data.eyebrow;
-        var hl = $("#rimsHeadline"); if (hl) hl.textContent = data.headline;
-        var rf = $("#rimsRef"); if (rf) rf.textContent = data.ref;
-        var mt = $("#rimsMaterial"); if (mt) mt.textContent = data.material;
-        var st = $("#rimsState"); if (st) st.textContent = data.state;
-        var ct = $("#rimsControlText"); if (ct) ct.textContent = data.control;
+        setStage(idx);
       });
     });
+
+    function nextStage() {
+      var next = (currentIdx + 1) % stages.length;
+      audio.play("hover");
+      setStage(next);
+    }
+
+    function startAuto() {
+      isAutoRunning = true;
+      if (playIcon) playIcon.textContent = "⏸";
+      if (autoText) autoText.textContent = "Pause";
+      if (autoBtn) autoBtn.classList.add("is-running");
+      audio.play("toggle");
+      autoInterval = setInterval(nextStage, 2200);
+    }
+
+    function stopAuto() {
+      isAutoRunning = false;
+      if (playIcon) playIcon.textContent = "▶";
+      if (autoText) autoText.textContent = "Auto-Cycle";
+      if (autoBtn) autoBtn.classList.remove("is-running");
+      if (autoInterval) clearInterval(autoInterval);
+    }
+
+    on(autoBtn, "click", function () {
+      if (isAutoRunning) stopAuto();
+      else startAuto();
+    });
+
+    on(defectBtn, "click", function () {
+      isDefectActive = true;
+      audio.play("alert");
+      if (coilPkt) coilPkt.classList.add("defect-state");
+      if (coilTag) coilTag.textContent = "⚠️ NG: 10.82mm (OUT-OF-SPEC)";
+      if (liveBadge) {
+        liveBadge.textContent = "🔴 DEFECT QUARANTINED";
+        liveBadge.style.color = "#f87171";
+      }
+
+      var st = $("#rimsState");
+      if (st) {
+        st.className = "state-pill";
+        st.style.background = "rgba(239, 68, 68, 0.2)";
+        st.style.color = "#f87171";
+        st.textContent = "QUARANTINED (HOLD)";
+      }
+
+      showToast("⚠️ Laser Micrometer Detected Defect: Diameter 10.82mm exceeds USL (+0.03mm). Material Quarantined!");
+
+      setTimeout(function () {
+        isDefectActive = false;
+        if (coilPkt) coilPkt.classList.remove("defect-state");
+        if (coilTag) coilTag.textContent = stages[currentIdx].tag;
+        if (liveBadge) {
+          liveBadge.textContent = "🟢 STABLE RUNNING";
+          liveBadge.style.color = "";
+        }
+        if (st) {
+          st.className = "state-pill ok";
+          st.style.background = "";
+          st.style.color = "";
+          st.textContent = stages[currentIdx].state;
+        }
+      }, 4200);
+    });
+
+    setStage(0);
   })();
 
   /* ---------- Real-Time SPC Waveform Streamer ---------- */
