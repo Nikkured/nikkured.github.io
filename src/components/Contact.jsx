@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Download, ExternalLink, Send } from 'lucide-react';
+import { RazorpayCheckout } from './RazorpayCheckout';
 
 export const Contact = () => {
   return (
     <section className="py-24 relative z-10" id="contact">
       <div className="max-w-7xl mx-auto px-6">
         <div className="glass-card rounded-3xl p-8 sm:p-14 border-indigo-500/30 bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-indigo-950/30">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column */}
             <div className="lg:col-span-7">
               <div className="font-mono text-xs font-semibold tracking-widest text-indigo-400 uppercase mb-3">
@@ -40,42 +41,46 @@ export const Contact = () => {
               </div>
             </div>
 
-            {/* Right Column: Quick Access Hub */}
-            <div className="lg:col-span-5 bg-slate-900/80 border border-white/10 rounded-2xl p-6 sm:p-8">
-              <h3 className="text-lg font-bold text-white mb-5">Quick Access Hub</h3>
-              <div className="space-y-3">
-                <motion.a
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  href="mailto:nishantvashisht8@gmail.com"
-                  className="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/25"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>Send Email Message</span>
-                </motion.a>
+            {/* Right Column: Checkout & Quick Access Hub */}
+            <div className="lg:col-span-5 space-y-6">
+              <RazorpayCheckout />
 
-                <motion.a
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  href="nikhil_vashisht_resume.pdf"
-                  download="Nikhil_Vashisht_Resume.pdf"
-                  className="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-slate-800/80 border border-white/10 hover:border-indigo-400 text-slate-200 font-semibold transition-all"
-                >
-                  <Download className="w-4 h-4 text-indigo-400" />
-                  <span>Download Official CV (PDF)</span>
-                </motion.a>
+              <div className="bg-slate-900/80 border border-white/10 rounded-2xl p-6 sm:p-8">
+                <h3 className="text-lg font-bold text-white mb-5">Quick Access Hub</h3>
+                <div className="space-y-3">
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="mailto:nishantvashisht8@gmail.com"
+                    className="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/25"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>Send Email Message</span>
+                  </motion.a>
 
-                <motion.a
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  href="https://linktr.ee/nikku_red"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-slate-800/40 border border-white/5 hover:border-white/20 text-slate-400 hover:text-white font-semibold transition-all"
-                >
-                  <span>Linktree Profile (@nikku_red)</span>
-                  <ExternalLink className="w-4 h-4" />
-                </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="nikhil_vashisht_resume.pdf"
+                    download="Nikhil_Vashisht_Resume.pdf"
+                    className="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-slate-800/80 border border-white/10 hover:border-indigo-400 text-slate-200 font-semibold transition-all"
+                  >
+                    <Download className="w-4 h-4 text-indigo-400" />
+                    <span>Download Official CV (PDF)</span>
+                  </motion.a>
+
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="https://linktr.ee/nikku_red"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-slate-800/40 border border-white/5 hover:border-white/20 text-slate-400 hover:text-white font-semibold transition-all"
+                  >
+                    <span>Linktree Profile (@nikku_red)</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </motion.a>
+                </div>
               </div>
             </div>
           </div>

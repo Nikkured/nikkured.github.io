@@ -2253,6 +2253,147 @@
     });
   })();
 
+  /* ---------- Razorpay Standard Web Checkout ---------- */
+  (function razorpayCheckout() {
+    var payBtn = $("#payRazorpayBtn");
+    var customAmountInput = $("#rzpCustomAmount");
+    var presetBtns = $$(".rzp-preset-btn");
+    var statusEl = $("#rzpStatusMessage");
+
+    if (!payBtn) return;
+
+    presetBtns.forEach(function (btn) {
+      on(btn, "click", function () {
+        audio.play("click");
+        presetBtns.forEach(function (b) {
+          b.classList.remove("is-active");
+          b.style.background = "rgba(255,255,255,0.06)";
+          b.style.color = "var(--text-primary)";
+        });
+        btn.classList.add("is-active");
+        btn.style.background = "var(--accent)";
+        btn.style.color = "#fff";
+
+        var amt = btn.getAttribute("data-amount");
+        if (customAmountInput) customAmountInput.value = amt;
+      });
+    });
+
+    function showStatus(msg, isSuccess) {
+      if (!statusEl) return;
+      statusEl.style.display = "block";
+      statusEl.style.color = isSuccess ? "#34d399" : "#f87171";
+      statusEl.style.padding = "8px 10px";
+      statusEl.style.borderRadius = "6px";
+      statusEl.style.background = isSuccess ? "rgba(52, 211, 153, 0.12)" : "rgba(248, 113, 113, 0.12)";
+      statusEl.style.border = "1px solid " + (isSuccess ? "rgba(52, 211, 153, 0.3)" : "rgba(248, 113, 113, 0.3)");
+      statusEl.innerHTML = msg;
+    }
+
+    on(payBtn, "click", async function () {
+      audio.play("click");
+      if (statusEl) statusEl.style.display = "none";
+
+      var inrAmount = customAmountInput ? parseFloat(customAmountInput.value) : 500;
+      var paiseAmount = Math.round(inrAmount * 100);
+
+      if (isNaN(paiseAmount) || paiseAmount < 100) {
+        showStatus("⚠️ Minimum payment amount is ₹1 (100 paise)", false);
+        return;
+      }
+
+      payBtn.disabled = true;
+      payBtn.innerHTML = "<span>Processing Order...</span>";
+
+      try {
+        // STEP 1: BACKEND - Create Order
+        var orderRes = await fetch("/api/create-order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: paiseAmount,
+            currency: "INR",
+            receipt: "rcpt_" + Date.now()
+          })
+        });
+
+        var orderData = await orderRes.json();
+
+        if (!orderRes.ok) {
+          throw new Error(orderData.error || orderData.message || "Failed to create order");
+        }
+
+        var keyId = "rzp_test_TVtsyencqj0YUu";
+
+        // STEP 2: FRONTEND - Open Razorpay Modal
+        var options = {
+          key: keyId,
+          amount: orderData.amount,
+          currency: orderData.currency || "INR",
+          name: "Nikhil Vashisht Portfolio",
+          description: "Payment / Service Retainer",
+          order_id: orderData.order_id,
+          handler: async function (response) {
+            // STEP 3: BACKEND - Verify Payment Signature
+            try {
+              var verifyRes = await fetch("/api/verify-payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_signature: response.razorpay_signature
+                })
+              });
+
+              var verifyData = await verifyRes.json();
+
+              if (verifyRes.ok && verifyData.success) {
+                audio.play("scan");
+                showStatus("✅ Payment Verified & Completed!<br><small>Payment ID: " + response.razorpay_payment_id + "</small>", true);
+              } else {
+                audio.play("alert");
+                showStatus("❌ Signature Verification Failed: " + (verifyData.message || "Invalid signature"), false);
+              }
+            } catch (vErr) {
+              audio.play("alert");
+              showStatus("❌ Verification endpoint error", false);
+            } finally {
+              payBtn.disabled = false;
+              payBtn.innerHTML = "<span>Pay with Razorpay</span> <i aria-hidden='true'>🛡️</i>";
+            }
+          },
+          modal: {
+            ondismiss: function () {
+              payBtn.disabled = false;
+              payBtn.innerHTML = "<span>Pay with Razorpay</span> <i aria-hidden='true'>🛡️</i>";
+              showStatus("ℹ️ Payment cancelled by user.", false);
+            }
+          },
+          theme: { color: "#6366f1" }
+        };
+
+        if (window.Razorpay) {
+          var rzp = new window.Razorpay(options);
+          rzp.on("payment.failed", function (resp) {
+            audio.play("alert");
+            showStatus("❌ Payment Failed: " + (resp.error.description || "Transaction failed"), false);
+            payBtn.disabled = false;
+            payBtn.innerHTML = "<span>Pay with Razorpay</span> <i aria-hidden='true'>🛡️</i>";
+          });
+          rzp.open();
+        } else {
+          throw new Error("Razorpay SDK script not loaded.");
+        }
+      } catch (err) {
+        audio.play("alert");
+        showStatus("❌ " + (err.message || "Checkout error"), false);
+        payBtn.disabled = false;
+        payBtn.innerHTML = "<span>Pay with Razorpay</span> <i aria-hidden='true'>🛡️</i>";
+      }
+    });
+  })();
+
   /* ---------- Footer Year ---------- */
   (function footerYear() {
     var el = $("#footerYear");
