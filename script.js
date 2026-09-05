@@ -2307,7 +2307,7 @@
       payBtn.innerHTML = "<span>Processing Order...</span>";
 
       try {
-        var keyId = "rzp_test_TVtsyencqj0YUu";
+        var keyId = "rzp_test_TYI8jzkJ6q2VTi";
         var orderData = null;
 
         // Try backend order creation if API server is available
