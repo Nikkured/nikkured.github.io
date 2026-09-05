@@ -1891,6 +1891,7 @@
       { id: "cpk", title: "Interactive Six-Sigma Cpk Lab", tag: "LAB", icon: "📊", action: function () { window.location.hash = "cpk-lab"; } },
       { id: "zpl", title: "Zebra ZPL Label Studio", tag: "HARDWARE", icon: "🏷️", action: function () { window.location.hash = "zpl-designer"; } },
       { id: "spc", title: "Live SPC Telemetry Streamer", tag: "TELEMETRY", icon: "📈", action: function () { window.location.hash = "spc-streamer"; } },
+      { id: "replymate", title: "ReplyMate AI Telegram Bot (@ReplyMateAIProBot)", tag: "AI BOT", icon: "🤖", action: function () { window.location.hash = "replymate"; } },
       { id: "yt", title: "NV AI Studio (@nvaistudio)", tag: "YOUTUBE", icon: "🎬", action: function () { window.location.hash = "media"; } },
       { id: "resume", title: "Inspect Interactive CV Modal", tag: "CAREER", icon: "📄", action: function () { var rm = $("#resumeModal"); if (rm) rm.showModal(); } },
       { id: "pdf", title: "Download Official Resume PDF", tag: "DOWNLOAD", icon: "↓", action: function () { window.open("nikhil_vashisht_resume.pdf", "_blank"); } },
@@ -2394,6 +2395,207 @@
     });
   })();
 
+  /* ---------- FEATURE 7: REPLYMATE AI TELEGRAM CONVERSATION COACH (@ReplyMateAIProBot) ---------- */
+  (function replyMateDemo() {
+    var userMsgEl = $("#tgUserMsgText");
+    var confidenceBadge = $("#tgConfidenceBadge");
+    var detectedToneEl = $("#tgDetectedTone");
+    var toneFillEl = $("#tgToneFill");
+    var typingRow = $("#tgTypingRow");
+    var optionsRow = $("#tgOptionsRow");
+    var optionCardsEl = $("#tgOptionCards");
+    var customInput = $("#tgCustomInput");
+    var sendBtn = $("#tgSendBtn");
+
+    var baBeforeQuote = $("#baBeforeQuote");
+    var baBeforeFlaws = $("#baBeforeFlaws");
+    var baAfterQuote = $("#baAfterQuote");
+    var baAfterPerks = $("#baAfterPerks");
+    var tryAnotherBtn = $("#tgTryAnotherBtn");
+    var copyBestBtn = $("#tgCopyBestBtn");
+    var scenarioBtns = $$(".tg-scenario-btn");
+
+    if (!userMsgEl || !optionCardsEl) return;
+
+    var scenarios = {
+      salary: {
+        userText: "i guess i can maybe work late tonight if u really need me to...",
+        confidence: "68% Hesitant",
+        detectedTone: "Passively Hesitant & Undervalued",
+        tonePercent: 78,
+        toneColor: "linear-gradient(90deg, #f59e0b, #ef4444)",
+        options: [
+          { tag: "Executive", tagClass: "tag-executive", text: "I am available to cover the priority deliverable this evening. Let's confirm the key priorities so we align objectives efficiently." },
+          { tag: "Assertive", tagClass: "tag-assertive", text: "I can assist tonight for critical tasks. Please send over the exact items needed so I can plan my timeline." },
+          { tag: "Friendly", tagClass: "tag-friendly", text: "Happy to jump in and help out tonight! Send over the list whenever you're ready." }
+        ],
+        flaws: ["Weak framing", "Undermines confidence", "Unclear boundaries"],
+        perks: ["Proactive tone", "Clear ownership", "Assertive posture"]
+      },
+      awkward: {
+        userText: "sorry for annoying u but did u get a chance to check my email yet?",
+        confidence: "82% Submissive",
+        detectedTone: "Overly Apologetic & Hesitant",
+        tonePercent: 85,
+        toneColor: "linear-gradient(90deg, #ef4444, #f59e0b)",
+        options: [
+          { tag: "Executive", tagClass: "tag-executive", text: "Following up on my previous note regarding the project update. Let me know if you need any additional context to review." },
+          { tag: "Assertive", tagClass: "tag-assertive", text: "Bumping this thread to ensure it's on your radar for today's review session." },
+          { tag: "Witty", tagClass: "tag-witty", text: "Just giving your inbox a gentle nudge! Whenever you have 2 minutes, let me know your thoughts." }
+        ],
+        flaws: ["Unnecessary apology", "Weak status posture", "Invites delay"],
+        perks: ["Polite follow-up", "Establishes priority", "Zero apology overhead"]
+      },
+      negotiation: {
+        userText: "that price is a bit high for our budget, can u do it for lower?",
+        confidence: "74% Direct",
+        detectedTone: "Unanchored Negotiation & Reactive",
+        tonePercent: 65,
+        toneColor: "linear-gradient(90deg, #38bdf8, #8b5cf6)",
+        options: [
+          { tag: "Executive", tagClass: "tag-executive", text: "We value the scope of this proposal. If we align on a target budget of $4,500, we can finalize the contract today. Can we adjust line item B?" },
+          { tag: "Assertive", tagClass: "tag-assertive", text: "Our project cap is firm at $4,500. Let's optimize the milestone deliverables so we can move forward immediately." },
+          { tag: "Witty", tagClass: "tag-witty", text: "Love the vision! Let me check if we can tweak the scope slightly so my finance team stays happy." }
+        ],
+        flaws: ["Lacks target anchor", "Vague request", "Loses leverage"],
+        perks: ["Anchored figure", "Specific counter-offer", "Accelerates close"]
+      },
+      witty: {
+        userText: "lol sorry i forgot to reply to your message yesterday haha",
+        confidence: "60% Casual",
+        detectedTone: "Casual & Low Formality",
+        tonePercent: 45,
+        toneColor: "linear-gradient(90deg, #a855f7, #38bdf8)",
+        options: [
+          { tag: "Witty", tagClass: "tag-witty", text: "Time flew by yesterday! Catching up now — what's the latest update?" },
+          { tag: "Friendly", tagClass: "tag-friendly", text: "Hey! Apologies for the delayed reply — caught up in calls yesterday. How are things going?" },
+          { tag: "Executive", tagClass: "tag-executive", text: "Pardon the delayed response. Reviewing your message now and following up shortly." }
+        ],
+        flaws: ["Unnecessary 'lol/haha'", "Disregards urgency", "Informal friction"],
+        perks: ["Charming recovery", "Engaging energy", "Keeps rapport strong"]
+      }
+    };
+
+    var currentScenario = "salary";
+
+    function renderScenario(key, customText) {
+      var data = scenarios[key] || scenarios.salary;
+      var textToAnalyze = customText || data.userText;
+
+      audio.play("click");
+
+      // Update Active Button State
+      scenarioBtns.forEach(function (btn) {
+        if (btn.getAttribute("data-scenario") === key) {
+          btn.classList.add("is-active");
+        } else {
+          btn.classList.remove("is-active");
+        }
+      });
+
+      // Show User Message
+      userMsgEl.textContent = textToAnalyze;
+
+      // Trigger Typing Simulation
+      if (typingRow) typingRow.style.display = "flex";
+      if (optionsRow) optionsRow.style.display = "none";
+
+      setTimeout(function () {
+        if (typingRow) typingRow.style.display = "none";
+        if (optionsRow) optionsRow.style.display = "flex";
+
+        audio.play("success");
+
+        // Update Tone Readout
+        if (confidenceBadge) confidenceBadge.textContent = data.confidence;
+        if (detectedToneEl) detectedToneEl.textContent = data.detectedTone;
+        if (toneFillEl) {
+          toneFillEl.style.width = data.tonePercent + "%";
+          toneFillEl.style.background = data.toneColor;
+        }
+
+        // Render Options Cards
+        optionCardsEl.innerHTML = "";
+        data.options.forEach(function (opt) {
+          var card = document.createElement("div");
+          card.className = "opt-card";
+          card.innerHTML = '<span class="opt-tag ' + opt.tagClass + '">' + opt.tag + '</span><p class="opt-text">' + opt.text + '</p>';
+          on(card, "click", function () {
+            audio.play("click");
+            if (baAfterQuote) baAfterQuote.textContent = '"' + opt.text + '"';
+          });
+          optionCardsEl.appendChild(card);
+        });
+
+        // Update Before -> After Box
+        if (baBeforeQuote) baBeforeQuote.textContent = '"' + textToAnalyze + '"';
+        if (baAfterQuote) baAfterQuote.textContent = '"' + data.options[0].text + '"';
+
+        if (baBeforeFlaws) {
+          baBeforeFlaws.innerHTML = data.flaws.map(function(f) { return '<span>' + f + '</span>'; }).join('');
+        }
+        if (baAfterPerks) {
+          baAfterPerks.innerHTML = data.perks.map(function(p) { return '<span>' + p + '</span>'; }).join('');
+        }
+
+      }, 550);
+    }
+
+    // Scenario Button Click Handlers
+    scenarioBtns.forEach(function (btn) {
+      on(btn, "click", function () {
+        var scenarioKey = btn.getAttribute("data-scenario");
+        currentScenario = scenarioKey;
+        if (customInput) customInput.value = "";
+        renderScenario(scenarioKey);
+      });
+    });
+
+    // Custom Input Send Handler
+    function handleCustomSend() {
+      var val = customInput ? customInput.value.trim() : "";
+      if (!val) return;
+      renderScenario("salary", val);
+    }
+
+    if (sendBtn) on(sendBtn, "click", handleCustomSend);
+    if (customInput) {
+      on(customInput, "keydown", function (e) {
+        if (e.key === "Enter") handleCustomSend();
+      });
+    }
+
+    // Try Another Button Handler
+    if (tryAnotherBtn) {
+      var scenarioKeys = ["salary", "awkward", "negotiation", "witty"];
+      on(tryAnotherBtn, "click", function () {
+        var currentIndex = scenarioKeys.indexOf(currentScenario);
+        var nextIndex = (currentIndex + 1) % scenarioKeys.length;
+        currentScenario = scenarioKeys[nextIndex];
+        if (customInput) customInput.value = "";
+        renderScenario(currentScenario);
+      });
+    }
+
+    // Copy Best Reply Button
+    if (copyBestBtn) {
+      on(copyBestBtn, "click", function () {
+        var textToCopy = baAfterQuote ? baAfterQuote.textContent.replace(/^"|"$/g, '') : "";
+        if (navigator.clipboard && textToCopy) {
+          navigator.clipboard.writeText(textToCopy).then(function () {
+            audio.play("scan");
+            var originalText = copyBestBtn.textContent;
+            copyBestBtn.textContent = "✅ Copied to Clipboard!";
+            setTimeout(function () { copyBestBtn.textContent = originalText; }, 2000);
+          });
+        }
+      });
+    }
+
+    // Initial render
+    renderScenario("salary");
+  })();
+
   /* ---------- Footer Year ---------- */
   (function footerYear() {
     var el = $("#footerYear");
@@ -2401,3 +2603,4 @@
   })();
 
 })();
+

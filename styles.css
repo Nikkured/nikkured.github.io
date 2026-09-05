@@ -3223,3 +3223,797 @@ html, body {
     align-items: stretch;
   }
 }
+
+/* ==========================================================================
+   REPLYMATE AI TELEGRAM CONVERSATION COACH (@ReplyMateAIProBot)
+   ========================================================================== */
+.replymate-section {
+  position: relative;
+  background: radial-gradient(circle at 50% 0%, rgba(0, 136, 204, 0.07), transparent 60%);
+}
+
+.bot-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 136, 204, 0.12);
+  border: 1px solid rgba(0, 136, 204, 0.3);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: #229ed9;
+  margin-bottom: 12px;
+}
+
+.bot-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulse 2s infinite;
+}
+
+.bot-badge-handle {
+  color: #38bdf8;
+  font-weight: 700;
+  text-decoration: none;
+}
+.bot-badge-handle:hover {
+  text-decoration: underline;
+}
+
+/* 2-Column Main Showcase Grid */
+.replymate-grid {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: 28px;
+  margin-top: 32px;
+  align-items: start;
+}
+
+/* Phone Frame Mockup */
+.phone-mockup-wrapper {
+  perspective: 1000px;
+}
+
+.phone-frame {
+  background: #0e1621;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 136, 204, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.phone-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 16px 8px;
+  font-size: 11px;
+  color: #a2b5c7;
+}
+
+.phone-notch {
+  width: 90px;
+  height: 14px;
+  background: #000;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.phone-camera {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1c2633;
+}
+
+.phone-speaker {
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: #1c2633;
+}
+
+/* Telegram Header inside Phone */
+.tg-app-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #17212b;
+  padding: 10px 14px;
+  border-radius: 18px 18px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tg-avatar-box {
+  position: relative;
+}
+
+.tg-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0088cc, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0, 136, 204, 0.4);
+}
+
+.tg-online-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #17212b;
+}
+
+.tg-header-info {
+  flex: 1;
+}
+
+.tg-title-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tg-title-row h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.tg-verified-check {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #229ed9;
+  color: #fff;
+  font-size: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tg-status-text {
+  font-size: 11px;
+  color: #6c7883;
+}
+
+.tg-pill-tag {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  background: rgba(34, 158, 217, 0.15);
+  color: #38bdf8;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+/* Telegram Chat Canvas */
+.tg-chat-canvas {
+  background: #0e1621;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 16px 16px;
+  padding: 12px;
+  min-height: 430px;
+  max-height: 480px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tg-date-pill {
+  align-self: center;
+  background: rgba(23, 33, 43, 0.8);
+  color: #7f91a4;
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+/* Scenario Selector inside Chat */
+.tg-scenario-picker {
+  background: #17212b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.picker-label {
+  font-size: 11px;
+  color: #8293a4;
+  font-weight: 500;
+}
+
+.scenario-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.tg-scenario-btn {
+  background: #0e1621;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #c9d7e3;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.tg-scenario-btn:hover {
+  background: #1f2c3a;
+  border-color: rgba(34, 158, 217, 0.4);
+}
+
+.tg-scenario-btn.is-active {
+  background: rgba(0, 136, 204, 0.25);
+  border-color: #229ed9;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Chat Bubbles */
+.tg-bubble-row {
+  display: flex;
+  width: 100%;
+}
+.tg-bubble-row.user-row {
+  justify-content: flex-end;
+}
+.tg-bubble-row.bot-row {
+  justify-content: flex-start;
+}
+
+.tg-bubble {
+  max-width: 88%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 12px;
+  line-height: 1.45;
+  position: relative;
+}
+
+.tg-user-bubble {
+  background: #2b5278;
+  color: #e3edf7;
+  border-bottom-right-radius: 4px;
+}
+
+.tg-user-bubble .user-name {
+  font-size: 10px;
+  color: #64b5f6;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.tg-user-bubble p {
+  margin: 0 0 4px 0;
+}
+
+.tg-time {
+  font-size: 9px;
+  color: #79a6d2;
+  float: right;
+  margin-left: 8px;
+}
+.tg-ticks {
+  color: #64b5f6;
+  font-style: normal;
+}
+
+.tg-bot-bubble {
+  background: #182533;
+  color: #dbe7f3;
+  border-bottom-left-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Tone Analysis Card */
+.tg-analysis-card {
+  width: 100%;
+  background: #17212b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 10px 12px;
+}
+
+.tg-bot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #8293a4;
+  margin-bottom: 8px;
+}
+
+.confidence-badge {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.tone-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tone-bar-label {
+  font-size: 11px;
+  color: #c9d7e3;
+}
+.tone-bar-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #0e1621;
+  overflow: hidden;
+}
+.tone-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* Typing Indicator Animation */
+.tg-typing-bubble {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #17212b;
+}
+.typing-text {
+  font-size: 11px;
+  color: #8293a4;
+}
+.typing-dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.typing-dots span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #229ed9;
+  animation: typingDot 1.4s infinite ease-in-out both;
+}
+.typing-dots span:nth-child(1) { animation-delay: 0s; }
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingDot {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.4; }
+  40% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Options Card inside Telegram Chat */
+.tg-options-card {
+  width: 100%;
+  background: #17212b;
+  border: 1px solid rgba(34, 158, 217, 0.3);
+  padding: 10px 12px;
+}
+
+.options-header {
+  font-size: 10px;
+  color: #38bdf8;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.option-pill-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.opt-card {
+  background: #0e1621;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.opt-card:hover {
+  border-color: #229ed9;
+  background: #131f2d;
+}
+
+.opt-tag {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.tag-executive { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+.tag-assertive { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+.tag-witty { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+.tag-friendly { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+
+.opt-text {
+  font-size: 11px;
+  color: #e2e8f0;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Telegram Bottom Input Bar */
+.tg-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #17212b;
+  padding: 8px 10px;
+  border-radius: 0 0 18px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tg-input {
+  flex: 1;
+  background: #0e1621;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 7px 12px;
+  font-size: 11px;
+  color: #fff;
+  outline: none;
+}
+.tg-input:focus {
+  border-color: #229ed9;
+}
+
+.tg-send-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #0088cc;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.tg-send-btn:hover {
+  transform: scale(1.08);
+  background: #229ed9;
+}
+
+/* Right Column: Before vs After + Stepper */
+.replymate-engine-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.before-after-card {
+  padding: 24px;
+}
+
+.ba-header {
+  margin-bottom: 16px;
+}
+
+.ba-tag {
+  font-size: 10px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.ba-header h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 4px;
+}
+
+.ba-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.ba-box {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ba-before {
+  border-color: rgba(244, 63, 94, 0.3);
+  background: rgba(244, 63, 94, 0.04);
+}
+
+.ba-after {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.ba-box-header {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.ba-box blockquote {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  margin: 0;
+  font-style: italic;
+}
+
+.ba-flaws, .ba-perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ba-flaws span {
+  font-size: 9px;
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--rose);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ba-perks span {
+  font-size: 9px;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ba-divider-icon {
+  font-size: 20px;
+  color: var(--cyan);
+  opacity: 0.8;
+}
+
+.ba-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+/* How It Works Box */
+.how-it-works-box {
+  padding: 20px;
+}
+
+.box-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.steps-horizontal {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.step-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.step-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.step-card h5 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.step-card p {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* SaaS Feature Cards Grid */
+.replymate-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.feature-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.feature-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 158, 217, 0.4);
+}
+
+.feature-icon {
+  font-size: 24px;
+}
+
+.feature-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.feature-card p {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Bot Telemetry Stats Bar */
+.replymate-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* CTA Banner */
+.replymate-cta-banner {
+  margin-top: 24px;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: radial-gradient(circle at 0% 50%, rgba(0, 136, 204, 0.15), transparent 70%), var(--bg-card);
+  border: 1px solid rgba(0, 136, 204, 0.4);
+}
+
+.cta-kicker {
+  font-size: 11px;
+  color: #38bdf8;
+  letter-spacing: 1px;
+}
+
+.cta-content h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 4px 0 6px 0;
+}
+
+.cta-content p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.btn-tg-launch {
+  background: linear-gradient(135deg, #0088cc, #006699);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 136, 204, 0.4);
+  padding: 12px 24px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-tg-launch:hover {
+  background: linear-gradient(135deg, #229ed9, #0088cc);
+  box-shadow: 0 0 30px rgba(34, 158, 217, 0.6);
+  transform: translateY(-2px);
+}
+.tg-btn-icon {
+  font-size: 16px;
+}
+
+/* Responsive Media Queries for ReplyMate AI */
+@media (max-width: 992px) {
+  .replymate-grid {
+    grid-template-columns: 1fr;
+  }
+  .steps-horizontal {
+    grid-template-columns: 1fr 1fr;
+  }
+  .replymate-features-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .replymate-cta-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .ba-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  .ba-divider-icon {
+    transform: rotate(90deg);
+    text-align: center;
+  }
+  .steps-horizontal {
+    grid-template-columns: 1fr;
+  }
+  .replymate-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .replymate-stats-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+

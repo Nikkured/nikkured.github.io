@@ -88,6 +88,7 @@
           <li><a href="#projects" data-nav-link>Projects</a></li>
           <li><a href="#cpk-lab" data-nav-link>Cpk Lab</a></li>
           <li><a href="#zpl-designer" data-nav-link>ZPL Studio</a></li>
+          <li><a href="#replymate" data-nav-link>ReplyMate AI</a></li>
           <li><a href="#media" data-nav-link>Media &amp; AI</a></li>
           <li><a href="#experience" data-nav-link>Experience</a></li>
           <li><a href="#contact" data-nav-link>Contact</a></li>
@@ -691,11 +692,277 @@
       </div>
     </section>
 
+    <!-- SECTION: REPLYMATE AI TELEGRAM CONVERSATION COACH (@ReplyMateAIProBot) -->
+    <section class="section replymate-section" id="replymate" aria-labelledby="replymateHeading">
+      <div class="shell">
+        <div class="section-header reveal">
+          <div class="section-tag">04 // AI AGENT &amp; CONVERSATION COACH</div>
+          <div class="bot-header-badge">
+            <span class="bot-badge-dot"></span>
+            <span>LIVE TELEGRAM BOT</span>
+            <span class="badge-separator">·</span>
+            <a href="https://t.me/ReplyMateAIProBot" target="_blank" rel="noopener noreferrer" class="bot-badge-handle">@ReplyMateAIProBot ↗</a>
+          </div>
+          <h2 id="replymateHeading" class="section-title">ReplyMate AI — Telegram Conversation Coach.</h2>
+          <p class="section-subtitle">Transform awkward, dry, or high-stakes text messages into polished, high-impact responses across Executive, Witty, Assertive, and Friendly tones.</p>
+        </div>
+
+        <!-- DUAL-COLUMN INTERACTIVE TELEGRAM DEMO SHOWCASE -->
+        <div class="replymate-grid">
+          <!-- LEFT COLUMN: TELEGRAM PHONE MOCKUP -->
+          <div class="phone-mockup-wrapper reveal">
+            <div class="phone-frame glass-card">
+              <!-- Phone Status Bar -->
+              <div class="phone-status-bar">
+                <span class="phone-time font-mono">9:41</span>
+                <div class="phone-notch">
+                  <span class="phone-camera"></span>
+                  <span class="phone-speaker"></span>
+                </div>
+                <div class="phone-icons">
+                  <span>5G</span>
+                  <span class="battery-icon">⚡</span>
+                </div>
+              </div>
+
+              <!-- Telegram App Header -->
+              <div class="tg-app-header">
+                <div class="tg-avatar-box">
+                  <div class="tg-avatar font-mono">RM</div>
+                  <span class="tg-online-badge"></span>
+                </div>
+                <div class="tg-header-info">
+                  <div class="tg-title-row">
+                    <h3>ReplyMate AI Pro</h3>
+                    <span class="tg-verified-check">✓</span>
+                  </div>
+                  <span class="tg-status-text font-mono">bot · active now</span>
+                </div>
+                <div class="tg-header-actions">
+                  <span class="tg-pill-tag">@ReplyMateAIProBot</span>
+                </div>
+              </div>
+
+              <!-- Telegram Chat Canvas -->
+              <div class="tg-chat-canvas" id="tgChatCanvas">
+                <!-- Date Pill -->
+                <div class="tg-date-pill font-mono">Today</div>
+
+                <!-- Scenario Selection Pills Inside Chat -->
+                <div class="tg-scenario-picker">
+                  <span class="picker-label">Select scenario to simulate:</span>
+                  <div class="scenario-buttons-grid">
+                    <button type="button" class="tg-scenario-btn is-active" data-scenario="salary">💼 Salary &amp; Work</button>
+                    <button type="button" class="tg-scenario-btn" data-scenario="awkward">💬 Awkward Text</button>
+                    <button type="button" class="tg-scenario-btn" data-scenario="negotiation">🤝 Client Negotiation</button>
+                    <button type="button" class="tg-scenario-btn" data-scenario="witty">🔥 Casual &amp; Witty</button>
+                  </div>
+                </div>
+
+                <!-- Incoming User Message Bubble -->
+                <div class="tg-bubble-row user-row">
+                  <div class="tg-bubble tg-user-bubble">
+                    <span class="user-name">You</span>
+                    <p id="tgUserMsgText">i guess i can maybe work late tonight if u really need me to...</p>
+                    <span class="tg-time font-mono">09:41 AM <i class="tg-ticks">✓✓</i></span>
+                  </div>
+                </div>
+
+                <!-- AI Analysis Card Bubble -->
+                <div class="tg-bubble-row bot-row" id="tgAnalysisRow">
+                  <div class="tg-bubble tg-bot-bubble tg-analysis-card">
+                    <div class="tg-bot-header font-mono">
+                      <span>🤖 REPLYMATE TONE ENGINE</span>
+                      <span class="confidence-badge" id="tgConfidenceBadge">68% Hesitant</span>
+                    </div>
+                    <div class="tone-bar-wrapper">
+                      <div class="tone-bar-label"><span>Detected Tone:</span> <strong id="tgDetectedTone" class="text-amber">Passively Hesitant &amp; Undervalued</strong></div>
+                      <div class="tone-bar-track">
+                        <div class="tone-bar-fill" id="tgToneFill" style="width: 78%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Typing Indicator -->
+                <div class="tg-bubble-row bot-row typing-row" id="tgTypingRow" style="display: none;">
+                  <div class="tg-bubble tg-bot-bubble tg-typing-bubble">
+                    <span class="typing-text">ReplyMate AI is analyzing tone &amp; intent</span>
+                    <div class="typing-dots"><span></span><span></span><span></span></div>
+                  </div>
+                </div>
+
+                <!-- AI Generated Options Stream -->
+                <div class="tg-bubble-row bot-row" id="tgOptionsRow">
+                  <div class="tg-bubble tg-bot-bubble tg-options-card">
+                    <div class="options-header font-mono">⚡ SUGGESTED REPLIES &amp; COACHING</div>
+                    
+                    <div class="option-pill-group" id="tgOptionCards">
+                      <!-- Dynamically injected via script.js -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Telegram Input Bar -->
+              <div class="tg-input-bar">
+                <input type="text" id="tgCustomInput" class="tg-input" placeholder="Type or paste custom message..." autocomplete="off" />
+                <button type="button" class="tg-send-btn" id="tgSendBtn" title="Analyze with ReplyMate AI">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: BEFORE -> AFTER COMPARISON & ENGINE SPECS -->
+          <div class="replymate-engine-details reveal">
+            <!-- BEFORE -> AFTER CARD -->
+            <div class="before-after-card glass-card">
+              <div class="ba-header">
+                <span class="ba-tag font-mono">CONVERSATION REFACTOR</span>
+                <h3>Before vs. After ReplyMate Transformation</h3>
+              </div>
+              
+              <div class="ba-comparison-grid">
+                <div class="ba-box ba-before">
+                  <div class="ba-box-header text-danger font-mono">
+                    <span>✕ ORIGINAL BORING / AWKWARD MESSAGE</span>
+                  </div>
+                  <blockquote id="baBeforeQuote">
+                    "i guess i can maybe work late tonight if u really need me to..."
+                  </blockquote>
+                  <div class="ba-flaws font-mono" id="baBeforeFlaws">
+                    <span>Weak framing</span><span>Undermines confidence</span><span>Unclear boundaries</span>
+                  </div>
+                </div>
+
+                <div class="ba-divider-icon font-mono">⚡</div>
+
+                <div class="ba-box ba-after">
+                  <div class="ba-box-header text-success font-mono">
+                    <span>✓ REPLYMATE EXECUTIVE RESPONSE</span>
+                  </div>
+                  <blockquote id="baAfterQuote">
+                    "I am available to cover the priority deliverable this evening. Let's confirm the key priorities so we align objectives efficiently."
+                  </blockquote>
+                  <div class="ba-perks font-mono" id="baAfterPerks">
+                    <span>Proactive tone</span><span>Clear ownership</span><span>Assertive posture</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ba-actions">
+                <button type="button" class="btn btn-sm btn-outline" id="tgTryAnotherBtn">🔄 Try Another Scenario Example</button>
+                <button type="button" class="btn btn-sm btn-outline-cyan" id="tgCopyBestBtn">📋 Copy Executive Reply</button>
+              </div>
+            </div>
+
+            <!-- HOW IT WORKS STEPPER -->
+            <div class="how-it-works-box glass-card">
+              <h4 class="box-title">🧠 How ReplyMate Works in 4 Simple Steps</h4>
+              <div class="steps-horizontal">
+                <div class="step-card">
+                  <span class="step-num font-mono">01</span>
+                  <h5>Send Message</h5>
+                  <p>Forward any draft or text to <code>@ReplyMateAIProBot</code> on Telegram.</p>
+                </div>
+                <div class="step-card">
+                  <span class="step-num font-mono">02</span>
+                  <h5>Tone Analysis</h5>
+                  <p>AI instantly detects formality, subtext, and communication risks.</p>
+                </div>
+                <div class="step-card">
+                  <span class="step-num font-mono">03</span>
+                  <h5>Pick Your Vibe</h5>
+                  <p>Choose Executive, Witty, Assertive, or Warm variations.</p>
+                </div>
+                <div class="step-card">
+                  <span class="step-num font-mono">04</span>
+                  <h5>Send &amp; Win</h5>
+                  <p>1-tap copy and send directly inside your Telegram chat.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAAS FEATURE CARDS GRID (3x2) -->
+        <div class="replymate-features-grid reveal">
+          <div class="feature-card glass-card">
+            <div class="feature-icon">🤖</div>
+            <h3>Smart Reply Suggestions</h3>
+            <p>Generates context-aware, highly natural responses calibrated to your exact conversational goals in milliseconds.</p>
+          </div>
+          <div class="feature-card glass-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Tone &amp; Sentiment Detector</h3>
+            <p>Analyzes incoming messages for hidden aggression, urgency, formality, and hesitation with real-time confidence scores.</p>
+          </div>
+          <div class="feature-card glass-card">
+            <div class="feature-icon">💡</div>
+            <h3>Conversation Coaching</h3>
+            <p>Provides tactical framing advice on when to set boundaries, ask clarifying questions, or push for closing commitments.</p>
+          </div>
+          <div class="feature-card glass-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Multi-Style Tone Switcher</h3>
+            <p>Instantly switch between Executive/Corporate, Witty/Casual, Direct/Assertive, and Warm/Friendly tones with 1 click.</p>
+          </div>
+          <div class="feature-card glass-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Privacy &amp; Zero Logs</h3>
+            <p>Encrypted request pipeline ensuring your personal chat logs and sensitive messages are never stored or retained.</p>
+          </div>
+          <div class="feature-card glass-card">
+            <div class="feature-icon">📱</div>
+            <h3>Native Telegram Integration</h3>
+            <p>Built directly on Telegram Bot API via <code>@ReplyMateAIProBot</code> for zero-friction inline messaging on iOS, Android &amp; Desktop.</p>
+          </div>
+        </div>
+
+        <!-- BOT TELEMETRY & LIVE STATS BAR -->
+        <div class="replymate-stats-bar glass-card reveal">
+          <div class="stat-item">
+            <b class="stat-value font-mono" id="statMsgCount">14,850+</b>
+            <span class="stat-label">Messages Processed</span>
+          </div>
+          <div class="stat-item">
+            <b class="stat-value font-mono" id="statActiveUsers">1,420+</b>
+            <span class="stat-label">Active Telegram Users</span>
+          </div>
+          <div class="stat-item">
+            <b class="stat-value font-mono" id="statSpeed">&lt; 0.8s</b>
+            <span class="stat-label">Avg AI Latency</span>
+          </div>
+          <div class="stat-item">
+            <b class="stat-value font-mono" id="statRating">99.4%</b>
+            <span class="stat-label">Satisfaction &amp; Tone Rating</span>
+          </div>
+        </div>
+
+        <!-- MAIN LAUNCH CALL TO ACTION (CTA) -->
+        <div class="replymate-cta-banner glass-card reveal">
+          <div class="cta-content">
+            <span class="cta-kicker font-mono">READY TO ELEVATE YOUR MESSAGING?</span>
+            <h3>Start Coaching Your Conversations with ReplyMate AI</h3>
+            <p>Open <code>@ReplyMateAIProBot</code> in Telegram now and transform your everyday conversations with AI precision.</p>
+          </div>
+          <div class="cta-actions">
+            <a href="https://t.me/ReplyMateAIProBot" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-primary btn-tg-launch">
+              <span class="tg-btn-icon">✈</span>
+              <span>Open ReplyMate in Telegram</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SECTION: CONTENT CREATION & MEDIA (@nvaistudio) -->
     <section class="section media-section" id="media" aria-labelledby="mediaHeading">
       <div class="shell">
         <div class="section-header reveal">
-          <div class="section-tag">04 // CREATIVE &amp; AI AUTOMATION</div>
+          <div class="section-tag">05 // CREATIVE &amp; AI AUTOMATION</div>
           <h2 id="mediaHeading" class="section-title">Content Creation &amp; AI Tech Reviews.</h2>
           <p class="section-subtitle">Exploring next-generation AI workflows, automation tutorials, and software tools on YouTube.</p>
         </div>
