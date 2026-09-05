@@ -2307,6 +2307,19 @@
       payBtn.innerHTML = "<span>Processing Order...</span>";
 
       try {
+        // Lazily load Razorpay checkout.js only when user clicks pay
+        function loadRazorpaySDK() {
+          return new Promise(function (resolve, reject) {
+            if (window.Razorpay) { resolve(); return; }
+            var s = document.createElement("script");
+            s.src = "https://checkout.razorpay.com/v1/checkout.js";
+            s.onload = resolve;
+            s.onerror = reject;
+            document.head.appendChild(s);
+          });
+        }
+
+        await loadRazorpaySDK();
         var keyId = "rzp_test_TYIb8kPTSXW59J";
         var orderData = null;
 
