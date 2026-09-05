@@ -1170,7 +1170,7 @@
             If my Python automation tools, SPC calculators, or open-source Quality Engineering projects helped you, consider supporting further development with a small contribution.
           </p>
 
-          <!-- Razorpay Standard Donation Widget -->
+          <!-- Razorpay Donation Widget (no auto-loading scripts) -->
           <div style="max-width: 480px; margin: 0 auto; background: rgba(2, 6, 23, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 24px; text-align: center;">
             <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:18px;">
               <span style="font-size: 24px; padding:8px; background:rgba(99,102,241,0.2); border-radius:12px; border:1px solid rgba(99,102,241,0.4);">❤️</span>
@@ -1180,12 +1180,23 @@
               </div>
             </div>
 
-            <!-- Official Razorpay Payment Button Form -->
-            <div class="rzp-embed-wrapper" style="display:flex; justify-content:center; margin-top:16px;">
-              <form>
-                <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TYHybMJgsOiFb2" async> </script>
-              </form>
+            <!-- Preset amount buttons -->
+            <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:14px;">
+              <button class="rzp-preset-btn" data-amount="99" style="padding:8px 16px; border-radius:8px; border:1px solid rgba(99,102,241,0.4); background:rgba(255,255,255,0.06); color:var(--text-primary); cursor:pointer; font-size:13px;">₹99</button>
+              <button class="rzp-preset-btn" data-amount="199" style="padding:8px 16px; border-radius:8px; border:1px solid rgba(99,102,241,0.4); background:rgba(255,255,255,0.06); color:var(--text-primary); cursor:pointer; font-size:13px;">₹199</button>
+              <button class="rzp-preset-btn" data-amount="499" style="padding:8px 16px; border-radius:8px; border:1px solid rgba(99,102,241,0.4); background:rgba(255,255,255,0.06); color:var(--text-primary); cursor:pointer; font-size:13px;">₹499</button>
+              <button class="rzp-preset-btn" data-amount="999" style="padding:8px 16px; border-radius:8px; border:1px solid rgba(99,102,241,0.4); background:rgba(255,255,255,0.06); color:var(--text-primary); cursor:pointer; font-size:13px;">₹999</button>
             </div>
+
+            <!-- Custom amount input -->
+            <input id="rzpCustomAmount" type="number" min="1" placeholder="Custom amount (₹)" value="199"
+              style="width:100%; box-sizing:border-box; padding:10px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14px; margin-bottom:12px; outline:none;" />
+
+            <!-- Pay button — SDK loads only when clicked -->
+            <button id="payRazorpayBtn"
+              style="width:100%; padding:14px; border-radius:10px; border:none; background:linear-gradient(135deg,#6366f1,#8b5cf6); color:#fff; font-size:15px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
+              <span>Pay with Razorpay</span> <i aria-hidden="true">🛡️</i>
+            </button>
 
             <div id="rzpStatusMessage" style="margin-top:12px; font-family:var(--font-mono); font-size:11px; display:none;"></div>
           </div>
