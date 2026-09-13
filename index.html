@@ -688,6 +688,190 @@
             </div>
           </div>
         </div>
+
+        <!-- PROJECT: QR CODE SCAN VALIDATOR v16 -->
+        <article class="featured-project glass-card reveal" id="qr-scan-validator" style="margin-top: 32px;">
+          <div class="project-grid">
+            <div class="project-info">
+              <div class="project-kicker">INDUSTRIAL QUALITY · LIVE IN PRODUCTION</div>
+              <h3 class="project-title">NHK Spring — QR Code Scanning System <span style="font-size:13px; color:var(--text-muted); font-weight:400;">(QR Live Scan Validator v16)</span></h3>
+              <p class="project-description">
+                A mission-critical offline-first industrial desktop application engineered for NHK Spring India Ltd. to eliminate component mix-ups during automotive coil spring inspection. Parses high-speed handheld 2D DataMatrix/QR scans in real-time, validates part numbers, prefix formats, and serial limits — halting instantly on duplicates until supervisor authorization and root-cause logging are completed. All local data auto-syncs to a Telegram monitor bot when internet is detected.
+              </p>
+              <div class="project-highlights">
+                <div class="highlight-item"><span class="highlight-icon">⚡</span><span>Sub-millisecond QR &amp; DataMatrix duplicate detection with instant scan halt on mismatch</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🔒</span><span>Fail-safe supervisor PIN lockout with 1-click numbered root-cause remark logging</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📴</span><span>100% offline standalone Windows .exe — SQLite WAL for ACID compliance &amp; crash resilience</span></div>
+                <div class="highlight-item"><span class="highlight-icon">☁️</span><span>Smart Telegram cloud auto-sync — background daemon uploads atomic .db snapshots on connectivity</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🏭</span><span>Dynamic Model Creator Studio — register new product variants from a single sample scan</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📊</span><span>Shift analytics dashboard (A/B/C) with 1-click executive Excel &amp; CSV export via OpenPyXL</span></div>
+              </div>
+              <div class="project-tags" style="margin-top: 20px;">
+                <span class="tag-pill">Python 3.13</span>
+                <span class="tag-pill">PyWebView</span>
+                <span class="tag-pill">SQLite WAL</span>
+                <span class="tag-pill">Telegram Bot API</span>
+                <span class="tag-pill">PyInstaller</span>
+                <span class="tag-pill">OpenPyXL</span>
+                <span class="tag-pill">Edge WebView2</span>
+                <span class="tag-pill">Offline-First</span>
+              </div>
+            </div>
+            <div class="project-interactive">
+              <div style="background:rgba(2,6,23,0.9); border:1px solid rgba(99,102,241,0.25); border-radius:14px; padding:20px; font-family:var(--font-mono); font-size:12px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08);">
+                  <span style="width:10px;height:10px;border-radius:50%;background:#34d399;box-shadow:0 0 6px #34d399;display:inline-block;"></span>
+                  <span style="color:#94a3b8;">QR SCAN TERMINAL — LIVE VALIDATION</span>
+                </div>
+                <div style="margin-bottom:10px;"><span style="color:#64748b;">SCAN INPUT → </span><span style="color:#f1f5f9;">NHK-COI-A47-001842</span></div>
+                <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.3); border-radius:8px; padding:10px 14px; margin-bottom:10px;">
+                  <div style="color:#34d399; font-weight:700; font-size:13px;">✓ VALID — ACCEPT UNIT</div>
+                  <div style="color:#94a3b8; font-size:11px; margin-top:4px;">Part: COI-A47 · Serial: 001842 · Shift: B</div>
+                </div>
+                <div style="margin-bottom:10px;"><span style="color:#64748b;">SCAN INPUT → </span><span style="color:#f1f5f9;">NHK-COI-A47-001842</span></div>
+                <div style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.4); border-radius:8px; padding:10px 14px; margin-bottom:10px;">
+                  <div style="color:#f87171; font-weight:700; font-size:13px;">⚠ DUPLICATE DETECTED — SCAN HALTED</div>
+                  <div style="color:#94a3b8; font-size:11px; margin-top:4px;">Supervisor authorization required to resume</div>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.06);">
+                  <span style="padding:3px 10px; border-radius:20px; background:rgba(99,102,241,0.15); color:#a5b4fc; font-size:10px;">OFFLINE</span>
+                  <span style="padding:3px 10px; border-radius:20px; background:rgba(52,211,153,0.1); color:#6ee7b7; font-size:10px;">TELEGRAM SYNC ✓</span>
+                  <span style="padding:3px 10px; border-radius:20px; background:rgba(245,158,11,0.1); color:#fcd34d; font-size:10px;">SHIFT B ACTIVE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT: NHK REJECTION ANALYSIS SYSTEM -->
+        <article class="featured-project glass-card reveal" id="nhk-rejection-analysis" style="margin-top: 32px;">
+          <div class="project-grid">
+            <div class="project-info">
+              <div class="project-kicker">ENTERPRISE ANALYTICS · READY FOR PRODUCTION</div>
+              <h3 class="project-title">NHK Rejection Analysis &amp; Production Intelligence System <span style="font-size:13px; color:var(--text-muted); font-weight:400;">(v0.6.7)</span></h3>
+              <p class="project-description">
+                An on-premise industrial quality intelligence web application for automotive spring manufacturing at NHK Spring India. Replaces fragmented Excel workbooks with a centralized ACID-compliant database while preserving the familiar spreadsheet grid. Bridges shop-floor shift operations with executive decision-making via automated COPQ calculation, real-time Pareto charts, Julian lot-date traceability, and email-ready daily Excel matrix generation in seconds.
+              </p>
+              <div class="project-highlights">
+                <div class="highlight-item"><span class="highlight-icon">📋</span><span>Excel-like grid entry with persistent drafts, keypad navigation &amp; crash-recovery via localStorage</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📊</span><span>Real-time 80/20 Pareto engine with PPM target benchmarking and 12-month trend modeling</span></div>
+                <div class="highlight-item"><span class="highlight-icon">💰</span><span>Automated COPQ financial loss quantification across scrap &amp; process rejection categories</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🏆</span><span>IATF 16949 compliance — 7-digit Julian lot validation, Shift C cross-midnight tolerance, immutable audit log</span></div>
+                <div class="highlight-item"><span class="highlight-icon">⌨️</span><span>Full-width workspace toggle (Ctrl+B) to maximize all 16 defect columns on shop-floor monitors</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📁</span><span>1-click formatted Excel matrix generator via OpenPyXL — zero manual copy-pasting</span></div>
+              </div>
+              <div class="project-tags" style="margin-top: 20px;">
+                <span class="tag-pill">Python 3</span>
+                <span class="tag-pill">SQLite WAL</span>
+                <span class="tag-pill">Vanilla JS ES6+</span>
+                <span class="tag-pill">SVG Data Viz</span>
+                <span class="tag-pill">OpenPyXL</span>
+                <span class="tag-pill">PyInstaller</span>
+                <span class="tag-pill">IATF 16949</span>
+                <span class="tag-pill">Pareto Analytics</span>
+              </div>
+            </div>
+            <div class="project-interactive">
+              <div style="background:rgba(2,6,23,0.9); border:1px solid rgba(99,102,241,0.25); border-radius:14px; padding:20px; font-family:var(--font-mono); font-size:12px;">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08);">
+                  <span style="color:#94a3b8;">REJECTION ANALYSIS · LIVE DASHBOARD</span>
+                  <span style="padding:2px 8px; border-radius:10px; background:rgba(52,211,153,0.1); color:#6ee7b7; font-size:10px;">SHIFT A</span>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px;">
+                  <div style="background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.2); border-radius:8px; padding:10px;">
+                    <div style="color:#64748b; font-size:10px; margin-bottom:4px;">TOTAL REJECTIONS</div>
+                    <div style="color:#f1f5f9; font-size:18px; font-weight:700;">247 <span style="font-size:10px;color:#94a3b8;">pcs</span></div>
+                  </div>
+                  <div style="background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:8px; padding:10px;">
+                    <div style="color:#64748b; font-size:10px; margin-bottom:4px;">COPQ (TODAY)</div>
+                    <div style="color:#f87171; font-size:18px; font-weight:700;">₹18,420</div>
+                  </div>
+                  <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); border-radius:8px; padding:10px;">
+                    <div style="color:#64748b; font-size:10px; margin-bottom:4px;">LINE PPM</div>
+                    <div style="color:#fcd34d; font-size:18px; font-weight:700;">412 <span style="font-size:10px;color:#94a3b8;">/ 350 tgt</span></div>
+                  </div>
+                  <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.2); border-radius:8px; padding:10px;">
+                    <div style="color:#64748b; font-size:10px; margin-bottom:4px;">TOP DEFECT</div>
+                    <div style="color:#34d399; font-size:13px; font-weight:700;">Bend (38%)</div>
+                  </div>
+                </div>
+                <div style="padding-top:10px; border-top:1px solid rgba(255,255,255,0.06);">
+                  <div style="color:#64748b; font-size:10px; margin-bottom:6px;">PARETO — TOP 3 DEFECTS (80/20 RULE)</div>
+                  <div style="margin-bottom:5px;"><span style="color:#a5b4fc;">Bend Defect</span><span style="float:right;color:#f1f5f9;">38%</span></div>
+                  <div style="background:rgba(255,255,255,0.06); border-radius:4px; height:4px; margin-bottom:8px;"><div style="background:#6366f1; height:4px; border-radius:4px; width:38%;"></div></div>
+                  <div style="margin-bottom:5px;"><span style="color:#a5b4fc;">Surface Scratch</span><span style="float:right;color:#f1f5f9;">27%</span></div>
+                  <div style="background:rgba(255,255,255,0.06); border-radius:4px; height:4px; margin-bottom:8px;"><div style="background:#8b5cf6; height:4px; border-radius:4px; width:27%;"></div></div>
+                  <div style="margin-bottom:5px;"><span style="color:#a5b4fc;">Dimension NG</span><span style="float:right;color:#f1f5f9;">19%</span></div>
+                  <div style="background:rgba(255,255,255,0.06); border-radius:4px; height:4px;"><div style="background:#a78bfa; height:4px; border-radius:4px; width:19%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT: REPLYMATE 2.0 AI PRO -->
+        <article class="featured-project glass-card reveal" id="replymate-pro" style="margin-top: 32px;">
+          <div class="project-grid">
+            <div class="project-info">
+              <div class="project-kicker">AI AGENT · LIVE 24/7 ON TELEGRAM</div>
+              <h3 class="project-title">ReplyMate 2.0 — AI Conversation Coach &amp; Smart Reply Engine</h3>
+              <p class="project-description">
+                An autonomous multimodal AI assistant deployed on Telegram that analyzes chat screenshots, voice notes, and raw text to decode hidden subtext and craft context-aware replies. Powered by Google Gemini 2.0 Flash Lite with strict Pydantic structured schemas, it delivers three psychologically calibrated reply tiers — Safe, Confident, and Bold — alongside interest-level meters and next-move predictions. Eliminates messaging anxiety across dating apps, WhatsApp, Slack, and professional networks.
+              </p>
+              <div class="project-highlights">
+                <div class="highlight-item"><span class="highlight-icon">📸</span><span>Multimodal screenshot-to-reply — upload WhatsApp/Tinder/Hinge/Slack screenshots for instant analysis</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🕵️</span><span>"Did They Mean That?" subtext inspector — decodes passive-aggressive remarks &amp; hidden intent</span></div>
+                <div class="highlight-item"><span class="highlight-icon">👻</span><span>Ghosting recovery engine — high-curiosity hooks to reopen stalled conversations without appearing needy</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📝</span><span>"Rate My Draft" auditor — scores your message /10 for frame, tone &amp; neediness before sending</span></div>
+                <div class="highlight-item"><span class="highlight-icon">❄️</span><span>Interactive icebreaker hub — 1-tap openers for dating apps, LinkedIn, Instagram &amp; reconnections</span></div>
+                <div class="highlight-item"><span class="highlight-icon">⚡</span><span>Sub-2s inference · SQLite user state · viral referral loops · Telegram Stars in-app payments</span></div>
+              </div>
+              <div class="project-tags" style="margin-top: 20px;">
+                <span class="tag-pill">Python 3.12</span>
+                <span class="tag-pill">Gemini 2.0 Flash Lite</span>
+                <span class="tag-pill">Pydantic</span>
+                <span class="tag-pill">python-telegram-bot</span>
+                <span class="tag-pill">aiohttp</span>
+                <span class="tag-pill">SQLite</span>
+                <span class="tag-pill">Multimodal Vision</span>
+                <span class="tag-pill">Ubuntu 24.04 LTS</span>
+              </div>
+              <div style="margin-top: 20px;">
+                <a href="https://t.me/ReplyMateAIProBot" target="_blank" rel="noopener noreferrer"
+                  style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:10px; background:linear-gradient(135deg,#2481cc,#1a6fb0); color:#fff; font-size:13px; font-weight:600; text-decoration:none;">
+                  <span>🤖</span> Try on Telegram — @ReplyMateAIProBot
+                </a>
+              </div>
+            </div>
+            <div class="project-interactive">
+              <div style="background:rgba(2,6,23,0.9); border:1px solid rgba(36,129,204,0.3); border-radius:14px; padding:20px; font-family:var(--font-mono); font-size:12px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08);">
+                  <span style="width:10px;height:10px;border-radius:50%;background:#2481cc;box-shadow:0 0 6px #2481cc;display:inline-block;"></span>
+                  <span style="color:#94a3b8;">REPLYMATE AI · SUBTEXT ANALYSIS</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:10px 12px; margin-bottom:12px; border-left:3px solid #64748b;">
+                  <div style="color:#64748b; font-size:10px; margin-bottom:4px;">INCOMING MESSAGE</div>
+                  <div style="color:#cbd5e1;">"Oh interesting... I guess we'll see 🙃"</div>
+                </div>
+                <div style="background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:8px; padding:10px 12px; margin-bottom:12px;">
+                  <div style="color:#f87171; font-size:10px; margin-bottom:4px;">🕵️ SUBTEXT DECODED</div>
+                  <div style="color:#fca5a5; font-size:11px;">Passive skepticism detected. They're testing your confidence. Don't over-explain.</div>
+                </div>
+                <div style="margin-bottom:8px; color:#64748b; font-size:10px;">REPLY TIERS:</div>
+                <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.2); border-radius:6px; padding:8px 10px; margin-bottom:6px;">
+                  <span style="color:#6ee7b7; font-size:10px;">BOLD · </span><span style="color:#d1fae5; font-size:11px;">"You'll see 😏 — I'm just getting started."</span>
+                </div>
+                <div style="background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.2); border-radius:6px; padding:8px 10px; margin-bottom:6px;">
+                  <span style="color:#a5b4fc; font-size:10px;">CONFIDENT · </span><span style="color:#e0e7ff; font-size:11px;">"Fair enough. Actions speak louder anyway."</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:8px 10px;">
+                  <span style="color:#94a3b8; font-size:10px;">SAFE · </span><span style="color:#cbd5e1; font-size:11px;">"Haha true, let's just enjoy and find out!"</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
       </div>
     </section>
 
