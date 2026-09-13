@@ -2211,8 +2211,8 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 .qr-canvas {
-  width: 98px;
-  height: 98px;
+  width: 160px;
+  height: 160px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   display: block;
@@ -2892,8 +2892,8 @@ html, body {
     gap: 4px;
   }
   .qr-canvas {
-    width: 55px;
-    height: 55px;
+    width: 110px;
+    height: 110px;
   }
   .label-stamp {
     font-size: 9px;

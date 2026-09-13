@@ -1659,15 +1659,15 @@
 
       function draw(canvas, text) {
         if (!canvas) return;
-        var qr = new QRCodeModel(0, 1); // Auto version, Level L (1)
+        var qr = new QRCodeModel(0, 0); // Auto version, Level M (15% error correction - better scanability)
         qr.addData(text);
         qr.make();
 
         var count = qr.getModuleCount();
-        var border = 4; // Standard 4-module quiet zone
+        var border = 6; // 6-module quiet zone (ISO recommends 4 minimum, 6+ for phone cameras)
         var totalDim = count + border * 2;
 
-        var scale = 7; // High-resolution crisp rendering
+        var scale = 8; // Higher resolution for crisp rendering when displayed at 160px
         var realPx = totalDim * scale;
         canvas.width = realPx;
         canvas.height = realPx;
@@ -1800,18 +1800,8 @@
         // Web Verification Mode (Opens verified digital certificate on the portfolio)
         qrPayload = "https://nikkured.github.io/?trace=" + encodeURIComponent(serial) + "&heat=" + encodeURIComponent(hVal) + "&mat=" + encodeURIComponent(pVal) + "&wt=" + encodeURIComponent(wVal) + "&disp=" + encodeURIComponent(sVal);
       } else {
-        // Direct Plain-Text Traceability Tag (Displays raw specification directly in phone scanner)
-        qrPayload = [
-          "NHK SPRING INDIA LTD.",
-          "RAW MATERIAL TRACEABILITY TAG",
-          "",
-          "PART SPEC: " + pVal,
-          "HEAT NO: " + hVal,
-          "SERIAL: " + serial,
-          "GROSS WT: " + parseFloat(wVal || 0).toFixed(2) + " kg",
-          "DATE/SHIFT: 2026-08-26 / Shift-A",
-          "STATUS: " + sVal
-        ].join("\n");
+        // Direct Compact Traceability Code (short = fewer modules = bigger dots = easier scan)
+        qrPayload = "NHK|" + pVal + "|" + hVal + "|" + serial + "|" + parseFloat(wVal || 0).toFixed(1) + "kg|" + sVal;
       }
       
       QRGenerator.draw(qrCanvas, qrPayload);
