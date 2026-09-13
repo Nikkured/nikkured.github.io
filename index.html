@@ -348,30 +348,32 @@
         <article class="featured-project glass-card reveal" id="nhk-rims">
           <div class="project-grid">
             <div class="project-info">
-              <div class="project-kicker">FLAGSHIP ENTERPRISE SYSTEM</div>
-              <h3 class="project-title">NHK_RIMS — Raw Material Inventory &amp; Traceability System</h3>
+              <div class="project-kicker">FLAGSHIP ENTERPRISE SYSTEM · DUAL-PLATFORM</div>
+              <h3 class="project-title">NHK RIMS — Raw Material Inventory Management System</h3>
               <p class="project-description">
-                A custom, high-reliability desktop application engineered for automotive manufacturing. Tracks the complete lifecycle of steel raw materials: from supplier invoice receipt and physical bundle weighing, to FIFO age-priority lot allocation, production consumption, and immutable audit adjustments.
+                An enterprise-grade dual-platform inventory control system for high-precision steel coil manufacturing. Manages raw material stock pools, GRN receipts, production consumption, and stock audits across a Django REST web portal and a native Android shopfloor app — enforcing a single source of truth with atomic database locking, race-free idempotent transactions, and offline-resilient mobile caching.
               </p>
-              
+
               <div class="project-highlights">
-                <div class="highlight-item">
-                  <strong>100% Offline Resilience:</strong> Zero dependency on external networks; instant SQLite atomic transactions.
-                </div>
-                <div class="highlight-item">
-                  <strong>Physical FIFO Engine:</strong> Algorithmic lot recommendation based on age and heat verification.
-                </div>
-                <div class="highlight-item">
-                  <strong>Audit Ledger:</strong> All adjustments require operator authentication, reason logging, and reversal tracking.
-                </div>
+                <div class="highlight-item"><span class="highlight-icon">⚖️</span><span>High-precision steel weight engine — calculates theoretical weights, actual weights &amp; piece counts from bar diameter, length &amp; density (7.85 g/cm³) without floating-point errors</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📱</span><span>Dual-platform: Django REST web portal for admin &amp; analytics + 100% Native Jetpack Compose Android app for shopfloor operators</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🔐</span><span>Race-free &amp; idempotent transactions — UUID replay protection (request_id) + atomic DB locks (select_for_update) prevent duplicates on network drops</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📴</span><span>Offline-first mobile resilience — Room SQLite caching with auto background sync &amp; real-time ● Connected / ● Offline indicators</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🛡️</span><span>Role-Based Access Control (RBAC) — Admin, Supervisor, Operator hierarchy with Supreme Admin safeguards &amp; page-level feature toggles</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📁</span><span>Exportable Excel stock reports &amp; SAF ledger histories via Android Storage Access Framework &amp; OpenPyXL</span></div>
               </div>
 
               <div class="project-tags">
-                <span class="tag-pill">Python 3</span>
-                <span class="tag-pill">PySide6 / Tkinter</span>
-                <span class="tag-pill">SQLite3</span>
-                <span class="tag-pill">Zebra ZPL</span>
-                <span class="tag-pill">Excel ETL</span>
+                <span class="tag-pill">Python 3.13</span>
+                <span class="tag-pill">Django 5.x</span>
+                <span class="tag-pill">Django REST Framework</span>
+                <span class="tag-pill">PostgreSQL</span>
+                <span class="tag-pill">Kotlin 2.x</span>
+                <span class="tag-pill">Jetpack Compose</span>
+                <span class="tag-pill">Room DB</span>
+                <span class="tag-pill">Dagger Hilt</span>
+                <span class="tag-pill">NGINX</span>
+                <span class="tag-pill">OpenPyXL</span>
               </div>
             </div>
 
