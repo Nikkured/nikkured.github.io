@@ -348,32 +348,43 @@
         <article class="featured-project glass-card reveal" id="nhk-rims">
           <div class="project-grid">
             <div class="project-info">
-              <div class="project-kicker">FLAGSHIP ENTERPRISE SYSTEM · DUAL-PLATFORM</div>
+              <div class="project-kicker">FLAGSHIP ENTERPRISE SYSTEM · LIVE &amp; DEPLOYED <span style="color:#34d399; font-weight:500;">v1.2.0</span></div>
               <h3 class="project-title">NHK RIMS — Raw Material Inventory Management System</h3>
               <p class="project-description">
-                An enterprise-grade dual-platform inventory control system for high-precision steel coil manufacturing. Manages raw material stock pools, GRN receipts, production consumption, and stock audits across a Django REST web portal and a native Android shopfloor app — enforcing a single source of truth with atomic database locking, race-free idempotent transactions, and offline-resilient mobile caching.
+                A production-grade immutable double-entry ledger platform for industrial raw material traceability at NHK Spring India Ltd. Tracks materials accurately across Diameter × Length × Grade pools with row-level concurrency locking, atomic serial document counters, and dialect-safe multi-DB support. Spans a high-performance Qt desktop ERP client, a Django cloud web portal, and a native Android APK — eliminating stock discrepancies across receipts, production consumption, audits, and reversals.
               </p>
 
               <div class="project-highlights">
-                <div class="highlight-item"><span class="highlight-icon">⚖️</span><span>High-precision steel weight engine — calculates theoretical weights, actual weights &amp; piece counts from bar diameter, length &amp; density (7.85 g/cm³) without floating-point errors</span></div>
-                <div class="highlight-item"><span class="highlight-icon">📱</span><span>Dual-platform: Django REST web portal for admin &amp; analytics + 100% Native Jetpack Compose Android app for shopfloor operators</span></div>
-                <div class="highlight-item"><span class="highlight-icon">🔐</span><span>Race-free &amp; idempotent transactions — UUID replay protection (request_id) + atomic DB locks (select_for_update) prevent duplicates on network drops</span></div>
-                <div class="highlight-item"><span class="highlight-icon">📴</span><span>Offline-first mobile resilience — Room SQLite caching with auto background sync &amp; real-time ● Connected / ● Offline indicators</span></div>
-                <div class="highlight-item"><span class="highlight-icon">🛡️</span><span>Role-Based Access Control (RBAC) — Admin, Supervisor, Operator hierarchy with Supreme Admin safeguards &amp; page-level feature toggles</span></div>
-                <div class="highlight-item"><span class="highlight-icon">📁</span><span>Exportable Excel stock reports &amp; SAF ledger histories via Android Storage Access Framework &amp; OpenPyXL</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📒</span><span>Immutable double-entry ledger — every stock event permanently recorded with traceable, non-destructive reversal capabilities</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🔒</span><span>Concurrency &amp; multi-DB hardening — dialect-safe with_for_update() row locking, atomic serial counters, dynamic master cache sync (SQLite + PostgreSQL)</span></div>
+                <div class="highlight-item"><span class="highlight-icon">📐</span><span>Granular Dia × Length × Grade pool control — automated weight-to-piece conversions &amp; monthly Sales Plan coverage tracking</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🛡️</span><span>RBAC with Argon2id cryptographic hashing — Supreme Admin, Admin, Supervisor, Operator tiered permissions</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🖥️</span><span>Cross-platform: PySide6 Qt desktop (Deep Slate dark/light themes) + Django cloud PWA + Android WebView APK</span></div>
+                <div class="highlight-item"><span class="highlight-icon">🧪</span><span>Python Unittest suite covering concurrency invariants, security edge cases &amp; ledger correctness; packaged via Inno Setup Windows installer</span></div>
               </div>
 
               <div class="project-tags">
-                <span class="tag-pill">Python 3.13</span>
-                <span class="tag-pill">Django 5.x</span>
-                <span class="tag-pill">Django REST Framework</span>
+                <span class="tag-pill">Python</span>
+                <span class="tag-pill">PySide6 / Qt</span>
+                <span class="tag-pill">Django</span>
+                <span class="tag-pill">SQLAlchemy</span>
                 <span class="tag-pill">PostgreSQL</span>
-                <span class="tag-pill">Kotlin 2.x</span>
-                <span class="tag-pill">Jetpack Compose</span>
-                <span class="tag-pill">Room DB</span>
-                <span class="tag-pill">Dagger Hilt</span>
-                <span class="tag-pill">NGINX</span>
-                <span class="tag-pill">OpenPyXL</span>
+                <span class="tag-pill">SQLite</span>
+                <span class="tag-pill">Android SDK</span>
+                <span class="tag-pill">Argon2id</span>
+                <span class="tag-pill">Render Cloud</span>
+                <span class="tag-pill">Inno Setup</span>
+              </div>
+
+              <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+                <a href="https://nhk-rims-web.onrender.com" target="_blank" rel="noopener noreferrer"
+                  style="display:inline-flex; align-items:center; gap:7px; padding:9px 18px; border-radius:9px; background:linear-gradient(135deg,#6366f1,#8b5cf6); color:#fff; font-size:13px; font-weight:600; text-decoration:none;">
+                  🌐 Live Demo
+                </a>
+                <a href="https://github.com/Nikkured/nhk-rims-web" target="_blank" rel="noopener noreferrer"
+                  style="display:inline-flex; align-items:center; gap:7px; padding:9px 18px; border-radius:9px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:#e2e8f0; font-size:13px; font-weight:600; text-decoration:none;">
+                  ⌥ GitHub Repo
+                </a>
               </div>
             </div>
 
