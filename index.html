@@ -657,34 +657,9 @@
           </div>
         </article>
 
-        <!-- PROJECT 3 & 4 DUAL GRID (QR Console & SQL Automation) -->
-        <div class="dual-projects-grid" style="margin-top: 32px;">
-          <!-- QR Scanner Console -->
-          <div class="project-card-compact glass-card reveal">
-            <div class="compact-header">
-              <span class="card-kicker">AUTOMATED VERIFICATION</span>
-              <h3>QR &amp; DataMatrix Checksum Console</h3>
-            </div>
-            <p>High-speed barcode/QR parser evaluating ASN checksums, duplicate label prevention, and automatic operator decision tagging.</p>
-            <div class="mini-qr-demo">
-              <div class="segmented-qr">
-                <button type="button" class="btn-scenario is-active" data-scenario="ok">Valid OK</button>
-                <button type="button" class="btn-scenario" data-scenario="duplicate">Duplicate</button>
-                <button type="button" class="btn-scenario" data-scenario="ng">NG Mismatch</button>
-              </div>
-              <button type="button" class="btn btn-sm btn-primary" id="runQrScanBtn" style="width:100%; margin-top:12px;">Trigger Scan Validation →</button>
-              <div class="qr-result-box" id="qrResultBox" data-state="ok">
-                <span class="qr-icon" id="qrIcon">✓</span>
-                <div>
-                  <strong id="qrStateText">VALID — ACCEPT</strong>
-                  <p id="qrStateDesc">Label matches the expected rule set. Accept unit.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Invoice-ASN SQL Validator -->
-          <div class="project-card-compact glass-card reveal">
+        <!-- PROJECT: SQL AUTOMATION COMPACT -->
+        <div style="margin-top: 32px;">
+          <div class="project-card-compact glass-card reveal" style="max-width: 480px;">
             <div class="compact-header">
               <span class="card-kicker">DATA INTEGRITY</span>
               <h3>Invoice–ASN SQL Update Engine</h3>
@@ -701,6 +676,7 @@
             </div>
           </div>
         </div>
+
 
         <!-- PROJECT: QR CODE SCAN VALIDATOR v16 -->
         <article class="featured-project glass-card reveal" id="qr-scan-validator" style="margin-top: 32px;">
@@ -822,68 +798,6 @@
           </div>
         </article>
 
-        <!-- PROJECT: REPLYMATE 2.0 AI PRO -->
-        <article class="featured-project glass-card reveal" id="replymate-pro" style="margin-top: 32px;">
-          <div class="project-grid">
-            <div class="project-info">
-              <div class="project-kicker">AI AGENT · LIVE 24/7 ON TELEGRAM</div>
-              <h3 class="project-title">ReplyMate 2.0 — AI Conversation Coach &amp; Smart Reply Engine</h3>
-              <p class="project-description">
-                An autonomous multimodal AI assistant deployed on Telegram that analyzes chat screenshots, voice notes, and raw text to decode hidden subtext and craft context-aware replies. Powered by Google Gemini 2.0 Flash Lite with strict Pydantic structured schemas, it delivers three psychologically calibrated reply tiers — Safe, Confident, and Bold — alongside interest-level meters and next-move predictions. Eliminates messaging anxiety across dating apps, WhatsApp, Slack, and professional networks.
-              </p>
-              <div class="project-highlights">
-                <div class="highlight-item"><span class="highlight-icon">📸</span><span>Multimodal screenshot-to-reply — upload WhatsApp/Tinder/Hinge/Slack screenshots for instant analysis</span></div>
-                <div class="highlight-item"><span class="highlight-icon">🕵️</span><span>"Did They Mean That?" subtext inspector — decodes passive-aggressive remarks &amp; hidden intent</span></div>
-                <div class="highlight-item"><span class="highlight-icon">👻</span><span>Ghosting recovery engine — high-curiosity hooks to reopen stalled conversations without appearing needy</span></div>
-                <div class="highlight-item"><span class="highlight-icon">📝</span><span>"Rate My Draft" auditor — scores your message /10 for frame, tone &amp; neediness before sending</span></div>
-                <div class="highlight-item"><span class="highlight-icon">❄️</span><span>Interactive icebreaker hub — 1-tap openers for dating apps, LinkedIn, Instagram &amp; reconnections</span></div>
-                <div class="highlight-item"><span class="highlight-icon">⚡</span><span>Sub-2s inference · SQLite user state · viral referral loops · Telegram Stars in-app payments</span></div>
-              </div>
-              <div class="project-tags" style="margin-top: 20px;">
-                <span class="tag-pill">Python 3.12</span>
-                <span class="tag-pill">Gemini 2.0 Flash Lite</span>
-                <span class="tag-pill">Pydantic</span>
-                <span class="tag-pill">python-telegram-bot</span>
-                <span class="tag-pill">aiohttp</span>
-                <span class="tag-pill">SQLite</span>
-                <span class="tag-pill">Multimodal Vision</span>
-                <span class="tag-pill">Ubuntu 24.04 LTS</span>
-              </div>
-              <div style="margin-top: 20px;">
-                <a href="https://t.me/ReplyMateAIProBot" target="_blank" rel="noopener noreferrer"
-                  style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:10px; background:linear-gradient(135deg,#2481cc,#1a6fb0); color:#fff; font-size:13px; font-weight:600; text-decoration:none;">
-                  <span>🤖</span> Try on Telegram — @ReplyMateAIProBot
-                </a>
-              </div>
-            </div>
-            <div class="project-interactive">
-              <div style="background:rgba(2,6,23,0.9); border:1px solid rgba(36,129,204,0.3); border-radius:14px; padding:20px; font-family:var(--font-mono); font-size:12px;">
-                <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08);">
-                  <span style="width:10px;height:10px;border-radius:50%;background:#2481cc;box-shadow:0 0 6px #2481cc;display:inline-block;"></span>
-                  <span style="color:#94a3b8;">REPLYMATE AI · SUBTEXT ANALYSIS</span>
-                </div>
-                <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:10px 12px; margin-bottom:12px; border-left:3px solid #64748b;">
-                  <div style="color:#64748b; font-size:10px; margin-bottom:4px;">INCOMING MESSAGE</div>
-                  <div style="color:#cbd5e1;">"Oh interesting... I guess we'll see 🙃"</div>
-                </div>
-                <div style="background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:8px; padding:10px 12px; margin-bottom:12px;">
-                  <div style="color:#f87171; font-size:10px; margin-bottom:4px;">🕵️ SUBTEXT DECODED</div>
-                  <div style="color:#fca5a5; font-size:11px;">Passive skepticism detected. They're testing your confidence. Don't over-explain.</div>
-                </div>
-                <div style="margin-bottom:8px; color:#64748b; font-size:10px;">REPLY TIERS:</div>
-                <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.2); border-radius:6px; padding:8px 10px; margin-bottom:6px;">
-                  <span style="color:#6ee7b7; font-size:10px;">BOLD · </span><span style="color:#d1fae5; font-size:11px;">"You'll see 😏 — I'm just getting started."</span>
-                </div>
-                <div style="background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.2); border-radius:6px; padding:8px 10px; margin-bottom:6px;">
-                  <span style="color:#a5b4fc; font-size:10px;">CONFIDENT · </span><span style="color:#e0e7ff; font-size:11px;">"Fair enough. Actions speak louder anyway."</span>
-                </div>
-                <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:8px 10px;">
-                  <span style="color:#94a3b8; font-size:10px;">SAFE · </span><span style="color:#cbd5e1; font-size:11px;">"Haha true, let's just enjoy and find out!"</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
 
       </div>
     </section>
@@ -1232,7 +1146,7 @@
     <section class="section experience-section" id="experience" aria-labelledby="experienceHeading">
       <div class="shell">
         <div class="section-header reveal">
-          <div class="section-tag">05 // CAREER TIMELINE</div>
+          <div class="section-tag">06 // CAREER TIMELINE</div>
           <h2 id="experienceHeading" class="section-title">Where the discipline was forged.</h2>
           <p class="section-subtitle">Proven track record across tier-1 automotive manufacturing quality and large-scale outbound operations.</p>
         </div>
